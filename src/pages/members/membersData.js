@@ -1,5 +1,11 @@
 export const categories = [
   {
+    id: "faculty-coordinator",
+    title: "Faculty Coordinator",
+    description: "Faculty advisor and mentor guiding ACES activities.",
+    roles: ["Faculty Coordinator"],
+  },
+  {
     id: "core-team",
     title: "Core Team",
     description: "The primary leadership of ACES.",
@@ -26,6 +32,28 @@ export const categories = [
 ];
 
 export const members = [
+  {
+    id: "sharad-sir",
+    name: "Sharad Sir",
+    role: "Faculty Coordinator",
+    category: "faculty-coordinator",
+    branch: "Computer Engineering",
+    year: "DIT Pune",
+    image: "https://i.pravatar.cc/300?img=68",
+    bio: "Faculty Coordinator of ACES. Providing guidance, support, and mentorship to student teams in technical and organizational activities.",
+    responsibilities: [
+      "Mentorship",
+      "Club Oversight",
+      "Faculty Guidance"
+    ],
+    skills: [
+      "Mentoring",
+      "Academic Leadership"
+    ],
+    social: {
+      email: "mailto:sharad.sir@college.edu"
+    }
+  },
   {
     id: "tejas-nalawade",
     name: "Tejas Nalawade",

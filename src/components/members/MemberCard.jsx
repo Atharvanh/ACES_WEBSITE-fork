@@ -41,28 +41,36 @@ const MemberCardBack = ({ member }) => {
   return (
     <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] bg-[#0f0f0f]/95 backdrop-blur-sm border border-[#b22b2f]/30 rounded-2xl overflow-hidden relative">
       
-      {/* Gold ACES Branding */}
-      <div className="absolute top-5 left-0 w-full text-center pointer-events-none z-0">
-        <h2 
-          className="text-4xl font-black tracking-widest" 
-          style={{ color: '#D4AF37', textShadow: '0 4px 12px rgba(212, 175, 55, 0.3)' }}
-        >
-          ACES
-        </h2>
-      </div>
+      {/* Background Layer: Phoenix */}
+      <img 
+        src="/phoenix.png" 
+        alt="" 
+        className="absolute top-1/2 right-[-20%] -translate-y-1/2 w-[130%] h-auto object-contain opacity-20 pointer-events-none z-0 mix-blend-lighten" 
+      />
 
       {/* Content Layer */}
-      <div className="absolute inset-0 w-full h-full p-6 pt-16 flex flex-col overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] z-10">
+      <div className="absolute inset-0 w-full h-full p-6 flex flex-col overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] z-10">
         
-        <div className="text-center mb-4 pb-4 border-b border-gray-800/60">
+        <div className="text-center mb-4 pb-4 border-b border-gray-800/60 relative">
+          <div className="absolute inset-0 bg-[#0b0d12]/30 -mx-6 px-6 blur-md -z-10"></div>
+          
+          {/* Gold ACES Branding (placed directly above name) */}
+          <h2 
+            className="text-3xl font-black tracking-widest mb-2" 
+            style={{ color: '#D4AF37', textShadow: '0 2px 8px rgba(212, 175, 55, 0.2)' }}
+          >
+            ACES
+          </h2>
+          
           <h3 className="text-xl font-bold text-white uppercase tracking-wide">{member.name}</h3>
           <p className="text-sm text-[#b22b2f] font-medium">{member.role}</p>
         </div>
 
-        <div className="flex-1 flex flex-col items-center justify-center text-center">
+        <div className="flex-1 flex flex-col items-center justify-center text-center relative">
+          <div className="absolute inset-0 bg-[#0b0d12]/30 -mx-6 px-6 blur-xl -z-10"></div>
           {member.bio ? (
             <div>
-              <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">About</h4>
+              <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">About</h4>
               <p className="text-sm text-gray-200 leading-relaxed max-w-[90%] mx-auto">{member.bio}</p>
             </div>
           ) : (
@@ -70,7 +78,8 @@ const MemberCardBack = ({ member }) => {
           )}
         </div>
 
-        <div className="mt-4 pt-4 border-t border-gray-800/60 text-center text-gray-400 text-xs flex items-center justify-center gap-1.5 opacity-70 group-hover:opacity-100 transition-opacity">
+        <div className="mt-4 pt-4 border-t border-gray-800/60 text-center text-gray-400 text-xs flex items-center justify-center gap-1.5 opacity-70 group-hover:opacity-100 transition-opacity relative">
+          <div className="absolute inset-0 bg-[#0b0d12]/30 -mx-6 px-6 blur-md -z-10"></div>
           <RotateCcw className="w-3 h-3" />
           <span>Click to flip back</span>
         </div>
