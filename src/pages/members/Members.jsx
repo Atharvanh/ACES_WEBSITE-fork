@@ -51,7 +51,7 @@ const Members = () => {
                   )}
                 </div>
 
-                {membersList.length > 0 && (
+                {membersList.length > 0 && category.id !== 'faculty-coordinator' && (
                   <div className="mt-10 flex justify-center">
                     <button 
                       onClick={() => navigate(`/members/${category.id}`)}
