@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Menu, X, Zap, UserPlus, ArrowRight, ShieldAlert } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { Menu, X, Zap, ArrowRight, ShieldAlert } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { InstagramIcon, LinkedinIcon, GithubIcon } from './SocialIcons';
 
@@ -10,6 +10,7 @@ const MENU_ITEMS = [
   { id: 'golden-moments',label: 'Golden Moments',   path: '/golden-moments' },
   { id: 'gallery',        label: 'Gallery',          path: '/gallery' },
   { id: 'feed',           label: 'Feed',             path: '/feed' },
+  { id: 'social',         label: 'Social',           path: '/social' },
   { id: 'members',        label: 'Members 🔒',       path: '/members', isSecret: true },
 ];
 
@@ -25,65 +26,62 @@ export default function Navbar() {
 
   return (
     <>
-      {/* ─── Main Navbar Header ─── */}
-      <header className="sticky top-0 z-30 w-full bg-black/85 backdrop-blur-md border-b border-neutral-800 transition-all">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 sm:h-20">
-
-            {/* Left: Hamburger + Logo */}
-            <div className="flex items-center space-x-3 sm:space-x-4">
-              {/* Hamburger Button */}
-              <button
-                type="button"
-                onClick={() => setIsOpen(true)}
-                className="relative p-2.5 rounded-xl bg-neutral-900 text-neutral-200 border border-neutral-800 hover:border-red-500 hover:text-red-400 hover:shadow-[0_0_12px_rgba(239,68,68,0.25)] hover:scale-105 active:scale-95 transition-all duration-150 focus:outline-none group cursor-pointer"
-                title="Open Navigation Menu"
-                aria-label="Open menu"
-              >
-                <Menu className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
-                {/* Red pulse dot */}
-                <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-600 rounded-full animate-pulse"></span>
-              </button>
-
-              {/* ACES Brand */}
-              <button
-                onClick={() => handleNav('/')}
-                className="flex items-center space-x-2.5 sm:space-x-3 text-left group focus:outline-none cursor-pointer"
-              >
-                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-red-600 via-rose-600 to-red-700 flex items-center justify-center text-white font-black text-lg shadow-lg shadow-red-600/30 ring-1 ring-red-500/30 group-hover:scale-105 transition-all duration-150">
-                  <Zap className="w-5 h-5 fill-current" />
-                </div>
-                <div>
-                  <div className="flex items-center space-x-2">
-                    <span className="font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-100 to-red-400 text-lg sm:text-xl group-hover:text-red-400 transition-colors">
-                      ACES
-                    </span>
-                    <span className="hidden sm:inline-block px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider bg-red-600/10 text-red-400 border border-red-600/30 rounded-md group-hover:border-red-500 transition-all">
-                      College Club
-                    </span>
-                  </div>
-                  <span className="text-[11px] text-neutral-400 hidden sm:block font-medium">
-                    Association of Computer Engineering Students
-                  </span>
-                </div>
-              </button>
-            </div>
-
-            {/* Right: Join Club Button */}
-            <div className="flex items-center space-x-3">
-              <button
-                onClick={() => handleNav('/who-are-we')}
-                className="relative inline-flex items-center justify-center px-4 py-2 text-xs sm:text-sm font-semibold text-white transition-all duration-150 bg-neutral-900 border border-neutral-700 hover:border-red-500 hover:text-red-400 hover:shadow-[0_0_14px_rgba(239,68,68,0.3)] hover:scale-105 active:scale-95 rounded-xl focus:outline-none cursor-pointer"
-              >
-                <UserPlus className="w-4 h-4 mr-1.5 text-red-500" />
-                <span>Join Club</span>
-              </button>
-            </div>
+      {/* ─── Desktop Floating Pill Navigation Bar (Windows / Large Screens Only) ─── */}
+      <nav 
+        className="fixed top-5 left-1/2 -translate-x-1/2 z-40 hidden md:flex items-center gap-1.5 px-3 py-1.5 bg-white/90 backdrop-blur-md border border-[#e8e6e1] rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_32px_rgba(178,43,47,0.12)] transition-all duration-300"
+        aria-label="Main Navigation"
+      >
+        {/* ACES Logo Pill */}
+        <button
+          onClick={() => handleNav('/')}
+          className="flex items-center gap-2 pl-1.5 pr-3 py-1 text-left group focus:outline-none cursor-pointer border-r border-muted/30 mr-1"
+          title="ACES Home"
+        >
+          <div className="w-7 h-7 rounded-full bg-primary flex items-center justify-center text-white shadow-brand-glow group-hover:scale-105 transition-transform">
+            <Zap className="w-3.5 h-3.5 fill-current" />
           </div>
-        </div>
-      </header>
+          <span className="font-display font-black tracking-wider text-primary text-sm">
+            ACES
+          </span>
+        </button>
 
-      {/* ─── Slide-out Sidebar Drawer ─── */}
+        {/* Nav Links */}
+        <div className="flex items-center gap-1">
+          {MENU_ITEMS.map((item) => {
+            const isActive = location.pathname === item.path;
+            return (
+              <button
+                key={item.id}
+                onClick={() => handleNav(item.path)}
+                className={`relative px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-200 cursor-pointer ${
+                  isActive
+                    ? 'text-white bg-primary shadow-[0_2px_12px_rgba(178,43,47,0.3)]'
+                    : 'text-muted hover:text-primary hover:bg-light-tint'
+                }`}
+              >
+                {item.label}
+              </button>
+            );
+          })}
+        </div>
+      </nav>
+
+      {/* ─── Mobile Floating Hamburger Button (Small Screens Only) ─── */}
+      <div className="fixed top-5 right-5 z-40 md:hidden">
+        <button
+          type="button"
+          onClick={() => setIsOpen(true)}
+          className="relative p-3 rounded-full bg-white/95 text-muted border border-muted/50 hover:border-primary hover:text-primary shadow-lg hover:shadow-xl transition-all duration-200 focus:outline-none group cursor-pointer backdrop-blur-md hover:scale-105 active:scale-95"
+          title="Open Navigation Menu"
+          aria-label="Open menu"
+        >
+          <Menu className="w-5 h-5 text-current transition-transform group-hover:scale-110" />
+          {/* Red pulse dot */}
+          <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+        </button>
+      </div>
+
+      {/* ─── Slide-out Sidebar Drawer (from Right) ─── */}
       <AnimatePresence>
         {isOpen && (
           <>
@@ -93,32 +91,32 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-40 bg-black/80 backdrop-blur-sm"
+              className="fixed inset-0 z-50 bg-dark-overlay/60 backdrop-blur-sm"
               onClick={() => setIsOpen(false)}
               aria-hidden="true"
             />
 
             {/* Drawer Panel */}
             <motion.aside
-              initial={{ x: '-100%' }}
+              initial={{ x: '100%' }}
               animate={{ x: 0 }}
-              exit={{ x: '-100%' }}
+              exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 28, stiffness: 260 }}
-              className="fixed top-0 left-0 bottom-0 z-50 w-72 max-w-[85vw] bg-black/95 backdrop-blur-2xl border-r border-neutral-800 shadow-2xl flex flex-col justify-between"
+              className="fixed top-0 right-0 bottom-0 z-50 w-80 max-w-[85vw] bg-white border-l border-muted/50 shadow-2xl flex flex-col justify-between"
             >
               {/* Drawer Header */}
-              <div className="p-5 border-b border-neutral-900 bg-neutral-950/50">
+              <div className="p-5 border-b border-muted/30 bg-light-tint/60">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">
-                    <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-red-600 to-rose-700 flex items-center justify-center text-white font-bold shadow-lg shadow-red-600/30 ring-1 ring-red-500/30">
+                    <div className="w-9 h-9 rounded-[4px] bg-primary flex items-center justify-center text-white font-bold shadow-sm">
                       <Zap className="w-5 h-5 fill-current" />
                     </div>
                     <div>
                       <div className="flex items-center space-x-2">
-                        <span className="font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-rose-400 to-white text-lg">
+                        <span className="font-display font-extrabold tracking-wider text-primary text-lg">
                           ACES
                         </span>
-                        <span className="px-1.5 py-0.5 text-[10px] font-semibold bg-red-600/20 text-red-400 border border-red-600/30 rounded">
+                        <span className="px-1.5 py-0.5 text-[10px] font-semibold bg-primary/10 text-primary border border-primary/30 rounded-[4px]">
                           CLUB
                         </span>
                       </div>
@@ -129,7 +127,7 @@ export default function Navbar() {
                   <button
                     type="button"
                     onClick={() => setIsOpen(false)}
-                    className="p-1.5 text-neutral-400 hover:text-red-400 bg-neutral-900 rounded-md border border-neutral-800 hover:border-red-500 hover:scale-105 active:scale-95 transition-all duration-150 focus:outline-none cursor-pointer"
+                    className="p-1.5 text-muted hover:text-primary bg-white rounded-[4px] border border-muted/50 hover:border-primary transition-all duration-150 focus:outline-none cursor-pointer"
                     aria-label="Close menu"
                   >
                     <X className="w-4 h-4" />
@@ -146,24 +144,24 @@ export default function Navbar() {
                       <div
                         key={item.id}
                         onClick={() => handleNav(item.path)}
-                        className={`group cursor-pointer py-1.5 border-l-2 pl-3 transition-all duration-150 ${
-                          isActive ? 'border-red-500' : 'border-transparent hover:border-red-500'
+                        className={`group cursor-pointer py-2 border-r-2 pr-3 transition-all duration-150 ${
+                          isActive ? 'border-primary' : 'border-transparent hover:border-primary'
                         }`}
                         role="menuitem"
                       >
                         <div className="flex items-center justify-between">
-                          <span className={`text-base font-medium group-hover:text-red-400 group-hover:translate-x-1.5 transition-all duration-150 inline-block ${
-                            isActive ? 'text-red-400' : 'text-neutral-300'
+                          <span className={`text-base font-medium group-hover:text-primary group-hover:translate-x-1 transition-all duration-150 inline-block ${
+                            isActive ? 'text-primary font-semibold' : 'text-muted'
                           }`}>
                             {item.label}
                           </span>
                           {item.isSecret && (
-                            <span className="text-[10px] uppercase font-mono tracking-widest bg-red-600/20 text-red-400 border border-red-600/30 px-2 py-0.5 rounded flex items-center gap-1">
+                            <span className="text-[10px] uppercase font-mono tracking-widest bg-primary/10 text-primary border border-primary/30 px-2 py-0.5 rounded-[4px] flex items-center gap-1">
                               <ShieldAlert className="w-3 h-3" /> Secret
                             </span>
                           )}
                           {!item.isSecret && (
-                            <ArrowRight className="w-4 h-4 text-red-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                            <ArrowRight className="w-4 h-4 text-primary opacity-0 group-hover:opacity-100 transition-opacity" />
                           )}
                         </div>
                       </div>
@@ -173,37 +171,37 @@ export default function Navbar() {
               </div>
 
               {/* Drawer Footer with Social Icons */}
-              <div className="p-5 border-t border-neutral-900 bg-neutral-950/70 flex flex-col items-center justify-center space-y-3">
+              <div className="p-5 border-t border-muted/30 bg-light-tint/60 flex flex-col items-center justify-center space-y-3">
                 <div className="flex items-center justify-center space-x-5">
                   <a
                     href="https://instagram.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:scale-110 active:scale-95 transition-all duration-150 inline-flex items-center justify-center focus:outline-none hover:drop-shadow-[0_0_10px_rgba(225,48,108,0.6)] cursor-pointer"
+                    className="hover:scale-110 active:scale-95 transition-all duration-150 inline-flex items-center justify-center focus:outline-none cursor-pointer text-muted hover:text-primary"
                     aria-label="Instagram"
                   >
-                    <InstagramIcon className="w-7 h-7" />
+                    <InstagramIcon className="w-6 h-6" />
                   </a>
                   <a
                     href="https://linkedin.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:scale-110 active:scale-95 transition-all duration-150 inline-flex items-center justify-center focus:outline-none hover:drop-shadow-[0_0_10px_rgba(10,102,194,0.6)] cursor-pointer"
+                    className="hover:scale-110 active:scale-95 transition-all duration-150 inline-flex items-center justify-center focus:outline-none cursor-pointer text-muted hover:text-primary"
                     aria-label="LinkedIn"
                   >
-                    <LinkedinIcon className="w-7 h-7" />
+                    <LinkedinIcon className="w-6 h-6" />
                   </a>
                   <a
                     href="https://github.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:scale-110 active:scale-95 transition-all duration-150 inline-flex items-center justify-center focus:outline-none hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.4)] cursor-pointer"
+                    className="hover:scale-110 active:scale-95 transition-all duration-150 inline-flex items-center justify-center focus:outline-none cursor-pointer text-muted hover:text-primary"
                     aria-label="GitHub"
                   >
-                    <GithubIcon className="w-7 h-7" />
+                    <GithubIcon className="w-6 h-6" />
                   </a>
                 </div>
-                <p className="text-[10px] text-neutral-400 font-medium tracking-wider text-center">
+                <p className="text-[10px] text-muted font-medium tracking-wider text-center">
                   ACES • DIT PUNE
                 </p>
               </div>

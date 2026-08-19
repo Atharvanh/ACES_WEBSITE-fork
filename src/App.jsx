@@ -9,29 +9,40 @@ import Feed from './pages/feed/Feed';
 import Members from './pages/members/Members';
 import MembersList from './pages/members/MembersList';
 import MemberProfile from './pages/member-profile/MemberProfile';
+import Social from './pages/social/Social';
+import { useScrollReveal } from './hooks/useScrollReveal';
+
+function AppContent() {
+  useScrollReveal();
+
+  return (
+    <div className="flex flex-col min-h-screen bg-gradient-mesh text-muted font-sans selection:bg-primary selection:text-white">
+      <Navbar />
+      
+      {/* Main Content Area */}
+      <main className="flex-grow">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/who-are-we" element={<WhoAreWe />} />
+          <Route path="/golden-moments" element={<GoldenMoments />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/feed" element={<Feed />} />
+          <Route path="/social" element={<Social />} />
+          <Route path="/members" element={<Members />} />
+          <Route path="/members/:categoryId" element={<MembersList />} />
+          <Route path="/members/:categoryId/:memberId" element={<MemberProfile />} />
+        </Routes>
+      </main>
+      
+      <Footer />
+    </div>
+  );
+}
 
 export default function App() {
   return (
     <Router>
-      <div className="flex flex-col min-h-screen bg-[#111111] text-white font-sans selection:bg-[#b22b2f] selection:text-white">
-        <Navbar />
-        
-        {/* Main Content Area */}
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/who-are-we" element={<WhoAreWe />} />
-            <Route path="/golden-moments" element={<GoldenMoments />} />
-            <Route path="/gallery" element={<Gallery />} />
-            <Route path="/feed" element={<Feed />} />
-            <Route path="/members" element={<Members />} />
-            <Route path="/members/:categoryId" element={<MembersList />} />
-            <Route path="/members/:categoryId/:memberId" element={<MemberProfile />} />
-          </Routes>
-        </main>
-        
-        <Footer />
-      </div>
+      <AppContent />
     </Router>
   );
 }

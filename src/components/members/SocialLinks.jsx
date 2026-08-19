@@ -3,8 +3,8 @@ import React from 'react';
 const SocialLinks = ({ social }) => {
   if (!social) return null;
 
-  const iconClass = "w-5 h-5 text-gray-400 group-hover:text-[#b22b2f] transition-colors duration-300";
-  const containerClass = "group p-3 bg-[#1e222e] border border-gray-700/50 rounded-lg hover:border-[#b22b2f] transition-all duration-300 cursor-pointer flex items-center justify-center";
+  const iconClass = "w-5 h-5 text-muted group-hover:text-primary transition-colors duration-300";
+  const containerClass = "group p-3 bg-light-tint border border-muted/50 rounded-[4px] hover:border-primary hover:bg-white transition-all duration-300 cursor-pointer flex items-center justify-center shadow-sm";
 
   return (
     <div className="flex gap-4">

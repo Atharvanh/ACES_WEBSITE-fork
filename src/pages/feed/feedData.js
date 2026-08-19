@@ -24,21 +24,21 @@ export const reels = [
     id: "reel-1",
     title: "HackACES 36-hour recap in 60s! ⚡",
     views: "1.2k",
-    videoPlaceholderColor: "from-red-900 to-rose-700",
+    videoPlaceholderColor: "from-[#b22b2f] to-[#7a1518]",
     likes: 120
   },
   {
     id: "reel-2",
     title: "Quick Tips: Mastering React 19 hooks 💻",
     views: "890",
-    videoPlaceholderColor: "from-amber-800 to-yellow-600",
+    videoPlaceholderColor: "from-[#d1a550] to-[#a07828]",
     likes: 95
   },
   {
     id: "reel-3",
     title: "Behind the Scenes: Design Committee 🎨",
     views: "2.1k",
-    videoPlaceholderColor: "from-blue-900 to-cyan-700",
+    videoPlaceholderColor: "from-[#2d3a5e] to-[#1a2340]",
     likes: 240
   }
 ];
