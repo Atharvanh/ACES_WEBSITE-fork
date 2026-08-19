@@ -7,12 +7,13 @@ import GoldenMoments from './pages/golden-moments/GoldenMoments';
 import Gallery from './pages/gallery/Gallery';
 import Feed from './pages/feed/Feed';
 import Members from './pages/members/Members';
+import MembersList from './pages/members/MembersList';
 import MemberProfile from './pages/member-profile/MemberProfile';
 
 export default function App() {
   return (
     <Router>
-      <div className="flex flex-col min-h-screen bg-charcoal text-white font-sans selection:bg-primary selection:text-white">
+      <div className="flex flex-col min-h-screen bg-[#111111] text-white font-sans selection:bg-[#b22b2f] selection:text-white">
         <Navbar />
         
         {/* Main Content Area */}
@@ -24,7 +25,8 @@ export default function App() {
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/feed" element={<Feed />} />
             <Route path="/members" element={<Members />} />
-            <Route path="/members/:id" element={<MemberProfile />} />
+            <Route path="/members/:categoryId" element={<MembersList />} />
+            <Route path="/members/:categoryId/:memberId" element={<MemberProfile />} />
           </Routes>
         </main>
         

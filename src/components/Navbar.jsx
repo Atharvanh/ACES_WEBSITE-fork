@@ -1,167 +1,216 @@
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ArrowRight, ShieldAlert } from 'lucide-react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Menu, X, Zap, UserPlus, ArrowRight, ShieldAlert } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { InstagramIcon, LinkedinIcon, GithubIcon } from './SocialIcons';
+
+const MENU_ITEMS = [
+  { id: 'home',           label: 'Home',            path: '/' },
+  { id: 'who-are-we',    label: 'Who Are We',       path: '/who-are-we' },
+  { id: 'golden-moments',label: 'Golden Moments',   path: '/golden-moments' },
+  { id: 'gallery',        label: 'Gallery',          path: '/gallery' },
+  { id: 'feed',           label: 'Feed',             path: '/feed' },
+  { id: 'members',        label: 'Members 🔒',       path: '/members', isSecret: true },
+];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
   const location = useLocation();
 
-  // Links visible in the standard desktop nav bar (excludes Members)
-  const desktopLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Who Are We', path: '/who-are-we' },
-    { name: 'Golden Moments', path: '/golden-moments' },
-    { name: 'Gallery', path: '/gallery' },
-    { name: 'Feed', path: '/feed' },
-  ];
-
-  // Links visible inside the Hamburger Menu (includes Members)
-  const hamburgerLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Who Are We', path: '/who-are-we' },
-    { name: 'Golden Moments', path: '/golden-moments' },
-    { name: 'Gallery', path: '/gallery' },
-    { name: 'Feed', path: '/feed' },
-    { name: 'Members Directory 🔒', path: '/members', isSecret: true },
-  ];
-
-  const isActive = (path) => location.pathname === path;
+  const handleNav = (path) => {
+    navigate(path);
+    setIsOpen(false);
+  };
 
   return (
-    <nav className="sticky top-0 z-50 glassmorphism border-b border-[#222] text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo Section */}
-          <div className="flex-shrink-0 flex items-center">
-            <Link to="/" className="flex items-center gap-2">
-              <svg className="w-8 h-8 text-phoenix fill-current" viewBox="0 0 52 60">
-                <path d="M8 28 C6 20, 2 14, 4 8 C8 12, 10 16, 12 22 C14 16, 16 10, 22 6 C20 14, 18 20, 18 26Z" />
-                <path d="M44 28 C46 20, 50 14, 48 8 C44 12, 42 16, 40 22 C38 16, 36 10, 30 6 C32 14, 34 20, 34 26Z" />
-                <path d="M18 26 C20 22, 26 20, 28 20 C30 20, 36 22, 38 26 C36 30, 32 34, 28 36 C24 34, 20 30, 18 26Z" />
-                <path d="M22 34 C20 40, 18 46, 16 50 C20 46, 24 42, 28 40 C32 42, 36 46, 40 50 C38 46, 36 40, 34 34Z" />
-                <circle cx="28" cy="18" r="5" />
-                <path d="M23 17 L18 19 L23 20Z" className="text-primary fill-current" />
-              </svg>
-              <span className="font-display font-bold text-lg tracking-wider text-primary">
-                ACES <span className="text-white">DIT</span>
-              </span>
-            </Link>
-          </div>
+    <>
+      {/* ─── Main Navbar Header ─── */}
+      <header className="sticky top-0 z-30 w-full bg-black/85 backdrop-blur-md border-b border-neutral-800 transition-all">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 sm:h-20">
 
-          {/* Desktop Navigation (Standard Links) */}
-          <div className="hidden md:flex items-center space-x-6">
-            <div className="flex items-baseline space-x-6">
-              {desktopLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.path}
-                  className={`relative px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 ${
-                    isActive(link.path)
-                      ? 'text-primary'
-                      : 'text-gray-300 hover:text-white'
-                  }`}
-                >
-                  {link.name}
-                  {isActive(link.path) && (
-                    <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-primary rounded-full"></span>
-                  )}
-                </Link>
-              ))}
+            {/* Left: Hamburger + Logo */}
+            <div className="flex items-center space-x-3 sm:space-x-4">
+              {/* Hamburger Button */}
+              <button
+                type="button"
+                onClick={() => setIsOpen(true)}
+                className="relative p-2.5 rounded-xl bg-neutral-900 text-neutral-200 border border-neutral-800 hover:border-red-500 hover:text-red-400 hover:shadow-[0_0_12px_rgba(239,68,68,0.25)] hover:scale-105 active:scale-95 transition-all duration-150 focus:outline-none group cursor-pointer"
+                title="Open Navigation Menu"
+                aria-label="Open menu"
+              >
+                <Menu className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
+                {/* Red pulse dot */}
+                <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-600 rounded-full animate-pulse"></span>
+              </button>
+
+              {/* ACES Brand */}
+              <button
+                onClick={() => handleNav('/')}
+                className="flex items-center space-x-2.5 sm:space-x-3 text-left group focus:outline-none cursor-pointer"
+              >
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-red-600 via-rose-600 to-red-700 flex items-center justify-center text-white font-black text-lg shadow-lg shadow-red-600/30 ring-1 ring-red-500/30 group-hover:scale-105 transition-all duration-150">
+                  <Zap className="w-5 h-5 fill-current" />
+                </div>
+                <div>
+                  <div className="flex items-center space-x-2">
+                    <span className="font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-100 to-red-400 text-lg sm:text-xl group-hover:text-red-400 transition-colors">
+                      ACES
+                    </span>
+                    <span className="hidden sm:inline-block px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider bg-red-600/10 text-red-400 border border-red-600/30 rounded-md group-hover:border-red-500 transition-all">
+                      College Club
+                    </span>
+                  </div>
+                  <span className="text-[11px] text-neutral-400 hidden sm:block font-medium">
+                    Association of Computer Engineering Students
+                  </span>
+                </div>
+              </button>
+            </div>
+
+            {/* Right: Join Club Button */}
+            <div className="flex items-center space-x-3">
+              <button
+                onClick={() => handleNav('/who-are-we')}
+                className="relative inline-flex items-center justify-center px-4 py-2 text-xs sm:text-sm font-semibold text-white transition-all duration-150 bg-neutral-900 border border-neutral-700 hover:border-red-500 hover:text-red-400 hover:shadow-[0_0_14px_rgba(239,68,68,0.3)] hover:scale-105 active:scale-95 rounded-xl focus:outline-none cursor-pointer"
+              >
+                <UserPlus className="w-4 h-4 mr-1.5 text-red-500" />
+                <span>Join Club</span>
+              </button>
             </div>
           </div>
-
-          {/* Hamburger Toggle Button (Always visible on mobile, and as a premium menu launcher on desktop) */}
-          <div className="flex items-center">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-[#2a2a2a] focus:outline-none transition-colors cursor-pointer"
-              aria-label="Toggle menu"
-            >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
-          </div>
         </div>
-      </div>
+      </header>
 
-      {/* Slide-out Drawer Overlay Menu */}
+      {/* ─── Slide-out Sidebar Drawer ─── */}
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* Backdrop blur overlay */}
+            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-40 bg-black/80 backdrop-blur-sm"
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm"
+              aria-hidden="true"
             />
 
-            {/* Slide-out Drawer */}
-            <motion.div
-              initial={{ x: '100%' }}
+            {/* Drawer Panel */}
+            <motion.aside
+              initial={{ x: '-100%' }}
               animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed right-0 top-0 bottom-0 z-50 w-full sm:w-96 bg-[#161616] border-l border-[#222] p-8 flex flex-col justify-between"
+              exit={{ x: '-100%' }}
+              transition={{ type: 'spring', damping: 28, stiffness: 260 }}
+              className="fixed top-0 left-0 bottom-0 z-50 w-72 max-w-[85vw] bg-black/95 backdrop-blur-2xl border-r border-neutral-800 shadow-2xl flex flex-col justify-between"
             >
-              <div>
-                {/* Header inside drawer */}
-                <div className="flex justify-between items-center mb-12">
-                  <span className="font-display font-bold text-sm tracking-widest text-gray-500 uppercase">
-                    Navigation Menu
-                  </span>
+              {/* Drawer Header */}
+              <div className="p-5 border-b border-neutral-900 bg-neutral-950/50">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-red-600 to-rose-700 flex items-center justify-center text-white font-bold shadow-lg shadow-red-600/30 ring-1 ring-red-500/30">
+                      <Zap className="w-5 h-5 fill-current" />
+                    </div>
+                    <div>
+                      <div className="flex items-center space-x-2">
+                        <span className="font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-rose-400 to-white text-lg">
+                          ACES
+                        </span>
+                        <span className="px-1.5 py-0.5 text-[10px] font-semibold bg-red-600/20 text-red-400 border border-red-600/30 rounded">
+                          CLUB
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Close Button */}
                   <button
+                    type="button"
                     onClick={() => setIsOpen(false)}
-                    className="p-1 rounded-md text-gray-400 hover:text-white hover:bg-[#222]"
+                    className="p-1.5 text-neutral-400 hover:text-red-400 bg-neutral-900 rounded-md border border-neutral-800 hover:border-red-500 hover:scale-105 active:scale-95 transition-all duration-150 focus:outline-none cursor-pointer"
+                    aria-label="Close menu"
                   >
-                    <X className="h-6 w-6" />
+                    <X className="w-4 h-4" />
                   </button>
                 </div>
-
-                {/* Navigation Links */}
-                <div className="space-y-6">
-                  {hamburgerLinks.map((link) => (
-                    <Link
-                      key={link.name}
-                      to={link.path}
-                      onClick={() => setIsOpen(false)}
-                      className={`group flex items-center justify-between py-2 border-b border-[#222] text-xl font-bold tracking-wide transition-colors ${
-                        isActive(link.path)
-                          ? 'text-primary'
-                          : 'text-gray-300 hover:text-white'
-                      }`}
-                    >
-                      <span>{link.name}</span>
-                      
-                      {link.isSecret ? (
-                        <span className="text-[10px] uppercase font-mono tracking-widest bg-primary/20 text-primary border border-primary/30 px-2 py-0.5 rounded flex items-center gap-1">
-                          Secret Route
-                        </span>
-                      ) : (
-                        <ArrowRight className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity text-primary" />
-                      )}
-                    </Link>
-                  ))}
-                </div>
               </div>
 
-              {/* Drawer Footer details */}
-              <div className="space-y-4">
-                <div className="bg-[#222]/30 border border-[#333] rounded-lg p-4 flex gap-3 items-start">
-                  <ShieldAlert className="w-5 h-5 text-phoenix flex-shrink-0 mt-0.5" />
-                  <p className="text-[11px] text-gray-400 leading-normal">
-                    The Members Directory is configured as a secret tab and is only accessible from within this menu drawer.
-                  </p>
-                </div>
-                <div className="text-[10px] text-gray-600 font-mono text-center">
-                  ACES DIT Pune • Est. 2016
-                </div>
+              {/* Drawer Navigation Links */}
+              <div className="flex-1 overflow-y-auto px-6 py-6">
+                <nav className="flex flex-col space-y-4" role="menu">
+                  {MENU_ITEMS.map((item) => {
+                    const isActive = location.pathname === item.path;
+                    return (
+                      <div
+                        key={item.id}
+                        onClick={() => handleNav(item.path)}
+                        className={`group cursor-pointer py-1.5 border-l-2 pl-3 transition-all duration-150 ${
+                          isActive ? 'border-red-500' : 'border-transparent hover:border-red-500'
+                        }`}
+                        role="menuitem"
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className={`text-base font-medium group-hover:text-red-400 group-hover:translate-x-1.5 transition-all duration-150 inline-block ${
+                            isActive ? 'text-red-400' : 'text-neutral-300'
+                          }`}>
+                            {item.label}
+                          </span>
+                          {item.isSecret && (
+                            <span className="text-[10px] uppercase font-mono tracking-widest bg-red-600/20 text-red-400 border border-red-600/30 px-2 py-0.5 rounded flex items-center gap-1">
+                              <ShieldAlert className="w-3 h-3" /> Secret
+                            </span>
+                          )}
+                          {!item.isSecret && (
+                            <ArrowRight className="w-4 h-4 text-red-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </nav>
               </div>
-            </motion.div>
+
+              {/* Drawer Footer with Social Icons */}
+              <div className="p-5 border-t border-neutral-900 bg-neutral-950/70 flex flex-col items-center justify-center space-y-3">
+                <div className="flex items-center justify-center space-x-5">
+                  <a
+                    href="https://instagram.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:scale-110 active:scale-95 transition-all duration-150 inline-flex items-center justify-center focus:outline-none hover:drop-shadow-[0_0_10px_rgba(225,48,108,0.6)] cursor-pointer"
+                    aria-label="Instagram"
+                  >
+                    <InstagramIcon className="w-7 h-7" />
+                  </a>
+                  <a
+                    href="https://linkedin.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:scale-110 active:scale-95 transition-all duration-150 inline-flex items-center justify-center focus:outline-none hover:drop-shadow-[0_0_10px_rgba(10,102,194,0.6)] cursor-pointer"
+                    aria-label="LinkedIn"
+                  >
+                    <LinkedinIcon className="w-7 h-7" />
+                  </a>
+                  <a
+                    href="https://github.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:scale-110 active:scale-95 transition-all duration-150 inline-flex items-center justify-center focus:outline-none hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.4)] cursor-pointer"
+                    aria-label="GitHub"
+                  >
+                    <GithubIcon className="w-7 h-7" />
+                  </a>
+                </div>
+                <p className="text-[10px] text-neutral-400 font-medium tracking-wider text-center">
+                  ACES • DIT PUNE
+                </p>
+              </div>
+            </motion.aside>
           </>
         )}
       </AnimatePresence>
-    </nav>
+    </>
   );
 }
