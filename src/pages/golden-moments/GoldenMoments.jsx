@@ -1,11 +1,18 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Award, MapPin, Calendar } from 'lucide-react';
+import { Award, ChevronLeft, ChevronRight } from 'lucide-react';
 import { goldenMoments } from './momentsData';
 
 export default function GoldenMoments({ embedded = false }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
   const total = goldenMoments.length;
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleNext = () => {
     setActiveIndex((prev) => (prev + 1) % total);
@@ -36,45 +43,43 @@ export default function GoldenMoments({ embedded = false }) {
   }, []);
 
   const getCardSpacing = () => {
-    if (typeof window === 'undefined') return 330;
-    const w = window.innerWidth;
-    if (w < 640) return 270;
-    if (w < 1024) return 310;
-    if (w < 1440) return 330;
-    return 350;
+    if (windowWidth < 640) return 300;
+    if (windowWidth < 1024) return 360;
+    if (windowWidth < 1440) return 400;
+    return 430;
   };
 
   const cardSpacing = getCardSpacing();
 
   return (
-    <div id="golden-moments" className={`bg-golden-atmosphere ${embedded ? 'pt-16 sm:pt-20 pb-4' : 'min-h-screen pt-28 sm:pt-36 pb-16'} px-2 sm:px-4 flex flex-col justify-center items-center overflow-hidden relative select-none`}>
+    <div id="golden-moments" className={`w-full bg-golden-atmosphere ${embedded ? 'pt-16 sm:pt-20 pb-12' : 'min-h-screen pt-28 sm:pt-36 pb-20'} px-0 flex flex-col justify-center items-center overflow-hidden relative select-none`}>
       
       {/* Background ambient warm amber light tint */}
       <div 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] pointer-events-none -z-10" 
-        style={{ background: 'radial-gradient(circle, rgba(209,165,80,0.12) 0%, rgba(178,43,47,0.06) 45%, transparent 70%)' }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] pointer-events-none -z-10" 
+        style={{ background: 'radial-gradient(circle, rgba(209,165,80,0.14) 0%, rgba(178,43,47,0.06) 50%, transparent 75%)' }}
       />
 
-      <div className="w-full max-w-7xl z-10 space-y-8">
+      <div className="w-full z-10 space-y-8">
         
         {/* Header Title */}
-        <div className="text-center space-y-2 px-4 reveal-heading">
+        <div className="text-center space-y-2 px-4 reveal-heading max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 bg-primary text-white px-4 py-1.5 rounded-[4px] text-xs font-bold tracking-widest uppercase shadow-brand-glow">
             <Award className="w-3.5 h-3.5" /> Landmark Milestones
           </div>
           <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black uppercase text-gradient-brand tracking-tight">
             Golden Moments
           </h1>
-          <p className="text-body text-xs sm:text-sm max-w-md mx-auto font-sans font-medium">
+          <p className="text-body text-xs sm:text-sm md:text-base max-w-lg mx-auto font-sans font-medium">
             Swipe left or right or drag across the cards to explore our landmark history.
           </p>
         </div>
 
-        {/* Carousel Viewport Container */}
-        <div className="relative w-full flex flex-col items-center justify-center overflow-visible">
+        {/* Carousel Viewport Container (Spans full viewport width) */}
+        <div className="relative w-full flex flex-col items-center justify-center overflow-hidden py-4">
           
-          {/* Swiper Animated Track (Displays multiple cards on desktop) */}
-          <div className="relative w-full h-[560px] sm:h-[620px] flex items-center justify-center overflow-hidden [perspective:1200px]">
+          {/* Swiper Animated Track (Displays multiple cards spanning across screen) */}
+          <div className="relative w-full h-[580px] sm:h-[640px] lg:h-[680px] flex items-center justify-center [perspective:1400px]">
             
             <motion.div
               drag="x"
@@ -99,8 +104,8 @@ export default function GoldenMoments({ embedded = false }) {
                     onClick={() => setActiveIndex(idx)}
                     initial={false}
                     animate={{
-                      scale: isCenter ? 1 : Math.abs(offset) <= 1.2 ? 0.88 : 0.76,
-                      opacity: isCenter ? 1 : Math.abs(offset) <= 1.2 ? 0.65 : isVisible ? 0.35 : 0,
+                      scale: isCenter ? 1 : Math.abs(offset) <= 1.2 ? 0.88 : 0.78,
+                      opacity: isCenter ? 1 : Math.abs(offset) <= 1.2 ? 0.72 : isVisible ? 0.45 : 0,
                       x: offset * cardSpacing,
                       rotateY: offset * -10,
                       zIndex: isCenter ? 30 : 20 - Math.abs(Math.round(offset)) * 5,
@@ -111,38 +116,38 @@ export default function GoldenMoments({ embedded = false }) {
                       damping: 30,
                       mass: 0.8,
                     }}
-                    className={`absolute w-[78vw] max-w-[310px] sm:w-[330px] lg:w-[340px] h-[520px] sm:h-[570px] flex-shrink-0 cursor-pointer rounded-[24px] overflow-hidden border border-[#e8e6e1] bg-white hover:border-primary/40 p-6 flex flex-col justify-between transition-colors duration-200 ${
+                    className={`absolute w-[84vw] max-w-[340px] sm:w-[370px] lg:w-[400px] h-[550px] sm:h-[610px] lg:h-[650px] flex-shrink-0 cursor-pointer rounded-[28px] overflow-hidden border border-[#e8e6e1] bg-white hover:border-primary/50 p-6 sm:p-7 flex flex-col justify-between transition-colors duration-200 ${
                       isCenter 
-                        ? 'shadow-[0_16px_48px_rgba(178,43,47,0.16),0_2px_8px_rgba(0,0,0,0.04)] border-primary/40' 
-                        : 'shadow-md'
+                        ? 'shadow-[0_20px_60px_rgba(178,43,47,0.18),0_4px_16px_rgba(0,0,0,0.06)] border-primary/40' 
+                        : 'shadow-lg hover:shadow-xl'
                     }`}
                   >
                     {/* Brand Tagline */}
                     <div className="text-center space-y-1 pt-1">
-                      <span className="text-[11px] font-sans tracking-[0.25em] uppercase font-black text-secondary">
+                      <span className="text-[11px] sm:text-xs font-sans tracking-[0.25em] uppercase font-black text-secondary">
                         ACES DIT PUNE
                       </span>
                     </div>
 
                     {/* Middle Heading & Description */}
-                    <div className="text-center space-y-3 my-auto px-1">
-                      <h2 className="font-display text-2xl sm:text-3xl font-extrabold uppercase tracking-tight text-primary leading-tight">
+                    <div className="text-center space-y-3 sm:space-y-4 my-auto px-1">
+                      <h2 className="font-display text-2xl sm:text-3xl lg:text-3xl font-black uppercase tracking-tight text-primary leading-tight">
                         {moment.title}
                       </h2>
-                      <p className={`text-body text-xs sm:text-sm font-sans font-medium leading-relaxed ${isCenter ? '' : 'line-clamp-3'}`}>
+                      <p className={`text-body text-xs sm:text-sm lg:text-base font-sans font-medium leading-relaxed ${isCenter ? '' : 'line-clamp-3'}`}>
                         {moment.description}
                       </p>
 
                       {/* Pill Action Button */}
                       <div className="pt-2">
-                        <button className="border border-primary text-primary bg-transparent font-sans font-bold text-xs py-2.5 px-6 rounded-[4px] transition-all hover:bg-primary hover:text-white hover:shadow-brand-glow tracking-wider uppercase cursor-pointer">
+                        <button className="border-2 border-primary text-primary bg-transparent font-sans font-bold text-xs sm:text-sm py-2.5 px-7 rounded-[4px] transition-all hover:bg-primary hover:text-white hover:shadow-brand-glow tracking-wider uppercase cursor-pointer">
                           Read Story
                         </button>
                       </div>
                     </div>
 
                     {/* Bottom Arched Window Cutout Image */}
-                    <div className="w-full h-48 sm:h-52 rounded-t-[120px] overflow-hidden border-t-2 border-muted/30 shadow-md relative mt-3 flex-shrink-0 bg-light-tint">
+                    <div className="w-full h-52 sm:h-56 lg:h-64 rounded-t-[140px] overflow-hidden border-t-2 border-muted/30 shadow-md relative mt-3 flex-shrink-0 bg-light-tint">
                       <img
                         src={moment.image}
                         alt={moment.title}
@@ -153,7 +158,7 @@ export default function GoldenMoments({ embedded = false }) {
                     </div>
 
                     {/* Year Stamp Badge */}
-                    <div className="absolute top-4 right-4 bg-secondary text-dark-overlay font-bold font-mono text-[10px] tracking-widest px-3 py-1 rounded-[4px] shadow-sm">
+                    <div className="absolute top-4 right-4 bg-secondary text-dark-overlay font-bold font-mono text-xs tracking-widest px-3.5 py-1 rounded-[4px] shadow-sm">
                       {moment.year}
                     </div>
                   </motion.div>
@@ -163,12 +168,46 @@ export default function GoldenMoments({ embedded = false }) {
           </div>
         </div>
 
-        {/* Event / Photo Detail caption below card matching wireframe */}
+        {/* Carousel Navigation Arrow Buttons & Indicators */}
+        <div className="flex items-center justify-center gap-6 pt-2">
+          <button
+            onClick={handlePrev}
+            className="p-3 bg-white hover:bg-light-tint border border-muted/50 text-muted hover:text-primary hover:border-primary rounded-full transition-all cursor-pointer shadow-md active:scale-95"
+            aria-label="Previous milestone"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+
+          <div className="flex gap-2 items-center">
+            {goldenMoments.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setActiveIndex(idx)}
+                className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                  idx === activeIndex 
+                    ? 'w-8 bg-primary shadow-brand-glow' 
+                    : 'w-2.5 bg-muted/40 hover:bg-muted'
+                }`}
+                aria-label={`Milestone ${idx + 1}`}
+              />
+            ))}
+          </div>
+
+          <button
+            onClick={handleNext}
+            className="p-3 bg-white hover:bg-light-tint border border-muted/50 text-muted hover:text-primary hover:border-primary rounded-full transition-all cursor-pointer shadow-md active:scale-95"
+            aria-label="Next milestone"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Event / Photo Detail caption below card */}
         <div className="text-center space-y-2 pt-2 px-4 max-w-2xl mx-auto">
-          <p className="font-display text-base sm:text-lg font-bold text-near-black tracking-wide">
-            {goldenMoments[activeIndex].title} — <span className="text-secondary font-semibold">{goldenMoments[activeIndex].year}</span>
+          <p className="font-display text-base sm:text-xl font-bold text-near-black tracking-wide">
+            {goldenMoments[activeIndex].title} — <span className="text-secondary font-bold">{goldenMoments[activeIndex].year}</span>
           </p>
-          <p className="text-body text-xs sm:text-sm leading-relaxed font-sans font-medium max-w-lg mx-auto">
+          <p className="text-body text-xs sm:text-sm lg:text-base leading-relaxed font-sans font-medium max-w-xl mx-auto">
             {goldenMoments[activeIndex].description}
           </p>
         </div>
