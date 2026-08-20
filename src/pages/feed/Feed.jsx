@@ -7,7 +7,7 @@ export default function Feed({ embedded = false }) {
   const marqueePosts = [...posts, ...posts, ...posts];
 
   return (
-    <div id="feed" className={`w-full ${embedded ? 'pt-2 pb-16 sm:pb-20 border-b border-muted/30' : 'min-h-screen pt-28 sm:pt-32 pb-16'} space-y-8 relative overflow-hidden select-none`}>
+    <div id="feed" className={`w-full bg-feed-editorial ${embedded ? 'pt-16 pb-16 sm:pb-20' : 'min-h-screen pt-28 sm:pt-36 pb-16'} space-y-8 relative overflow-hidden select-none`}>
       {/* Embedded CSS for smooth continuous marquee flow */}
       <style>{`
         @keyframes continuousBlogStream {
@@ -28,21 +28,15 @@ export default function Feed({ embedded = false }) {
         }
       `}</style>
 
-      {/* Radial Glow Ambient Effect */}
-      <div 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[500px] pointer-events-none -z-10" 
-        style={{ background: 'radial-gradient(circle, rgba(209,165,80,0.1) 0%, rgba(178,43,47,0.05) 45%, transparent 70%)' }}
-      />
-
       {/* Header */}
       <div className="text-center space-y-2 max-w-xl mx-auto px-4 reveal-heading">
         <div className="inline-flex items-center gap-2 text-white bg-dark-overlay border border-muted/40 px-3.5 py-1 rounded-[4px] text-xs font-semibold tracking-wider uppercase shadow-brand-glow">
           <Rss className="w-3.5 h-3.5 text-secondary" /> Blogs & Achievements
         </div>
-        <h2 className="font-display text-3xl sm:text-4xl font-black uppercase text-gradient-brand tracking-tight">
-          Featured Stories
+        <h2 className="font-display text-3xl sm:text-5xl font-black uppercase text-near-black tracking-tight">
+          Featured <span className="text-primary">Stories</span>
         </h2>
-        <p className="text-muted text-xs sm:text-sm font-sans">
+        <p className="text-body text-xs sm:text-sm font-sans font-medium">
           Auto-sliding technology articles, competition victories, and engineering insights.
         </p>
       </div>
@@ -53,7 +47,7 @@ export default function Feed({ embedded = false }) {
           {marqueePosts.map((post, idx) => (
             <div
               key={`post-${post.id}-${idx}`}
-              className="w-[280px] sm:w-[320px] bg-white border border-[#e8e6e1] hover:border-primary/50 hover:shadow-[0_16px_40px_rgba(178,43,47,0.14)] p-4 sm:p-5 rounded-[22px] transition-all duration-300 flex-shrink-0 flex flex-col justify-between group"
+              className="w-[280px] sm:w-[320px] bg-white border border-[#e8e6e1] hover:border-primary/50 hover:shadow-[0_16px_40px_rgba(178,43,47,0.14)] p-4 sm:p-5 rounded-[22px] transition-all duration-300 flex-shrink-0 flex flex-col justify-between group shadow-sm"
             >
               {/* Category & Date Header */}
               <div>
@@ -66,7 +60,7 @@ export default function Feed({ embedded = false }) {
                   </span>
                 </div>
 
-                <h3 className="font-display text-sm sm:text-base font-bold text-dark-overlay leading-snug line-clamp-2 group-hover:text-primary transition-colors">
+                <h3 className="font-display text-base sm:text-lg font-extrabold text-near-black leading-snug line-clamp-2 group-hover:text-primary transition-colors">
                   {post.title}
                 </h3>
               </div>
@@ -82,12 +76,12 @@ export default function Feed({ embedded = false }) {
                 <div className="absolute inset-0 bg-gradient-to-t from-dark-overlay/40 via-transparent to-transparent pointer-events-none" />
               </div>
 
-              {/* Author & Action Footer (No description) */}
-              <div className="flex items-center justify-between pt-2 border-t border-muted/30 text-xs">
-                <span className="text-muted text-[11px]">
-                  By <span className="font-semibold text-dark-overlay">{post.author}</span>
+              {/* Author & Action Footer */}
+              <div className="flex items-center justify-between pt-2.5 border-t border-muted/30 text-xs">
+                <span className="text-body text-xs">
+                  By <span className="font-bold text-near-black">{post.author}</span>
                 </span>
-                <span className="inline-flex items-center gap-1 text-primary font-semibold group-hover:translate-x-0.5 transition-transform">
+                <span className="inline-flex items-center gap-1 text-primary font-bold group-hover:translate-x-0.5 transition-transform uppercase text-[11px] tracking-wider">
                   <span>Read</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </span>
@@ -100,7 +94,7 @@ export default function Feed({ embedded = false }) {
       {/* ─── Compact Reels Showcase ─── */}
       <div className="max-w-5xl mx-auto px-4 pt-4">
         <div className="flex items-center justify-between border-b border-muted/30 pb-3 mb-6">
-          <h3 className="font-display text-lg sm:text-xl font-bold uppercase text-dark-overlay tracking-wider border-l-[3px] border-secondary pl-3 flex items-center gap-2">
+          <h3 className="font-display text-lg sm:text-xl font-extrabold uppercase text-near-black tracking-wider border-l-[3px] border-secondary pl-3 flex items-center gap-2">
             <Film className="w-5 h-5 text-secondary" /> Student Vlogs & Reels
           </h3>
         </div>
@@ -117,14 +111,14 @@ export default function Feed({ embedded = false }) {
               </div>
               
               <div className="space-y-1.5 flex-1">
-                <h4 className="font-display text-xs sm:text-sm font-bold text-dark-overlay leading-snug group-hover:text-primary transition-colors line-clamp-2">
+                <h4 className="font-display text-xs sm:text-sm font-bold text-near-black leading-snug group-hover:text-primary transition-colors line-clamp-2">
                   {reel.title}
                 </h4>
                 <div className="flex gap-3 text-[10px] text-muted font-mono">
                   <span className="flex items-center gap-1">
                     <Eye className="w-3 h-3 text-muted" /> {reel.views}
                   </span>
-                  <span className="flex items-center gap-1 text-primary font-semibold">
+                  <span className="flex items-center gap-1 text-primary font-bold">
                     <Heart className="w-3 h-3 fill-current" /> {reel.likes}
                   </span>
                 </div>

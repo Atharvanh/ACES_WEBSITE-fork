@@ -17,8 +17,15 @@ const MENU_ITEMS = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   // Scroll-spy on home page
   useEffect(() => {
@@ -67,17 +74,21 @@ export default function Navbar() {
     <>
       {/* ─── Desktop Floating Pill Navigation Bar (Windows / Large Screens Only) ─── */}
       <nav 
-        className="fixed top-5 left-1/2 -translate-x-1/2 z-40 hidden md:flex items-center gap-1.5 px-3 py-1.5 bg-white/90 backdrop-blur-md border border-[#e8e6e1] rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_32px_rgba(178,43,47,0.12)] transition-all duration-300"
+        className={`fixed top-5 left-1/2 -translate-x-1/2 z-40 hidden md:flex items-center gap-1.5 px-3 py-1.5 bg-white/92 backdrop-blur-md border border-[#e8e6e1] rounded-full transition-all duration-300 ${
+          scrolled 
+            ? 'shadow-[0_8px_32px_rgba(0,0,0,0.12)] border-primary/25' 
+            : 'shadow-[0_4px_16px_rgba(0,0,0,0.06)]'
+        }`}
         aria-label="Main Navigation"
       >
-        {/* ACES Logo Pill */}
+        {/* ACES Logo Pill with Phoenix */}
         <button
           onClick={() => handleNav(MENU_ITEMS[0])}
           className="flex items-center gap-2 pl-1.5 pr-3 py-1 text-left group focus:outline-none cursor-pointer border-r border-muted/30 mr-1"
           title="ACES Home"
         >
-          <div className="w-7 h-7 rounded-full bg-primary flex items-center justify-center text-white shadow-brand-glow group-hover:scale-105 transition-transform">
-            <Zap className="w-3.5 h-3.5 fill-current" />
+          <div className="w-7 h-7 rounded-full bg-primary flex items-center justify-center text-white shadow-brand-glow group-hover:scale-105 transition-transform overflow-hidden p-1">
+            <img src="/phoenix.png" alt="ACES" className="w-full h-full object-contain" />
           </div>
           <span className="font-display font-black tracking-wider text-primary text-sm">
             ACES

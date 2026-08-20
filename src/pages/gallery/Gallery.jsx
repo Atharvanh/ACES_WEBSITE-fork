@@ -246,12 +246,12 @@ export default function Gallery({ embedded = false }) {
             </div>
 
             {/* Main Headline */}
-            <h1 className="font-display text-2xl sm:text-4xl font-extrabold uppercase text-primary tracking-tight leading-tight">
+            <h1 className="font-display text-2xl sm:text-4xl font-black uppercase text-primary tracking-tight leading-tight">
               Capturing Moments, <span className="text-secondary">Coding History</span>
             </h1>
 
             {/* Subtitle */}
-            <p className="text-muted text-xs sm:text-sm leading-relaxed max-w-md mx-auto">
+            <p className="text-body text-xs sm:text-sm leading-relaxed max-w-md mx-auto font-medium">
               Explore the rich history of technical workshops, national hackathons, cultural festivals, and student leadership at DIT Pune.
             </p>
 
@@ -260,7 +260,7 @@ export default function Gallery({ embedded = false }) {
               <button
                 type="button"
                 onClick={handleCtaClick}
-                className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white font-semibold text-xs tracking-wider uppercase px-6 py-2.5 rounded-[4px] transition-all cursor-pointer shadow-md group"
+                className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white font-bold text-xs tracking-wider uppercase px-7 py-3 rounded-[4px] transition-all cursor-pointer shadow-brand-glow group"
               >
                 <span>Explore Gallery</span>
                 {embedded ? (
@@ -278,35 +278,44 @@ export default function Gallery({ embedded = false }) {
       {!embedded && (
         <section 
           id="gallery-grid" 
-          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 space-y-8 scroll-mt-24"
+          className="w-full bg-gallery-atmosphere py-12 sm:py-20 relative overflow-hidden scroll-mt-24"
         >
-          {/* Section Title & Info */}
-          <div className="text-center space-y-2 max-w-xl mx-auto">
-            <div className="inline-flex items-center gap-2 text-secondary bg-light-tint border border-muted/30 px-3 py-1 rounded-[4px] text-xs font-semibold tracking-wider uppercase">
-              <ImageIcon className="w-3.5 h-3.5" /> Club Records
-            </div>
-            <h2 className="font-display text-3xl font-extrabold uppercase text-dark-overlay tracking-tight">Event Gallery</h2>
-            <p className="text-muted text-xs sm:text-sm">
-              Filter moments by domain or click any photo to open full preview.
-            </p>
+          {/* Faint Background Watermark Text */}
+          <div 
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[35vw] font-black text-primary pointer-events-none select-none -z-10 tracking-widest"
+            style={{ opacity: 0.015 }}
+          >
+            ACES
           </div>
 
-        {/* Category Filter Pills */}
-        <div className="flex flex-wrap justify-center gap-2 border-b border-muted/30 pb-6">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => handleCategoryChange(category)}
-              className={`px-4 py-2 rounded-[4px] text-xs sm:text-sm font-semibold tracking-wide transition-all cursor-pointer ${
-                selectedCategory === category
-                  ? 'bg-primary text-white shadow-sm'
-                  : 'text-muted hover:text-primary hover:bg-light-tint'
-              }`}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+            {/* Section Title & Info */}
+            <div className="text-center space-y-2 max-w-xl mx-auto">
+              <div className="inline-flex items-center gap-2 text-secondary bg-light-tint border border-muted/30 px-3 py-1 rounded-[4px] text-xs font-semibold tracking-wider uppercase">
+                <ImageIcon className="w-3.5 h-3.5" /> Club Records
+              </div>
+              <h2 className="font-display text-3xl sm:text-4xl font-black uppercase text-near-black tracking-tight">Event Gallery</h2>
+              <p className="text-body text-xs sm:text-sm font-medium">
+                Filter moments by domain or click any photo to open full preview.
+              </p>
+            </div>
+
+            {/* Category Filter Pills */}
+            <div className="flex flex-wrap justify-center gap-2 border-b border-muted/30 pb-6">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => handleCategoryChange(category)}
+                  className={`px-4 py-2 rounded-[4px] text-xs sm:text-sm font-bold tracking-wide transition-all cursor-pointer ${
+                    selectedCategory === category
+                      ? 'bg-primary text-white shadow-sm'
+                      : 'text-body hover:text-primary hover:bg-light-tint'
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
 
         {/* Loading Skeletons State */}
         {isLoading ? (
@@ -371,10 +380,10 @@ export default function Gallery({ embedded = false }) {
                   </div>
 
                   <div className="p-6 space-y-3">
-                    <h3 className="font-display text-lg font-bold text-dark-overlay tracking-tight group-hover:text-primary transition-colors">
+                    <h3 className="font-display text-lg font-extrabold text-near-black tracking-tight group-hover:text-primary transition-colors">
                       {item.title}
                     </h3>
-                    <p className="text-muted text-xs sm:text-sm leading-relaxed line-clamp-2">
+                    <p className="text-body text-xs sm:text-sm leading-relaxed line-clamp-2 font-medium">
                       {item.caption}
                     </p>
                     <div className="flex items-center justify-between pt-4 border-t border-muted/30 text-[11px] text-muted font-mono">
@@ -391,7 +400,8 @@ export default function Gallery({ embedded = false }) {
             </AnimatePresence>
           </motion.div>
         )}
-      </section>
+          </div>
+        </section>
       )}
 
       {/* LIGHTBOX MODAL (Only when not embedded) */}

@@ -29,6 +29,22 @@
   background: #b22b2f;
 }
 
+/* ─── Typography & Contrast Utilities ─── */
+.text-body {
+  color: #4a4c50;
+}
+.text-strong {
+  color: #1a1a1a;
+}
+.text-near-black {
+  color: #111111;
+}
+
+.backface-hidden {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
 /* ─── Depth & Brand Accent Utilities ─── */
 .bg-gradient-mesh {
   background: linear-gradient(135deg, #ffffff 0%, #f5f4f2 50%, #ffffff 100%);
@@ -50,6 +66,92 @@
 
 .shadow-brand-hover {
   box-shadow: 0 12px 40px rgba(178, 43, 47, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* ─── Per-Section Atmospheric Background Classes ─── */
+.bg-hero-atmosphere {
+  background: 
+    radial-gradient(ellipse 80% 60% at 20% -10%, rgba(178,43,47,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 110%, rgba(209,165,80,0.07) 0%, transparent 55%),
+    linear-gradient(180deg, #ffffff 0%, #faf9f7 100%);
+  position: relative;
+}
+
+.bg-tech-grid {
+  background-image: 
+    linear-gradient(to right, rgba(178,43,47,0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(178,43,47,0.02) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.bg-highlights-atmosphere {
+  background: linear-gradient(135deg, #faf9f7 0%, #f5f0ea 50%, #faf9f7 100%);
+}
+
+.bg-who-hero {
+  background:
+    radial-gradient(ellipse 100% 50% at 50% 0%, rgba(209,165,80,0.10) 0%, transparent 65%),
+    linear-gradient(180deg, #fffef9 0%, #ffffff 100%);
+}
+
+.bg-who-pillars {
+  background: 
+    linear-gradient(160deg, rgba(178,43,47,0.04) 0%, rgba(209,165,80,0.06) 50%, rgba(178,43,47,0.03) 100%),
+    #f7f5f1;
+}
+
+.bg-golden-atmosphere {
+  background:
+    radial-gradient(ellipse 120% 80% at 50% 50%, rgba(209,165,80,0.12) 0%, rgba(178,43,47,0.06) 40%, transparent 70%),
+    linear-gradient(180deg, #fefcf8 0%, #faf7f2 100%);
+}
+
+.bg-feed-editorial {
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(178,43,47,0.025) 0px,
+      rgba(178,43,47,0.025) 1px,
+      transparent 1px,
+      transparent 80px
+    ),
+    linear-gradient(180deg, #f9f9f9 0%, #ffffff 100%);
+}
+
+.bg-gallery-atmosphere {
+  background: linear-gradient(180deg, #ffffff 0%, #f5f3ef 60%, #ffffff 100%);
+}
+
+.bg-social-atmosphere {
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 30%, rgba(209,165,80,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 20% 80%, rgba(178,43,47,0.06) 0%, transparent 60%),
+    linear-gradient(180deg, #fefefe 0%, #f8f6f2 100%);
+}
+
+.bg-members-atmosphere {
+  background:
+    linear-gradient(135deg, rgba(178,43,47,0.05) 0%, rgba(209,165,80,0.05) 100%),
+    #faf9f7;
+}
+
+.bg-footer-rich {
+  background: linear-gradient(180deg, #f0ede6 0%, #e8e3da 100%);
+  border-top: 1px solid rgba(178,43,47,0.15);
+}
+
+.section-fade-down {
+  position: relative;
+}
+.section-fade-down::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, var(--next-section-color, #f5f4f2));
+  pointer-events: none;
 }
 
 /* ─── Scroll Reveal Animations (Vanilla CSS + Intersection Observer) ─── */
