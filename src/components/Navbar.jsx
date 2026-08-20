@@ -1,27 +1,66 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Menu, X, Zap, ArrowRight, ShieldAlert } from 'lucide-react';
+import { Menu, X, Zap, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { InstagramIcon, LinkedinIcon, GithubIcon } from './SocialIcons';
 
 const MENU_ITEMS = [
   { id: 'home',           label: 'Home',            path: '/' },
-  { id: 'who-are-we',    label: 'Who Are We',       path: '/who-are-we' },
-  { id: 'golden-moments',label: 'Golden Moments',   path: '/golden-moments' },
+  { id: 'who-are-we',     label: 'Who Are We',       path: '/who-are-we' },
+  { id: 'golden-moments', label: 'Golden Moments',   path: '/golden-moments' },
+  { id: 'feed',           label: 'Blogs & Feed',     path: '/feed' },
   { id: 'gallery',        label: 'Gallery',          path: '/gallery' },
-  { id: 'feed',           label: 'Feed',             path: '/feed' },
   { id: 'social',         label: 'Social',           path: '/social' },
-  { id: 'members',        label: 'Members 🔒',       path: '/members', isSecret: true },
+  { id: 'members',        label: 'Members',          path: '/members' },
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleNav = (path) => {
-    navigate(path);
+  // Scroll-spy on home page
+  useEffect(() => {
+    if (location.pathname !== '/') return;
+
+    const handleScroll = () => {
+      const scrollPos = window.scrollY + 200;
+      for (let i = MENU_ITEMS.length - 1; i >= 0; i--) {
+        const item = MENU_ITEMS[i];
+        const el = document.getElementById(item.id);
+        if (el && el.offsetTop <= scrollPos) {
+          setActiveSection(item.id);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [location.pathname]);
+
+  const handleNav = (item) => {
     setIsOpen(false);
+    if (location.pathname === '/') {
+      const el = document.getElementById(item.id);
+      if (el) {
+        const yOffset = -70;
+        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: item.id === 'home' ? 0 : y, behavior: 'smooth' });
+        setActiveSection(item.id);
+        return;
+      }
+    }
+    navigate(item.path);
+  };
+
+  const isItemActive = (item) => {
+    if (location.pathname === '/') {
+      return activeSection === item.id;
+    }
+    return location.pathname === item.path;
   };
 
   return (
@@ -33,7 +72,7 @@ export default function Navbar() {
       >
         {/* ACES Logo Pill */}
         <button
-          onClick={() => handleNav('/')}
+          onClick={() => handleNav(MENU_ITEMS[0])}
           className="flex items-center gap-2 pl-1.5 pr-3 py-1 text-left group focus:outline-none cursor-pointer border-r border-muted/30 mr-1"
           title="ACES Home"
         >
@@ -48,13 +87,13 @@ export default function Navbar() {
         {/* Nav Links */}
         <div className="flex items-center gap-1">
           {MENU_ITEMS.map((item) => {
-            const isActive = location.pathname === item.path;
+            const active = isItemActive(item);
             return (
               <button
                 key={item.id}
-                onClick={() => handleNav(item.path)}
+                onClick={() => handleNav(item)}
                 className={`relative px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-200 cursor-pointer ${
-                  isActive
+                  active
                     ? 'text-white bg-primary shadow-[0_2px_12px_rgba(178,43,47,0.3)]'
                     : 'text-muted hover:text-primary hover:bg-light-tint'
                 }`}
@@ -139,30 +178,23 @@ export default function Navbar() {
               <div className="flex-1 overflow-y-auto px-6 py-6">
                 <nav className="flex flex-col space-y-4" role="menu">
                   {MENU_ITEMS.map((item) => {
-                    const isActive = location.pathname === item.path;
+                    const active = isItemActive(item);
                     return (
                       <div
                         key={item.id}
-                        onClick={() => handleNav(item.path)}
+                        onClick={() => handleNav(item)}
                         className={`group cursor-pointer py-2 border-r-2 pr-3 transition-all duration-150 ${
-                          isActive ? 'border-primary' : 'border-transparent hover:border-primary'
+                          active ? 'border-primary' : 'border-transparent hover:border-primary'
                         }`}
                         role="menuitem"
                       >
                         <div className="flex items-center justify-between">
                           <span className={`text-base font-medium group-hover:text-primary group-hover:translate-x-1 transition-all duration-150 inline-block ${
-                            isActive ? 'text-primary font-semibold' : 'text-muted'
+                            active ? 'text-primary font-semibold' : 'text-muted'
                           }`}>
                             {item.label}
                           </span>
-                          {item.isSecret && (
-                            <span className="text-[10px] uppercase font-mono tracking-widest bg-primary/10 text-primary border border-primary/30 px-2 py-0.5 rounded-[4px] flex items-center gap-1">
-                              <ShieldAlert className="w-3 h-3" /> Secret
-                            </span>
-                          )}
-                          {!item.isSecret && (
-                            <ArrowRight className="w-4 h-4 text-primary opacity-0 group-hover:opacity-100 transition-opacity" />
-                          )}
+                          <ArrowRight className="w-4 h-4 text-primary opacity-0 group-hover:opacity-100 transition-opacity" />
                         </div>
                       </div>
                     );

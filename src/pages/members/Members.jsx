@@ -4,11 +4,11 @@ import { categories, getMembersByCategory } from './membersData';
 import MemberCard from '../../components/members/MemberCard';
 import { Users, ArrowRight } from 'lucide-react';
 
-export default function Members() {
+export default function Members({ embedded = false }) {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen pb-24 font-sans">
+    <div id="members" className={`${embedded ? 'pt-8 pb-20' : 'min-h-screen pt-20 pb-24'} font-sans`}>
       {/* Full-width Faint Gradient Header Banner */}
       <div 
         className="w-full py-12 md:py-16 px-4 md:px-8 border-b border-muted/30 mb-12"
@@ -64,7 +64,7 @@ export default function Members() {
                 )}
               </div>
 
-              {membersList.length > 0 && (
+              {membersList.length > 0 && category.id !== 'faculty-coordinator' && (
                 <div className="mt-10 flex justify-center">
                   <button 
                     onClick={() => navigate(`/members/${category.id}`)}

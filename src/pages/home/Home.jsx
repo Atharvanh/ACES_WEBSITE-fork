@@ -1,11 +1,26 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Sparkles, Terminal, Code2, Users, Award, Calendar, ExternalLink } from 'lucide-react';
+import { ArrowRight, Sparkles, Terminal, Code2, Users, Award } from 'lucide-react';
+import WhoAreWe from '../who-are-we/WhoAreWe';
+import GoldenMoments from '../golden-moments/GoldenMoments';
+import Gallery from '../gallery/Gallery';
+import Feed from '../feed/Feed';
+import Social from '../social/Social';
+import Members from '../members/Members';
 
 export default function Home() {
+  const scrollToSection = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const yOffset = -70;
+      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="min-h-screen">
       {/* ─── Hero Section ─── */}
-      <section className="relative pt-28 sm:pt-36 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden border-b border-muted/30">
+      <section id="home" className="relative pt-28 sm:pt-36 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden border-b border-muted/30 scroll-mt-20">
         {/* Subtle Radial Glow in Hero */}
         <div 
           className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-96 pointer-events-none -z-10" 
@@ -32,20 +47,20 @@ export default function Home() {
 
           {/* CTA Button Group */}
           <div className="flex flex-wrap items-center justify-center gap-4 pt-4 reveal">
-            <Link
-              to="/who-are-we"
+            <button
+              onClick={() => scrollToSection('who-are-we')}
               className="inline-flex items-center gap-2 bg-primary text-white font-semibold text-sm px-6 py-3 rounded-[4px] hover:bg-primary/90 hover:-translate-y-0.5 shadow-brand-glow hover:shadow-[0_6px_28px_rgba(178,43,47,0.28)] transition-all group cursor-pointer"
             >
               <span>Explore ACES</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
+            </button>
 
-            <Link
-              to="/gallery"
+            <button
+              onClick={() => scrollToSection('gallery')}
               className="inline-flex items-center gap-2 border border-primary text-primary bg-white/80 font-semibold text-sm px-6 py-3 rounded-[4px] hover:bg-primary hover:text-white hover:-translate-y-0.5 transition-all cursor-pointer shadow-sm"
             >
               <span>View Gallery</span>
-            </Link>
+            </button>
           </div>
 
           {/* Quick Stats Grid */}
@@ -72,7 +87,7 @@ export default function Home() {
       </section>
 
       {/* ─── Highlights Section ─── */}
-      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto space-y-12">
+      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto space-y-12 border-b border-muted/30">
         <div className="text-center space-y-3 max-w-2xl mx-auto reveal-heading">
           <div className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-secondary bg-light-tint border border-muted/30 px-3 py-1 rounded-[4px]">
             <Terminal className="w-3.5 h-3.5" /> What We Do
@@ -97,10 +112,13 @@ export default function Home() {
             <p className="text-muted text-sm leading-relaxed">
               Organizing flagship 36-hour national hackathons, coding sprints, and hands-on workshops across modern stacks and AI architectures.
             </p>
-            <Link to="/golden-moments" className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:text-primary/80 transition-colors uppercase tracking-wider pt-2">
+            <button 
+              onClick={() => scrollToSection('golden-moments')} 
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:text-primary/80 transition-colors uppercase tracking-wider pt-2 cursor-pointer"
+            >
               <span>Read Stories</span>
               <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
+            </button>
           </div>
 
           {/* Card 2 */}
@@ -114,10 +132,13 @@ export default function Home() {
             <p className="text-muted text-sm leading-relaxed">
               Fostering peer-to-peer learning with senior developers, alumni network panels, and research project incubations.
             </p>
-            <Link to="/members" className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:text-primary/80 transition-colors uppercase tracking-wider pt-2">
+            <button 
+              onClick={() => scrollToSection('members')} 
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:text-primary/80 transition-colors uppercase tracking-wider pt-2 cursor-pointer"
+            >
               <span>Meet Core Team</span>
               <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
+            </button>
           </div>
 
           {/* Card 3 */}
@@ -131,13 +152,34 @@ export default function Home() {
             <p className="text-muted text-sm leading-relaxed">
               Representing DIT Pune on national stages, technical paper conferences, and inter-collegiate innovation cups.
             </p>
-            <Link to="/gallery" className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:text-primary/80 transition-colors uppercase tracking-wider pt-2">
+            <button 
+              onClick={() => scrollToSection('gallery')} 
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:text-primary/80 transition-colors uppercase tracking-wider pt-2 cursor-pointer"
+            >
               <span>View Gallery</span>
               <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
+            </button>
           </div>
         </div>
       </section>
+
+      {/* ─── Who Are We Section ─── */}
+      <WhoAreWe embedded={true} />
+
+      {/* ─── Golden Moments Section (Manual navigation) ─── */}
+      <GoldenMoments embedded={true} />
+
+      {/* ─── Blogs & Tech Feed Section (Automatic moving carousel) ─── */}
+      <Feed embedded={true} />
+
+      {/* ─── Gallery Showcase Section (Hero with Explore Gallery CTA) ─── */}
+      <Gallery embedded={true} />
+
+      {/* ─── Social Highlights Section ─── */}
+      <Social embedded={true} />
+
+      {/* ─── Members Directory Preview Section ─── */}
+      <Members embedded={true} />
     </div>
   );
 }

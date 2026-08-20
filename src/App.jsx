@@ -1,4 +1,5 @@
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/home/Home';
@@ -12,11 +13,34 @@ import MemberProfile from './pages/member-profile/MemberProfile';
 import Social from './pages/social/Social';
 import { useScrollReveal } from './hooks/useScrollReveal';
 
+function ScrollToTop() {
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      const id = hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          const yOffset = -70;
+          const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: id === 'home' ? 0 : y, behavior: 'smooth' });
+        }, 80);
+        return;
+      }
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [pathname, hash]);
+
+  return null;
+}
+
 function AppContent() {
   useScrollReveal();
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-mesh text-muted font-sans selection:bg-primary selection:text-white">
+      <ScrollToTop />
       <Navbar />
       
       {/* Main Content Area */}

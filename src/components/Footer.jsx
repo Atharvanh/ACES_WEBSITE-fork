@@ -35,7 +35,7 @@ export default function Footer() {
             <h3 className="font-display font-semibold text-primary mb-4 uppercase tracking-wider text-sm">Navigation</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link to="/" className="hover:text-secondary transition-colors">Home</Link>
+                <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-secondary transition-colors">Home</Link>
               </li>
               <li>
                 <Link to="/who-are-we" className="hover:text-secondary transition-colors">Who Are We</Link>
@@ -44,10 +44,13 @@ export default function Footer() {
                 <Link to="/golden-moments" className="hover:text-secondary transition-colors">Golden Moments</Link>
               </li>
               <li>
+                <Link to="/feed" className="hover:text-secondary transition-colors">Blogs & Articles</Link>
+              </li>
+              <li>
                 <Link to="/gallery" className="hover:text-secondary transition-colors">Gallery</Link>
               </li>
               <li>
-                <Link to="/feed" className="hover:text-secondary transition-colors">Feed & Reels</Link>
+                <Link to="/social" className="hover:text-secondary transition-colors">Social & Reels</Link>
               </li>
               <li>
                 <Link to="/members" className="hover:text-secondary transition-colors">Club Members</Link>

@@ -1,11 +1,11 @@
 import { Target, Compass, Sparkles, BookOpen, Layers, ShieldCheck, HeartHandshake } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-export default function WhoAreWe() {
+export default function WhoAreWe({ embedded = false }) {
   return (
-    <div className="min-h-screen">
+    <div id="who-are-we" className={embedded ? "relative" : "min-h-screen"}>
       {/* ─── Hero Header ─── */}
-      <section className="relative border-b border-muted/30 pt-28 sm:pt-36 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-8 text-center overflow-hidden">
+      <section className={`relative border-b border-muted/30 ${embedded ? 'pt-16 sm:pt-24' : 'pt-28 sm:pt-36'} pb-16 sm:pb-24 px-4 sm:px-6 lg:px-8 text-center overflow-hidden`}>
         {/* Subtle Radial Glow */}
         <div 
           className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-96 pointer-events-none -z-10" 

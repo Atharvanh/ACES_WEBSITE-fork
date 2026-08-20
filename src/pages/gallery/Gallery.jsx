@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Image as ImageIcon, 
@@ -9,11 +10,13 @@ import {
   ChevronLeft, 
   ChevronRight, 
   SearchX, 
-  Sparkles 
+  Sparkles,
+  ArrowRight
 } from 'lucide-react';
 import { galleryItems, marqueeImages } from './galleryData';
 
-export default function Gallery() {
+export default function Gallery({ embedded = false }) {
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [activeItemIndex, setActiveItemIndex] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -110,8 +113,19 @@ export default function Gallery() {
     touchEndX.current = 0;
   };
 
+  const handleCtaClick = () => {
+    if (embedded) {
+      navigate('/gallery');
+    } else {
+      const grid = document.getElementById('gallery-grid');
+      if (grid) {
+        grid.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
   return (
-    <div className="w-full bg-white text-dark-overlay">
+    <div id="gallery" className={`w-full bg-white text-dark-overlay ${embedded ? 'border-b border-muted/30' : ''}`}>
       {/* Embedded CSS for keyframes & responsive marquee styling */}
       <style>{`
         @keyframes galleryMarqueeUp {
@@ -243,33 +257,39 @@ export default function Gallery() {
 
             {/* Action CTA */}
             <div className="pt-2">
-              <a
-                href="#gallery-grid"
-                className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white font-semibold text-xs tracking-wider uppercase px-6 py-2.5 rounded-[4px] transition-all cursor-pointer shadow-md"
+              <button
+                type="button"
+                onClick={handleCtaClick}
+                className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white font-semibold text-xs tracking-wider uppercase px-6 py-2.5 rounded-[4px] transition-all cursor-pointer shadow-md group"
               >
                 <span>Explore Gallery</span>
-                <ChevronDown className="w-4 h-4" />
-              </a>
+                {embedded ? (
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                ) : (
+                  <ChevronDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
+                )}
+              </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION 2: GALLERY GRID & FILTERS */}
-      <section 
-        id="gallery-grid" 
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 space-y-8 scroll-mt-24"
-      >
-        {/* Section Title & Info */}
-        <div className="text-center space-y-2 max-w-xl mx-auto">
-          <div className="inline-flex items-center gap-2 text-secondary bg-light-tint border border-muted/30 px-3 py-1 rounded-[4px] text-xs font-semibold tracking-wider uppercase">
-            <ImageIcon className="w-3.5 h-3.5" /> Club Records
+      {/* SECTION 2: GALLERY GRID & FILTERS (Only shown on standalone /gallery page) */}
+      {!embedded && (
+        <section 
+          id="gallery-grid" 
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 space-y-8 scroll-mt-24"
+        >
+          {/* Section Title & Info */}
+          <div className="text-center space-y-2 max-w-xl mx-auto">
+            <div className="inline-flex items-center gap-2 text-secondary bg-light-tint border border-muted/30 px-3 py-1 rounded-[4px] text-xs font-semibold tracking-wider uppercase">
+              <ImageIcon className="w-3.5 h-3.5" /> Club Records
+            </div>
+            <h2 className="font-display text-3xl font-extrabold uppercase text-dark-overlay tracking-tight">Event Gallery</h2>
+            <p className="text-muted text-xs sm:text-sm">
+              Filter moments by domain or click any photo to open full preview.
+            </p>
           </div>
-          <h2 className="font-display text-3xl font-extrabold uppercase text-dark-overlay tracking-tight">Event Gallery</h2>
-          <p className="text-muted text-xs sm:text-sm">
-            Filter moments by domain or click any photo to open full preview.
-          </p>
-        </div>
 
         {/* Category Filter Pills */}
         <div className="flex flex-wrap justify-center gap-2 border-b border-muted/30 pb-6">
@@ -372,94 +392,97 @@ export default function Gallery() {
           </motion.div>
         )}
       </section>
+      )}
 
-      {/* LIGHTBOX MODAL */}
-      <AnimatePresence>
-        {activeItemIndex !== null && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-dark-overlay/80 backdrop-blur-sm"
-            onClick={() => setActiveItemIndex(null)}
-            role="dialog"
-            aria-modal="true"
-            aria-label="Image preview detail"
-          >
-            <div 
-              className="relative w-full max-w-4xl bg-white border border-muted/50 rounded-[8px] overflow-hidden shadow-2xl flex flex-col max-h-[90vh]"
-              onClick={(e) => e.stopPropagation()}
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleTouchEnd}
+      {/* LIGHTBOX MODAL (Only when not embedded) */}
+      {!embedded && (
+        <AnimatePresence>
+          {activeItemIndex !== null && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-dark-overlay/80 backdrop-blur-sm"
+              onClick={() => setActiveItemIndex(null)}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Image preview detail"
             >
-              {/* Header bar */}
-              <div className="flex items-center justify-between px-6 py-4 border-b border-muted/30 bg-light-tint">
-                <div className="flex items-center gap-2 text-xs text-secondary uppercase font-bold tracking-wider">
-                  <span>{filteredItems[activeItemIndex].category}</span>
-                  <span className="text-muted">•</span>
-                  <span className="text-muted">{activeItemIndex + 1} of {filteredItems.length}</span>
-                </div>
-                <button
-                  ref={closeBtnRef}
-                  onClick={() => setActiveItemIndex(null)}
-                  className="p-2 text-muted hover:text-dark-overlay bg-white hover:bg-light-tint border border-muted/40 rounded-full transition-colors cursor-pointer"
-                  aria-label="Close modal preview"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-
-              {/* Main Image View */}
-              <div className="relative flex-grow overflow-hidden bg-light-tint flex items-center justify-center min-h-[260px] sm:min-h-[380px]">
-                <img
-                  src={filteredItems[activeItemIndex].image}
-                  alt={filteredItems[activeItemIndex].title}
-                  className="max-h-[60vh] w-auto max-w-full object-contain select-none shadow-md"
-                />
-
-                {/* Left Arrow Button */}
-                <button
-                  onClick={() => setActiveItemIndex(prev => (prev > 0 ? prev - 1 : filteredItems.length - 1))}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-white/90 hover:bg-white text-dark-overlay border border-muted/50 shadow-sm transition-colors cursor-pointer hidden sm:flex items-center justify-center"
-                  aria-label="Previous image"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-
-                {/* Right Arrow Button */}
-                <button
-                  onClick={() => setActiveItemIndex(prev => (prev < filteredItems.length - 1 ? prev + 1 : 0))}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-white/90 hover:bg-white text-dark-overlay border border-muted/50 shadow-sm transition-colors cursor-pointer hidden sm:flex items-center justify-center"
-                  aria-label="Next image"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </button>
-              </div>
-
-              {/* Caption & Metadata Footer */}
-              <div className="p-6 bg-white border-t border-muted/30 space-y-2">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                  <h3 className="text-xl font-bold font-display text-dark-overlay">
-                    {filteredItems[activeItemIndex].title}
-                  </h3>
-                  <div className="flex items-center gap-4 text-xs text-muted font-mono">
-                    <span className="flex items-center gap-1">
-                      <Calendar className="w-3.5 h-3.5 text-muted" /> {filteredItems[activeItemIndex].year}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <MapPin className="w-3.5 h-3.5 text-primary" /> {filteredItems[activeItemIndex].location || 'DIT Pune'}
-                    </span>
+              <div 
+                className="relative w-full max-w-4xl bg-white border border-muted/50 rounded-[8px] overflow-hidden shadow-2xl flex flex-col max-h-[90vh]"
+                onClick={(e) => e.stopPropagation()}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+              >
+                {/* Header bar */}
+                <div className="flex items-center justify-between px-6 py-4 border-b border-muted/30 bg-light-tint">
+                  <div className="flex items-center gap-2 text-xs text-secondary uppercase font-bold tracking-wider">
+                    <span>{filteredItems[activeItemIndex].category}</span>
+                    <span className="text-muted">•</span>
+                    <span className="text-muted">{activeItemIndex + 1} of {filteredItems.length}</span>
                   </div>
+                  <button
+                    ref={closeBtnRef}
+                    onClick={() => setActiveItemIndex(null)}
+                    className="p-2 text-muted hover:text-dark-overlay bg-white hover:bg-light-tint border border-muted/40 rounded-full transition-colors cursor-pointer"
+                    aria-label="Close modal preview"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
                 </div>
-                <p className="text-muted text-xs sm:text-sm leading-relaxed">
-                  {filteredItems[activeItemIndex].caption}
-                </p>
+
+                {/* Main Image View */}
+                <div className="relative flex-grow overflow-hidden bg-light-tint flex items-center justify-center min-h-[260px] sm:min-h-[380px]">
+                  <img
+                    src={filteredItems[activeItemIndex].image}
+                    alt={filteredItems[activeItemIndex].title}
+                    className="max-h-[60vh] w-auto max-w-full object-contain select-none shadow-md"
+                  />
+
+                  {/* Left Arrow Button */}
+                  <button
+                    onClick={() => setActiveItemIndex(prev => (prev > 0 ? prev - 1 : filteredItems.length - 1))}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-white/90 hover:bg-white text-dark-overlay border border-muted/50 shadow-sm transition-colors cursor-pointer hidden sm:flex items-center justify-center"
+                    aria-label="Previous image"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+
+                  {/* Right Arrow Button */}
+                  <button
+                    onClick={() => setActiveItemIndex(prev => (prev < filteredItems.length - 1 ? prev + 1 : 0))}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-white/90 hover:bg-white text-dark-overlay border border-muted/50 shadow-sm transition-colors cursor-pointer hidden sm:flex items-center justify-center"
+                    aria-label="Next image"
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                </div>
+
+                {/* Caption & Metadata Footer */}
+                <div className="p-6 bg-white border-t border-muted/30 space-y-2">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <h3 className="text-xl font-bold font-display text-dark-overlay">
+                      {filteredItems[activeItemIndex].title}
+                    </h3>
+                    <div className="flex items-center gap-4 text-xs text-muted font-mono">
+                      <span className="flex items-center gap-1">
+                        <Calendar className="w-3.5 h-3.5 text-muted" /> {filteredItems[activeItemIndex].year}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <MapPin className="w-3.5 h-3.5 text-primary" /> {filteredItems[activeItemIndex].location || 'DIT Pune'}
+                      </span>
+                    </div>
+                  </div>
+                  <p className="text-muted text-xs sm:text-sm leading-relaxed">
+                    {filteredItems[activeItemIndex].caption}
+                  </p>
+                </div>
               </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      )}
     </div>
   );
 }

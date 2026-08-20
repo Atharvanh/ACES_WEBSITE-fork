@@ -89,7 +89,7 @@ const POSTS_DATA = [
   }
 ];
 
-export default function Social() {
+export default function Social({ embedded = false }) {
   const [activeTab, setActiveTab] = useState('reels');
   const [activeReelIndex, setActiveReelIndex] = useState(0);
   const [activePostIndex, setActivePostIndex] = useState(0);
@@ -128,7 +128,7 @@ export default function Social() {
   }, [activeTab, activeReelIndex, activePostIndex]);
 
   return (
-    <div className="min-h-screen pt-28 sm:pt-32 pb-24 px-2 sm:px-4 flex flex-col items-center font-sans relative overflow-hidden select-none">
+    <div id="social" className={`${embedded ? 'py-16 sm:py-24 border-b border-muted/30' : 'min-h-screen pt-28 sm:pt-32 pb-24'} px-2 sm:px-4 flex flex-col items-center font-sans relative overflow-hidden select-none`}>
       {/* Subtle Background Glow */}
       <div 
         className="absolute top-1/4 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[600px] pointer-events-none -z-10" 

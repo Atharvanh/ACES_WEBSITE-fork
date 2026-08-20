@@ -39,39 +39,54 @@ const MemberCardFront = ({ member }) => {
 
 const MemberCardBack = ({ member }) => {
   return (
-    <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] bg-light-tint border border-primary/30 rounded-[16px] shadow-[0_2px_8px_rgba(0,0,0,0.04)] group-hover:shadow-[0_12px_40px_rgba(178,43,47,0.12),0_2px_8px_rgba(0,0,0,0.04)] overflow-hidden relative transition-all duration-300">
+    <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] bg-[#0f0f0f]/95 backdrop-blur-sm border border-[#b22b2f]/30 rounded-2xl overflow-hidden relative shadow-[0_4px_20px_rgba(0,0,0,0.3)]">
       
-      {/* Gold ACES Branding */}
-      <div className="absolute top-5 left-0 w-full text-center pointer-events-none z-0">
-        <h2 
-          className="font-display text-4xl font-black tracking-widest text-secondary opacity-60" 
-        >
-          ACES
-        </h2>
-      </div>
+      {/* Background Layer: Phoenix Graphic */}
+      <img
+        src="/phoenix.png"
+        alt=""
+        className="absolute top-1/2 right-[-20%] -translate-y-1/2 w-[130%] h-auto object-contain opacity-20 pointer-events-none z-0 mix-blend-lighten"
+      />
 
       {/* Content Layer */}
-      <div className="absolute inset-0 w-full h-full p-6 pt-16 flex flex-col overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] z-10">
+      <div className="absolute inset-0 w-full h-full p-6 flex flex-col overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] z-10">
         
-        <div className="text-center mb-4 pb-4 border-b border-muted/30">
-          <h3 className="font-display text-xl font-bold text-dark-overlay uppercase tracking-wide">{member.name}</h3>
-          <p className="text-sm text-secondary font-semibold tracking-[0.04em]">{member.role}</p>
+        {/* Header with Inline Gold ACES Branding */}
+        <div className="text-center mb-4 pb-4 border-b border-gray-800/60 relative">
+          <div className="absolute inset-0 bg-[#0b0d12]/40 -mx-6 px-6 blur-md -z-10" />
+          
+          <h2
+            className="text-3xl font-black tracking-widest mb-2 font-display uppercase"
+            style={{ color: '#D4AF37', textShadow: '0 2px 8px rgba(212, 175, 55, 0.25)' }}
+          >
+            ACES
+          </h2>
+          <h3 className="text-lg sm:text-xl font-bold text-white uppercase tracking-wide font-display">
+            {member.name}
+          </h3>
+          <p className="text-xs sm:text-sm text-[#b22b2f] font-semibold tracking-wider uppercase mt-0.5">
+            {member.role}
+          </p>
         </div>
 
-        <div className="flex-1 flex flex-col items-center justify-center text-center">
+        {/* Bio Body */}
+        <div className="flex-1 flex flex-col items-center justify-center text-center relative">
+          <div className="absolute inset-0 bg-[#0b0d12]/40 -mx-6 px-6 blur-xl -z-10" />
           {member.bio ? (
             <div>
-              <h4 className="text-xs font-semibold text-muted uppercase tracking-wider mb-4">About</h4>
-              <p className="text-sm text-muted leading-relaxed max-w-[90%] mx-auto">{member.bio}</p>
+              <h4 className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-2">About</h4>
+              <p className="text-xs sm:text-sm text-gray-200 leading-relaxed max-w-[92%] mx-auto font-sans">{member.bio}</p>
             </div>
           ) : (
-            <p className="text-sm text-muted/70 italic">No biography available.</p>
+            <p className="text-xs text-gray-400 italic">No biography available.</p>
           )}
         </div>
 
-        <div className="mt-4 pt-4 border-t border-muted/30 text-center text-muted text-xs flex items-center justify-center gap-1.5 opacity-80 group-hover:opacity-100 transition-opacity">
-          <RotateCcw className="w-3 h-3" />
-          <span>Click to flip back</span>
+        {/* Flip Back Indicator */}
+        <div className="mt-4 pt-4 border-t border-gray-800/60 text-center text-gray-400 text-xs flex items-center justify-center gap-1.5 opacity-75 group-hover:opacity-100 transition-opacity relative">
+          <div className="absolute inset-0 bg-[#0b0d12]/30 -mx-6 px-6 blur-md -z-10" />
+          <RotateCcw className="w-3.5 h-3.5" />
+          <span className="font-mono text-[11px]">Click to flip back</span>
         </div>
       </div>
     </div>

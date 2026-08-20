@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Award, MapPin, Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
 import { goldenMoments } from './momentsData';
 
-export default function GoldenMoments() {
+export default function GoldenMoments({ embedded = false }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const total = goldenMoments.length;
 
@@ -36,7 +36,7 @@ export default function GoldenMoments() {
   }, []);
 
   return (
-    <div className="min-h-screen text-muted pt-28 sm:pt-32 pb-16 px-2 sm:px-4 flex flex-col justify-center items-center overflow-hidden relative select-none">
+    <div id="golden-moments" className={`text-muted ${embedded ? 'pt-14 sm:pt-18 pb-2' : 'min-h-screen pt-28 sm:pt-32 pb-16'} px-2 sm:px-4 flex flex-col justify-center items-center overflow-hidden relative select-none`}>
       
       {/* Background ambient light tint */}
       <div 
@@ -152,55 +152,16 @@ export default function GoldenMoments() {
               })}
             </motion.div>
           </div>
-
-          {/* Navigation Controls */}
-          <div className="flex items-center justify-between w-full max-w-md px-6 pt-2">
-            <button
-              onClick={handlePrev}
-              className="p-3 bg-white hover:bg-light-tint border border-muted/50 text-muted hover:text-primary hover:border-primary rounded-full transition-all cursor-pointer shadow-md active:scale-95"
-              aria-label="Previous slide"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-
-            {/* Pagination Indicator Dots */}
-            <div className="flex gap-2 items-center">
-              {goldenMoments.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setActiveIndex(idx)}
-                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                    idx === activeIndex 
-                      ? 'w-7 bg-primary shadow-brand-glow' 
-                      : 'w-2 bg-muted/40 hover:bg-muted'
-                  }`}
-                  aria-label={`Slide ${idx + 1}`}
-                />
-              ))}
-            </div>
-
-            <button
-              onClick={handleNext}
-              className="p-3 bg-white hover:bg-light-tint border border-muted/50 text-muted hover:text-primary hover:border-primary rounded-full transition-all cursor-pointer shadow-md active:scale-95"
-              aria-label="Next slide"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
-
         </div>
 
-        {/* Footer Meta info */}
-        <div className="text-center pt-2">
-          <div className="inline-flex items-center gap-4 text-xs font-mono text-muted bg-white px-4 py-1.5 rounded-[4px] border border-muted/50 shadow-sm">
-            <span className="flex items-center gap-1.5">
-              <Calendar className="w-3.5 h-3.5 text-primary" /> {goldenMoments[activeIndex].year}
-            </span>
-            <span>•</span>
-            <span className="flex items-center gap-1.5">
-              <MapPin className="w-3.5 h-3.5 text-secondary" /> DIT Campus
-            </span>
-          </div>
+        {/* Event / Photo Detail caption below card as shown in wireframe */}
+        <div className="text-center space-y-2 pt-2 px-4 max-w-2xl mx-auto">
+          <p className="font-display text-sm sm:text-base font-semibold text-dark-overlay tracking-wide">
+            {goldenMoments[activeIndex].title} — <span className="text-secondary font-normal">{goldenMoments[activeIndex].year}</span>
+          </p>
+          <p className="text-muted text-xs sm:text-sm leading-relaxed font-sans max-w-lg mx-auto">
+            {goldenMoments[activeIndex].description}
+          </p>
         </div>
 
       </div>
