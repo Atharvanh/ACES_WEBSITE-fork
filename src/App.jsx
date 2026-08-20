@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import Footer from './pages/Footer/Footer';
 import Home from './pages/home/Home';
 import WhoAreWe from './pages/who-are-we/WhoAreWe';
 import GoldenMoments from './pages/golden-moments/GoldenMoments';
