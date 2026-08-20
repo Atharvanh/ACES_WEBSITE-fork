@@ -76,9 +76,27 @@ export default function GoldenMoments({ embedded = false }) {
           </p>
         </div>
 
-        {/* Carousel Viewport Container (Spans full viewport) */}
+        {/* Carousel Viewport Container (Spans full viewport with middle desktop arrow buttons) */}
         <div className="relative w-full flex flex-col items-center justify-center overflow-hidden py-2">
           
+          {/* Left Arrow Button (Only on PCs / Laptops, vertically centered at far left edge) */}
+          <button
+            onClick={handlePrev}
+            className="hidden md:flex absolute left-4 lg:left-10 xl:left-14 top-1/2 -translate-y-1/2 z-40 w-14 h-14 bg-white/95 hover:bg-white text-near-black hover:text-primary rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-brand-glow border border-[#e8e6e1] hover:border-primary/50 transition-all duration-200 cursor-pointer items-center justify-center hover:scale-110 active:scale-95 backdrop-blur-md"
+            aria-label="Previous milestone"
+          >
+            <ChevronLeft className="w-7 h-7" />
+          </button>
+
+          {/* Right Arrow Button (Only on PCs / Laptops, vertically centered at far right edge) */}
+          <button
+            onClick={handleNext}
+            className="hidden md:flex absolute right-4 lg:right-10 xl:right-14 top-1/2 -translate-y-1/2 z-40 w-14 h-14 bg-white/95 hover:bg-white text-near-black hover:text-primary rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-brand-glow border border-[#e8e6e1] hover:border-primary/50 transition-all duration-200 cursor-pointer items-center justify-center hover:scale-110 active:scale-95 backdrop-blur-md"
+            aria-label="Next milestone"
+          >
+            <ChevronRight className="w-7 h-7" />
+          </button>
+
           {/* Swiper Animated Track */}
           <div className="relative w-full h-[640px] sm:h-[700px] lg:h-[760px] flex items-center justify-center [perspective:1400px]">
             
@@ -169,38 +187,20 @@ export default function GoldenMoments({ embedded = false }) {
           </div>
         </div>
 
-        {/* Carousel Navigation Arrow Buttons & Indicators */}
-        <div className="flex items-center justify-center gap-6 pt-2">
-          <button
-            onClick={handlePrev}
-            className="p-3.5 bg-white hover:bg-light-tint border border-muted/50 text-muted hover:text-primary hover:border-primary rounded-full transition-all cursor-pointer shadow-md active:scale-95"
-            aria-label="Previous milestone"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-
-          <div className="flex gap-2.5 items-center">
-            {goldenMoments.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setActiveIndex(idx)}
-                className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-                  idx === activeIndex 
-                    ? 'w-9 bg-primary shadow-brand-glow' 
-                    : 'w-2.5 bg-muted/40 hover:bg-muted'
-                }`}
-                aria-label={`Milestone ${idx + 1}`}
-              />
-            ))}
-          </div>
-
-          <button
-            onClick={handleNext}
-            className="p-3.5 bg-white hover:bg-light-tint border border-muted/50 text-muted hover:text-primary hover:border-primary rounded-full transition-all cursor-pointer shadow-md active:scale-95"
-            aria-label="Next milestone"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
+        {/* Bottom Pagination Dots */}
+        <div className="flex items-center justify-center gap-2.5 pt-2">
+          {goldenMoments.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setActiveIndex(idx)}
+              className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                idx === activeIndex 
+                  ? 'w-9 bg-primary shadow-brand-glow' 
+                  : 'w-2.5 bg-muted/40 hover:bg-muted'
+              }`}
+              aria-label={`Milestone ${idx + 1}`}
+            />
+          ))}
         </div>
 
         {/* Event / Photo Detail caption below card */}
