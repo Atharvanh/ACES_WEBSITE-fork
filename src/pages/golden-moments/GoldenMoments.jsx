@@ -42,22 +42,23 @@ export default function GoldenMoments({ embedded = false }) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
+  // Tighter card spacing relative to card width so cards tuck cohesively without dead gaps
   const getCardSpacing = () => {
-    if (windowWidth < 640) return 300;
-    if (windowWidth < 1024) return 360;
-    if (windowWidth < 1440) return 400;
+    if (windowWidth < 640) return 290;
+    if (windowWidth < 1024) return 350;
+    if (windowWidth < 1440) return 390;
     return 430;
   };
 
   const cardSpacing = getCardSpacing();
 
   return (
-    <div id="golden-moments" className={`w-full bg-golden-atmosphere ${embedded ? 'pt-16 sm:pt-20 pb-12' : 'min-h-screen pt-28 sm:pt-36 pb-20'} px-0 flex flex-col justify-center items-center overflow-hidden relative select-none`}>
+    <div id="golden-moments" className={`w-full bg-golden-atmosphere ${embedded ? 'pt-16 sm:pt-24 pb-14' : 'min-h-screen pt-28 sm:pt-36 pb-24'} px-0 flex flex-col justify-center items-center overflow-hidden relative select-none`}>
       
       {/* Background ambient warm amber light tint */}
       <div 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] pointer-events-none -z-10" 
-        style={{ background: 'radial-gradient(circle, rgba(209,165,80,0.14) 0%, rgba(178,43,47,0.06) 50%, transparent 75%)' }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1100px] h-[1100px] pointer-events-none -z-10" 
+        style={{ background: 'radial-gradient(circle, rgba(209,165,80,0.16) 0%, rgba(178,43,47,0.08) 50%, transparent 75%)' }}
       />
 
       <div className="w-full z-10 space-y-8">
@@ -75,11 +76,11 @@ export default function GoldenMoments({ embedded = false }) {
           </p>
         </div>
 
-        {/* Carousel Viewport Container (Spans full viewport width) */}
-        <div className="relative w-full flex flex-col items-center justify-center overflow-hidden py-4">
+        {/* Carousel Viewport Container (Spans full viewport) */}
+        <div className="relative w-full flex flex-col items-center justify-center overflow-hidden py-2">
           
-          {/* Swiper Animated Track (Displays multiple cards spanning across screen) */}
-          <div className="relative w-full h-[580px] sm:h-[640px] lg:h-[680px] flex items-center justify-center [perspective:1400px]">
+          {/* Swiper Animated Track */}
+          <div className="relative w-full h-[640px] sm:h-[700px] lg:h-[760px] flex items-center justify-center [perspective:1400px]">
             
             <motion.div
               drag="x"
@@ -104,10 +105,10 @@ export default function GoldenMoments({ embedded = false }) {
                     onClick={() => setActiveIndex(idx)}
                     initial={false}
                     animate={{
-                      scale: isCenter ? 1 : Math.abs(offset) <= 1.2 ? 0.88 : 0.78,
-                      opacity: isCenter ? 1 : Math.abs(offset) <= 1.2 ? 0.72 : isVisible ? 0.45 : 0,
+                      scale: isCenter ? 1 : Math.abs(offset) <= 1.2 ? 0.88 : 0.77,
+                      opacity: isCenter ? 1 : Math.abs(offset) <= 1.2 ? 0.82 : isVisible ? 0.52 : 0,
                       x: offset * cardSpacing,
-                      rotateY: offset * -10,
+                      rotateY: offset * -8,
                       zIndex: isCenter ? 30 : 20 - Math.abs(Math.round(offset)) * 5,
                     }}
                     transition={{
@@ -116,38 +117,38 @@ export default function GoldenMoments({ embedded = false }) {
                       damping: 30,
                       mass: 0.8,
                     }}
-                    className={`absolute w-[84vw] max-w-[340px] sm:w-[370px] lg:w-[400px] h-[550px] sm:h-[610px] lg:h-[650px] flex-shrink-0 cursor-pointer rounded-[28px] overflow-hidden border border-[#e8e6e1] bg-white hover:border-primary/50 p-6 sm:p-7 flex flex-col justify-between transition-colors duration-200 ${
+                    className={`absolute w-[88vw] max-w-[360px] sm:w-[420px] md:w-[450px] lg:w-[480px] h-[600px] sm:h-[660px] lg:h-[720px] flex-shrink-0 cursor-pointer rounded-[32px] overflow-hidden border bg-white hover:border-primary/50 p-7 sm:p-8 flex flex-col justify-between transition-colors duration-200 ${
                       isCenter 
-                        ? 'shadow-[0_20px_60px_rgba(178,43,47,0.18),0_4px_16px_rgba(0,0,0,0.06)] border-primary/40' 
-                        : 'shadow-lg hover:shadow-xl'
+                        ? 'shadow-[0_24px_70px_rgba(178,43,47,0.22),0_6px_20px_rgba(0,0,0,0.08)] border-primary/50' 
+                        : 'shadow-[0_12px_36px_rgba(0,0,0,0.08)] border-[#e8e6e1]'
                     }`}
                   >
                     {/* Brand Tagline */}
                     <div className="text-center space-y-1 pt-1">
-                      <span className="text-[11px] sm:text-xs font-sans tracking-[0.25em] uppercase font-black text-secondary">
+                      <span className="text-xs sm:text-sm font-sans tracking-[0.25em] uppercase font-black text-secondary">
                         ACES DIT PUNE
                       </span>
                     </div>
 
                     {/* Middle Heading & Description */}
-                    <div className="text-center space-y-3 sm:space-y-4 my-auto px-1">
-                      <h2 className="font-display text-2xl sm:text-3xl lg:text-3xl font-black uppercase tracking-tight text-primary leading-tight">
+                    <div className="text-center space-y-3 sm:space-y-4 my-auto px-2">
+                      <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-primary leading-tight">
                         {moment.title}
                       </h2>
-                      <p className={`text-body text-xs sm:text-sm lg:text-base font-sans font-medium leading-relaxed ${isCenter ? '' : 'line-clamp-3'}`}>
+                      <p className={`text-body text-xs sm:text-sm lg:text-base font-sans font-medium leading-relaxed max-w-sm mx-auto ${isCenter ? '' : 'line-clamp-3'}`}>
                         {moment.description}
                       </p>
 
                       {/* Pill Action Button */}
                       <div className="pt-2">
-                        <button className="border-2 border-primary text-primary bg-transparent font-sans font-bold text-xs sm:text-sm py-2.5 px-7 rounded-[4px] transition-all hover:bg-primary hover:text-white hover:shadow-brand-glow tracking-wider uppercase cursor-pointer">
+                        <button className="border-2 border-primary text-primary bg-transparent font-sans font-bold text-xs sm:text-sm py-3 px-8 rounded-[4px] transition-all hover:bg-primary hover:text-white hover:shadow-brand-glow tracking-wider uppercase cursor-pointer">
                           Read Story
                         </button>
                       </div>
                     </div>
 
                     {/* Bottom Arched Window Cutout Image */}
-                    <div className="w-full h-52 sm:h-56 lg:h-64 rounded-t-[140px] overflow-hidden border-t-2 border-muted/30 shadow-md relative mt-3 flex-shrink-0 bg-light-tint">
+                    <div className="w-full h-56 sm:h-64 lg:h-72 rounded-t-[160px] overflow-hidden border-t-2 border-muted/30 shadow-md relative mt-4 flex-shrink-0 bg-light-tint">
                       <img
                         src={moment.image}
                         alt={moment.title}
@@ -158,7 +159,7 @@ export default function GoldenMoments({ embedded = false }) {
                     </div>
 
                     {/* Year Stamp Badge */}
-                    <div className="absolute top-4 right-4 bg-secondary text-dark-overlay font-bold font-mono text-xs tracking-widest px-3.5 py-1 rounded-[4px] shadow-sm">
+                    <div className="absolute top-5 right-5 bg-secondary text-dark-overlay font-bold font-mono text-xs sm:text-sm tracking-widest px-4 py-1.5 rounded-[4px] shadow-sm">
                       {moment.year}
                     </div>
                   </motion.div>
@@ -172,20 +173,20 @@ export default function GoldenMoments({ embedded = false }) {
         <div className="flex items-center justify-center gap-6 pt-2">
           <button
             onClick={handlePrev}
-            className="p-3 bg-white hover:bg-light-tint border border-muted/50 text-muted hover:text-primary hover:border-primary rounded-full transition-all cursor-pointer shadow-md active:scale-95"
+            className="p-3.5 bg-white hover:bg-light-tint border border-muted/50 text-muted hover:text-primary hover:border-primary rounded-full transition-all cursor-pointer shadow-md active:scale-95"
             aria-label="Previous milestone"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
 
-          <div className="flex gap-2 items-center">
+          <div className="flex gap-2.5 items-center">
             {goldenMoments.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setActiveIndex(idx)}
                 className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
                   idx === activeIndex 
-                    ? 'w-8 bg-primary shadow-brand-glow' 
+                    ? 'w-9 bg-primary shadow-brand-glow' 
                     : 'w-2.5 bg-muted/40 hover:bg-muted'
                 }`}
                 aria-label={`Milestone ${idx + 1}`}
@@ -195,7 +196,7 @@ export default function GoldenMoments({ embedded = false }) {
 
           <button
             onClick={handleNext}
-            className="p-3 bg-white hover:bg-light-tint border border-muted/50 text-muted hover:text-primary hover:border-primary rounded-full transition-all cursor-pointer shadow-md active:scale-95"
+            className="p-3.5 bg-white hover:bg-light-tint border border-muted/50 text-muted hover:text-primary hover:border-primary rounded-full transition-all cursor-pointer shadow-md active:scale-95"
             aria-label="Next milestone"
           >
             <ChevronRight className="w-5 h-5" />
