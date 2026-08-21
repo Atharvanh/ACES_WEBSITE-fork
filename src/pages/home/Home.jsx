@@ -1,7 +1,9 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Sparkles, Terminal, Code2, Users, Award } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useCountUp } from '../../hooks/useCountUp';
+import ShapeGrid from '../../components/ShapeGrid';
 import WhoAreWe from '../who-are-we/WhoAreWe';
 import GoldenMoments from '../golden-moments/GoldenMoments';
 import Gallery from '../gallery/Gallery';
@@ -35,6 +37,17 @@ function StatCard({ target, suffix = "+", label, color = "text-primary", delay =
 }
 
 export default function Home() {
+  const [gridSquareSize, setGridSquareSize] = useState(
+    () => (typeof window !== 'undefined' && window.innerWidth < 640) ? 32 : 40
+  );
+
+  useEffect(() => {
+    const mql = window.matchMedia('(max-width: 639px)');
+    const handleChange = (e) => setGridSquareSize(e.matches ? 32 : 40);
+    mql.addEventListener('change', handleChange);
+    return () => mql.removeEventListener('change', handleChange);
+  }, []);
+
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
     if (el) {
@@ -46,15 +59,28 @@ export default function Home() {
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-white">
-      {/* ─── 1. Home / Hero Section (Color: White) ─── */}
-      <section id="home" className="relative pt-28 sm:pt-36 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden bg-white scroll-mt-20">
+      {/* ─── 1. Home / Hero Section (Color: #FFF4F2) ─── */}
+      <section id="home" className="relative pt-28 sm:pt-36 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden scroll-mt-20" style={{ backgroundColor: '#FFF4F2' }}>
+        {/* ShapeGrid Background Layer */}
+        <div className="absolute inset-0 z-0" style={{ pointerEvents: 'none', maskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)' }}>
+          <ShapeGrid
+            squareSize={gridSquareSize}
+            speed={0.3}
+            direction="diagonal"
+            shape="square"
+            borderColor="rgba(107,109,113,0.25)"
+            hoverFillColor="rgba(209,165,80,0.15)"
+            hoverTrailAmount={3}
+          />
+        </div>
+
         {/* Subtle Ambient Radial Glow */}
-        <div 
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-96 pointer-events-none -z-10" 
+        <div
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-96 pointer-events-none z-[1]"
           style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(209,165,80,0.14) 0%, transparent 70%)' }}
         />
 
-        <motion.div 
+        <motion.div
           variants={heroVariants}
           initial="hidden"
           animate="visible"
@@ -69,15 +95,15 @@ export default function Home() {
           </motion.div>
 
           {/* Main Headline */}
-          <motion.h1 
+          <motion.h1
             variants={heroItem}
             className="font-display text-4xl sm:text-6xl lg:text-7xl font-black uppercase text-gradient-brand tracking-[-0.02em] leading-none max-w-4xl mx-auto"
           >
-            Innovate. Build. Empower.
+            Association of Computer Engineering Students
           </motion.h1>
 
           {/* Subtitle */}
-          <motion.p 
+          <motion.p
             variants={heroItem}
             className="text-body text-base sm:text-xl max-w-2xl mx-auto leading-relaxed font-sans font-medium"
           >
@@ -112,98 +138,6 @@ export default function Home() {
 
         </motion.div>
       </section>
-
-      {/* ─── Highlights Section (What We Do) ─── */}
-      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-white-to-peach relative overflow-hidden">
-        {/* Ambient Faint Circle */}
-        <div 
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] rounded-full pointer-events-none -z-10" 
-          style={{ background: 'radial-gradient(circle, rgba(178,43,47,0.04) 0%, rgba(209,165,80,0.03) 50%, transparent 70%)' }}
-        />
-
-        <div className="max-w-6xl mx-auto space-y-12">
-          <div className="text-center space-y-3 max-w-2xl mx-auto reveal-heading">
-            <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-secondary bg-light-tint border border-muted/30 px-3 py-1 rounded-[4px]">
-              <Terminal className="w-3.5 h-3.5" /> What We Do
-            </div>
-            <h2 className="font-display text-3xl sm:text-5xl font-black uppercase text-near-black tracking-tight">
-              Driving Technical <span className="text-primary">Excellence</span>
-            </h2>
-            <p className="text-body text-sm sm:text-base font-medium">
-              From technical hackathons and competitive programming workshops to cultural celebrations and career mentorship.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Card 1 */}
-            <div className="bg-white border border-[#e8e6e1] p-8 rounded-[16px] hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-brand-hover transition-all duration-300 space-y-4 shadow-sm group reveal-card delay-100 flex flex-col justify-between">
-              <div className="space-y-4">
-                <div className="w-12 h-12 rounded-[8px] bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-300 shadow-brand-glow">
-                  <Code2 className="w-6 h-6" />
-                </div>
-                <h3 className="font-display text-xl font-extrabold uppercase text-near-black group-hover:text-primary transition-colors">
-                  Hackathons & Bootcamps
-                </h3>
-                <p className="text-body text-sm leading-relaxed">
-                  Organizing flagship 36-hour national hackathons, coding sprints, and hands-on workshops across modern stacks and AI architectures.
-                </p>
-              </div>
-              <button 
-                onClick={() => scrollToSection('golden-moments')} 
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:text-primary/80 transition-colors uppercase tracking-wider pt-3 cursor-pointer"
-              >
-                <span>Read Stories</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
-
-            {/* Card 2 */}
-            <div className="bg-white border border-[#e8e6e1] p-8 rounded-[16px] hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-brand-hover transition-all duration-300 space-y-4 shadow-sm group reveal-card delay-200 flex flex-col justify-between">
-              <div className="space-y-4">
-                <div className="w-12 h-12 rounded-[8px] bg-secondary/15 text-secondary flex items-center justify-center group-hover:bg-secondary group-hover:text-dark-overlay transition-all duration-300">
-                  <Users className="w-6 h-6" />
-                </div>
-                <h3 className="font-display text-xl font-extrabold uppercase text-near-black group-hover:text-primary transition-colors">
-                  Community & Mentorship
-                </h3>
-                <p className="text-body text-sm leading-relaxed">
-                  Fostering peer-to-peer learning with senior developers, alumni network panels, and research project incubations.
-                </p>
-              </div>
-              <button 
-                onClick={() => scrollToSection('members')} 
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:text-primary/80 transition-colors uppercase tracking-wider pt-3 cursor-pointer"
-              >
-                <span>Meet Core Team</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
-
-            {/* Card 3 */}
-            <div className="bg-white border border-[#e8e6e1] p-8 rounded-[16px] hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-brand-hover transition-all duration-300 space-y-4 shadow-sm group reveal-card delay-300 flex flex-col justify-between">
-              <div className="space-y-4">
-                <div className="w-12 h-12 rounded-[8px] bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-300 shadow-brand-glow">
-                  <Award className="w-6 h-6" />
-                </div>
-                <h3 className="font-display text-xl font-extrabold uppercase text-near-black group-hover:text-primary transition-colors">
-                  Competitions & Summits
-                </h3>
-                <p className="text-body text-sm leading-relaxed">
-                  Representing DIT Pune on national stages, technical paper conferences, and inter-collegiate innovation cups.
-                </p>
-              </div>
-              <button 
-                onClick={() => scrollToSection('gallery')} 
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:text-primary/80 transition-colors uppercase tracking-wider pt-3 cursor-pointer"
-              >
-                <span>View Gallery</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ─── Who Are We Section ─── */}
       <WhoAreWe embedded={true} />
 
