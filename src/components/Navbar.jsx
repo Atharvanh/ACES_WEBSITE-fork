@@ -214,7 +214,7 @@ export default function Navbar() {
               </div>
 
               {/* Drawer Footer with Social Icons */}
-              <div className="p-5 border-t border-muted/30 bg-light-tint/60 flex flex-col items-center justify-center space-y-3">
+              <div className="p-5 border-t border-muted/30 bg-[#FFF4F2] flex flex-col items-center justify-center space-y-3">
                 <div className="flex items-center justify-center space-x-5">
                   <a
                     href="https://instagram.com"

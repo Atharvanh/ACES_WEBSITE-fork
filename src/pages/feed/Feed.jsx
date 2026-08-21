@@ -5,7 +5,7 @@ import AccordionGallery from '../../components/AccordionGallery';
 
 export default function Feed({ embedded = false }) {
   return (
-    <div id="feed" className={`w-full bg-feed-editorial ${embedded ? 'pt-16 pb-16 sm:pb-20' : 'min-h-screen pt-28 sm:pt-36 pb-20'} space-y-10 relative overflow-hidden select-none`}>
+    <div id="feed" className={`w-full bg-[#FFF4F2] ${embedded ? 'pt-16 pb-16 sm:pb-20' : 'min-h-screen pt-28 sm:pt-36 pb-20'} space-y-10 relative overflow-hidden select-none`}>
       
       {/* Section Header */}
       <div className="text-center space-y-2 max-w-xl mx-auto px-4 reveal-heading">

@@ -12,6 +12,7 @@ import MembersList from './pages/members/MembersList';
 import MemberProfile from './pages/member-profile/MemberProfile';
 import Social from './pages/social/Social';
 import { useScrollReveal } from './hooks/useScrollReveal';
+import { useDynamicScrollbar } from './hooks/useDynamicScrollbar';
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -37,6 +38,7 @@ function ScrollToTop() {
 
 function AppContent() {
   useScrollReveal();
+  useDynamicScrollbar();
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-mesh text-muted font-sans selection:bg-primary selection:text-white">

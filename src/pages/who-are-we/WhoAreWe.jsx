@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 export default function WhoAreWe({ embedded = false }) {
   return (
-    <div id="who-are-we" className={embedded ? "relative" : "min-h-screen"}>
+    <div id="who-are-we" className={`${embedded ? "relative" : "min-h-screen"} bg-[#FFF4F2]`}>
       {/* ─── Hero Header ─── */}
-      <section className={`relative bg-who-hero ${embedded ? 'pt-16 sm:pt-24' : 'pt-28 sm:pt-36'} pb-16 sm:pb-24 px-4 sm:px-6 lg:px-8 text-center overflow-hidden`}>
+      <section className={`relative bg-[#FFF4F2] ${embedded ? 'pt-16 sm:pt-24' : 'pt-28 sm:pt-36'} pb-16 sm:pb-24 px-4 sm:px-6 lg:px-8 text-center overflow-hidden`}>
         {/* Ambient Glow */}
         <div 
           className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-96 pointer-events-none -z-10" 
@@ -61,7 +61,7 @@ export default function WhoAreWe({ embedded = false }) {
       </section>
 
       {/* ─── Core Pillars ─── */}
-      <section className="bg-who-pillars py-16 sm:py-24 px-4 sm:px-6 lg:px-8 relative">
+      <section className="bg-[#FFF4F2] py-16 sm:py-24 px-4 sm:px-6 lg:px-8 relative">
         <div className="max-w-6xl mx-auto space-y-12">
           <div className="text-center space-y-3 max-w-xl mx-auto reveal-heading">
             <h2 className="font-display text-3xl sm:text-5xl font-black uppercase text-primary tracking-tight">
@@ -101,26 +101,28 @@ export default function WhoAreWe({ embedded = false }) {
       </section>
 
       {/* ─── Call to Action ─── */}
-      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 text-center max-w-4xl mx-auto space-y-6 reveal">
-        <h2 className="font-display text-3xl sm:text-5xl font-black uppercase text-near-black tracking-tight">
-          Want to Be Part of the <span className="text-primary">Journey?</span>
-        </h2>
-        <p className="text-body text-sm sm:text-base max-w-lg mx-auto font-medium">
-          Explore our members directory, attend our upcoming workshops, or connect with our committee leads.
-        </p>
-        <div className="pt-2 flex justify-center gap-4">
-          <Link
-            to="/members"
-            className="inline-flex items-center gap-2 bg-primary text-white font-bold text-sm px-7 py-3.5 rounded-[4px] hover:bg-primary/90 hover:-translate-y-0.5 shadow-brand-glow hover:shadow-[0_6px_28px_rgba(178,43,47,0.28)] transition-all cursor-pointer uppercase tracking-wider"
-          >
-            Meet the Team
-          </Link>
-          <Link
-            to="/feed"
-            className="inline-flex items-center gap-2 border border-primary text-primary bg-white/90 font-bold text-sm px-7 py-3.5 rounded-[4px] hover:bg-primary hover:text-white hover:-translate-y-0.5 transition-all cursor-pointer shadow-sm uppercase tracking-wider"
-          >
-            Club Feed
-          </Link>
+      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 text-center bg-gradient-peach-to-white space-y-6 reveal">
+        <div className="max-w-4xl mx-auto space-y-6">
+          <h2 className="font-display text-3xl sm:text-5xl font-black uppercase text-near-black tracking-tight">
+            Want to Be Part of the <span className="text-primary">Journey?</span>
+          </h2>
+          <p className="text-body text-sm sm:text-base max-w-lg mx-auto font-medium">
+            Explore our members directory, attend our upcoming workshops, or connect with our committee leads.
+          </p>
+          <div className="pt-2 flex justify-center gap-4">
+            <Link
+              to="/members"
+              className="inline-flex items-center gap-2 bg-primary text-white font-bold text-sm px-7 py-3.5 rounded-[4px] hover:bg-primary/90 hover:-translate-y-0.5 shadow-brand-glow hover:shadow-[0_6px_28px_rgba(178,43,47,0.28)] transition-all cursor-pointer uppercase tracking-wider"
+            >
+              Meet the Team
+            </Link>
+            <Link
+              to="/feed"
+              className="inline-flex items-center gap-2 border border-primary text-primary bg-white/90 font-bold text-sm px-7 py-3.5 rounded-[4px] hover:bg-primary hover:text-white hover:-translate-y-0.5 transition-all cursor-pointer shadow-sm uppercase tracking-wider"
+            >
+              Club Feed
+            </Link>
+          </div>
         </div>
       </section>
     </div>

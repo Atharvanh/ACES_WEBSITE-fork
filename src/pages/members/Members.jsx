@@ -8,11 +8,10 @@ export default function Members({ embedded = false }) {
   const navigate = useNavigate();
 
   return (
-    <div id="members" className={`bg-members-atmosphere ${embedded ? 'pt-8 pb-20' : 'min-h-screen pt-20 pb-24'} font-sans`}>
+    <div id="members" className={`w-full bg-white ${embedded ? 'pt-8 pb-20' : 'min-h-screen pt-20 pb-24'} font-sans`}>
       {/* Full-width Faint Gradient Header Banner */}
       <div 
-        className="w-full py-12 md:py-16 px-4 md:px-8 border-b border-muted/30 mb-12"
-        style={{ background: 'linear-gradient(135deg, rgba(178,43,47,0.06) 0%, rgba(209,165,80,0.06) 100%)' }}
+        className="w-full py-12 md:py-16 px-4 md:px-8 mb-12 bg-transparent"
       >
         <div className="max-w-6xl mx-auto reveal-heading">
           <div className="flex items-center gap-3 mb-3">

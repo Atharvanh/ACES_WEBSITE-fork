@@ -53,7 +53,7 @@ export default function GoldenMoments({ embedded = false }) {
   const cardSpacing = getCardSpacing();
 
   return (
-    <div id="golden-moments" className={`w-full bg-golden-atmosphere ${embedded ? 'pt-16 sm:pt-24 pb-14' : 'min-h-screen pt-28 sm:pt-36 pb-24'} px-0 flex flex-col justify-center items-center overflow-hidden relative select-none`}>
+    <div id="golden-moments" className={`w-full bg-white ${embedded ? 'pt-16 sm:pt-24 pb-14' : 'min-h-screen pt-28 sm:pt-36 pb-24'} px-0 flex flex-col justify-center items-center overflow-hidden relative select-none`}>
       
       {/* Background ambient warm amber light tint */}
       <div 
