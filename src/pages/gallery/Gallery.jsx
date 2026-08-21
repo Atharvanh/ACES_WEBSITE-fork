@@ -125,7 +125,7 @@ export default function Gallery({ embedded = false }) {
   };
 
   return (
-    <div id="gallery" className={`w-full bg-white text-dark-overlay ${embedded ? 'border-b border-muted/30' : ''}`}>
+    <div id="gallery" className="w-full bg-white text-dark-overlay">
       {/* Embedded CSS for keyframes & responsive marquee styling */}
       <style>{`
         @keyframes galleryMarqueeUp {

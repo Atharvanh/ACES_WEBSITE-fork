@@ -45,9 +45,9 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen overflow-x-hidden">
-      {/* ─── Hero Section ─── */}
-      <section id="home" className="relative pt-28 sm:pt-36 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden bg-hero-atmosphere bg-tech-grid scroll-mt-20">
+    <div className="min-h-screen overflow-x-hidden bg-white">
+      {/* ─── 1. Home / Hero Section (Color: White) ─── */}
+      <section id="home" className="relative pt-28 sm:pt-36 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden bg-white scroll-mt-20">
         {/* Subtle Ambient Radial Glow */}
         <div 
           className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-96 pointer-events-none -z-10" 
@@ -114,7 +114,7 @@ export default function Home() {
       </section>
 
       {/* ─── Highlights Section (What We Do) ─── */}
-      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-highlights-atmosphere relative overflow-hidden">
+      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-white-to-peach relative overflow-hidden">
         {/* Ambient Faint Circle */}
         <div 
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] rounded-full pointer-events-none -z-10" 

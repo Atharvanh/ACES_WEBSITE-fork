@@ -147,7 +147,7 @@ export default function Social({ embedded = false }) {
   const cardSpacing = getCardSpacing();
 
   return (
-    <div id="social" className={`bg-social-atmosphere ${embedded ? 'py-16 sm:py-24' : 'min-h-screen pt-28 sm:pt-36 pb-24'} px-2 sm:px-4 flex flex-col items-center font-sans relative overflow-hidden select-none`}>
+    <div id="social" className={`w-full bg-[#FFF4F2] ${embedded ? 'py-16 sm:py-24' : 'min-h-screen pt-28 sm:pt-36 pb-24'} px-2 sm:px-4 flex flex-col items-center font-sans relative overflow-hidden select-none`}>
       {/* Subtle Background Glow */}
       <div 
         className="absolute top-1/4 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[600px] pointer-events-none -z-10" 
