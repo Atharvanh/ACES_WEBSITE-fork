@@ -41,11 +41,11 @@ const MemberCardBack = ({ member }) => {
   return (
     <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-[16px] overflow-hidden relative member-card-back">
       
-      {/* Background Layer: Phoenix Graphic */}
+      {/* Background Layer: Falcon Graphic */}
       <img
-        src="/phoenix.jpg"
+        src="/falcon.svg"
         alt=""
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[95%] h-auto object-contain opacity-[0.26] pointer-events-none z-0 mix-blend-multiply"
+        className="absolute -bottom-[5%] -right-[15%] w-[110%] h-auto object-contain opacity-[0.35] pointer-events-none z-0"
       />
 
       {/* Content Layer */}
@@ -87,16 +87,8 @@ const MemberCardBack = ({ member }) => {
           )}
         </div>
 
-        {/* Footer Section */}
-        <div className="z-10">
-          {/* Single Separator Line */}
-          <div className="w-[90%] h-[0.5px] bg-[#6B6D71]/35 mx-auto mb-3" />
-
-          {/* Flip Back Indicator */}
-          <div className="text-center text-[#6B6D71] text-xs flex items-center justify-center gap-1.5 opacity-80 group-hover:opacity-100 transition-opacity">
-            <RotateCcw className="w-3.5 h-3.5" />
-            <span className="font-mono text-[10px] uppercase tracking-wide">Click to flip back</span>
-          </div>
+        {/* Empty Footer Section to maintain layout spacing if needed, or just removed */}
+        <div className="z-10 mt-auto">
         </div>
 
       </div>
