@@ -1,0 +1,230 @@
+.drift-wall {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  perspective: var(--dw-perspective, 1200px);
+  perspective-origin: 50% 50%;
+  --dw-tile-w: 340px;
+  --dw-tile-h: 190px;
+  --dw-gap: 20px;
+  --dw-radius: 14px;
+  --dw-lift: 44px;
+  --dw-dim: 1;
+  --dw-gray: 0;
+
+  /* Safe, cross-browser horizontal edge fading */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 40px, #000 calc(100% - 40px), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 40px, #000 calc(100% - 40px), transparent 100%);
+}
+
+.drift-wall__plane {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  transform-style: preserve-3d;
+  cursor: grab;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+.drift-wall__plane:active {
+  cursor: grabbing;
+}
+
+/* Horizontal Row Mode (Moving Left to Right) */
+.drift-wall--horizontal .drift-wall__plane {
+  flex-direction: column;
+}
+
+.drift-wall--horizontal .drift-wall__row {
+  position: relative;
+  height: calc(var(--dw-tile-h) + var(--dw-gap));
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+}
+
+.drift-wall--horizontal .drift-wall__track {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+.drift-wall--horizontal .drift-wall__tile {
+  position: relative;
+  display: block;
+  width: var(--dw-tile-w);
+  height: var(--dw-tile-h);
+  margin-right: var(--dw-gap);
+  flex: 0 0 auto;
+  outline: none;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+/* Vertical Column Mode */
+.drift-wall--vertical .drift-wall__plane {
+  flex-direction: row;
+}
+
+.drift-wall--vertical .drift-wall__col {
+  position: relative;
+  width: calc(var(--dw-tile-w) + var(--dw-gap));
+  transform-style: preserve-3d;
+}
+
+.drift-wall--vertical .drift-wall__track {
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+.drift-wall--vertical .drift-wall__tile {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: var(--dw-tile-h);
+  margin-bottom: var(--dw-gap);
+  flex: 0 0 auto;
+  outline: none;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+/* Distinct Card Container with Visible Outline & Depth */
+.drift-wall__inner {
+  position: absolute;
+  inset: 0;
+  display: block;
+  border-radius: var(--dw-radius);
+  overflow: hidden;
+  background: #ffffff;
+  /* Crisp visible outline and floating elevation */
+  border: 2px solid #e2ded4;
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.12), 0 2px 6px -1px rgba(0, 0, 0, 0.06);
+  opacity: var(--dw-dim);
+  transform: translateZ(0);
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.drift-wall__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  z-index: 1;
+  background-color: #f4f2ee;
+  filter: grayscale(var(--dw-gray)) saturate(1.02);
+  transition: transform 0.4s ease-out;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Fallback Card when Image is loading or offline */
+.drift-wall__fallback-card {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #2b2b36 0%, #171720 100%);
+  color: #ffffff;
+  padding: 16px;
+  text-align: center;
+  z-index: 0;
+}
+
+.drift-wall__fallback-icon {
+  font-size: 28px;
+  margin-bottom: 6px;
+}
+
+.drift-wall__fallback-cat {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #d1a550;
+  margin-bottom: 4px;
+}
+
+.drift-wall__fallback-title {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #f4f4f4;
+  max-width: 85%;
+}
+
+/* Badge Bar with Category Tag & Title */
+.drift-wall__badge-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 30px 14px 12px 14px;
+  background: linear-gradient(to top, rgba(12, 12, 18, 0.88) 0%, rgba(12, 12, 18, 0.4) 60%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.drift-wall__badge-tag {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #d1a550;
+  display: inline-block;
+}
+
+.drift-wall__badge-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+/* Interactive Hover / Focus 3D Lift */
+.drift-wall__tile:hover .drift-wall__inner,
+.drift-wall__tile.is-active .drift-wall__inner,
+.drift-wall__tile:focus-visible .drift-wall__inner {
+  transform: translateZ(var(--dw-lift)) scale(1.02);
+  border-color: #b22b2f;
+  box-shadow: 0 24px 44px -8px rgba(178, 43, 47, 0.25), 0 12px 28px -4px rgba(0, 0, 0, 0.2);
+}
+
+.drift-wall__tile:hover .drift-wall__img,
+.drift-wall__tile.is-active .drift-wall__img,
+.drift-wall__tile:focus-visible .drift-wall__img {
+  transform: scale(1.05);
+}
+
+.drift-wall__tile:focus-visible .drift-wall__inner {
+  box-shadow:
+    0 24px 44px -8px rgba(178, 43, 47, 0.3),
+    0 0 0 3px #b22b2f;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drift-wall__plane,
+  .drift-wall__track {
+    will-change: auto;
+  }
+}

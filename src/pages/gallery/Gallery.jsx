@@ -11,14 +11,17 @@ import {
   ChevronRight, 
   SearchX, 
   Sparkles,
-  ArrowRight
+  ArrowRight,
+  Maximize2
 } from 'lucide-react';
 import { galleryItems, marqueeImages } from './galleryData';
+import DriftWall from '../../components/ui/DriftWall';
 
 export default function Gallery({ embedded = false }) {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [activeItemIndex, setActiveItemIndex] = useState(null);
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [isHeroVisible, setIsHeroVisible] = useState(true);
 
@@ -35,7 +38,7 @@ export default function Gallery({ embedded = false }) {
     ? galleryItems
     : galleryItems.filter(item => item.category === selectedCategory);
 
-  // Split marquee images into 4 columns
+  // Split marquee images into 4 columns for Hero banner
   const col1 = [...marqueeImages.slice(0, 3), ...marqueeImages.slice(0, 3)];
   const col2 = [...marqueeImages.slice(3, 6), ...marqueeImages.slice(3, 6)];
   const col3 = [...marqueeImages.slice(6, 9), ...marqueeImages.slice(6, 9)];
@@ -62,9 +65,10 @@ export default function Gallery({ embedded = false }) {
     if (category === selectedCategory) return;
     setIsLoading(true);
     setSelectedCategory(category);
+    setActiveSlideIndex(0);
     setTimeout(() => {
       setIsLoading(false);
-    }, 250);
+    }, 200);
   };
 
   // Keyboard navigation for Lightbox Modal
@@ -102,10 +106,8 @@ export default function Gallery({ embedded = false }) {
     const minSwipeDistance = 45;
 
     if (distance > minSwipeDistance) {
-      // Swiped Left -> Next image
       setActiveItemIndex(prev => (prev < filteredItems.length - 1 ? prev + 1 : 0));
     } else if (distance < -minSwipeDistance) {
-      // Swiped Right -> Previous image
       setActiveItemIndex(prev => (prev > 0 ? prev - 1 : filteredItems.length - 1));
     }
 
@@ -123,6 +125,8 @@ export default function Gallery({ embedded = false }) {
       }
     }
   };
+
+  const currentActiveItem = filteredItems[activeSlideIndex] || filteredItems[0];
 
   return (
     <div id="gallery" className="w-full bg-white text-dark-overlay">
@@ -160,113 +164,123 @@ export default function Gallery({ embedded = false }) {
         }
       `}</style>
 
-      {/* SECTION 1: HERO WITH AUTO-SCROLLING COLLAGE */}
+      {/* SECTION 1: HERO SHOWCASE (Compact Marquee Background + Glassmorphism Center Card) */}
       <section 
-        ref={heroRef} 
-        className="relative w-full h-[70vh] max-h-[560px] min-h-[460px] pt-20 overflow-hidden bg-light-tint border-b border-muted/50"
-        aria-label="Gallery Hero Showcase"
+        ref={heroRef}
+        className={`relative ${embedded ? 'h-[280px] sm:h-[340px]' : 'h-[340px] sm:h-[400px] mt-4'} overflow-hidden flex items-center justify-center`}
       >
-        {/* Background Scrolling Collage Grid */}
-        <div className="absolute inset-0 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 p-2 sm:p-4 opacity-[0.85] contrast-100">
-          {/* Column 1 (Visible Mobile + Desktop) */}
-          <div className="overflow-hidden relative h-full">
-            <div className={`flex flex-col gap-3 sm:gap-4 marquee-container animate-marquee-sync xl:animate-marquee-col1`}>
-              {col1.map((img, idx) => (
-                <div key={`${img.id}-c1-${idx}`} className="relative rounded-[4px] overflow-hidden shrink-0 h-44 sm:h-56 bg-muted/20">
-                  <img
-                    src={img.url}
-                    alt={img.alt}
-                    loading={idx < 3 ? "eager" : "lazy"}
-                    className="w-full h-full object-cover brightness-[0.7] [@media(hover:hover)_and_(pointer:fine)]:hover:brightness-100 [@media(hover:hover)_and_(pointer:fine)]:hover:scale-105 transition-all duration-500"
-                  />
-                </div>
-              ))}
+        {/* Ambient Glow */}
+        <div 
+          className="absolute inset-0 pointer-events-none -z-10" 
+          style={{ background: 'radial-gradient(circle at 50% 50%, rgba(209,165,80,0.14) 0%, rgba(178,43,47,0.06) 50%, transparent 80%)' }}
+        />
+
+        {/* Marquee Background Container */}
+        <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none opacity-35 select-none">
+          {/* Mobile / Tablet: 2 Synchronized Columns */}
+          <div className="flex xl:hidden gap-3 sm:gap-4 h-[200%] w-full">
+            <div className="flex-1 overflow-hidden">
+              <div className="marquee-container animate-marquee-sync flex flex-col gap-3 sm:gap-4">
+                {[...col1, ...col2].map((img, idx) => (
+                  <div key={`sync1-${idx}`} className="w-full aspect-[4/3] rounded-[4px] overflow-hidden bg-light-tint shadow-sm">
+                    <img src={img.url} alt={img.alt} className="w-full h-full object-cover grayscale opacity-75" />
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="flex-1 overflow-hidden">
+              <div className="marquee-container animate-marquee-sync flex flex-col gap-3 sm:gap-4" style={{ animationDirection: 'reverse' }}>
+                {[...col3, ...col4].map((img, idx) => (
+                  <div key={`sync2-${idx}`} className="w-full aspect-[4/3] rounded-[4px] overflow-hidden bg-light-tint shadow-sm">
+                    <img src={img.url} alt={img.alt} className="w-full h-full object-cover grayscale opacity-75" />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Column 2 (Visible Mobile + Desktop) */}
-          <div className="overflow-hidden relative h-full">
-            <div className={`flex flex-col gap-3 sm:gap-4 marquee-container animate-marquee-sync xl:animate-marquee-col2`}>
-              {col2.map((img, idx) => (
-                <div key={`${img.id}-c2-${idx}`} className="relative rounded-[4px] overflow-hidden shrink-0 h-44 sm:h-56 bg-muted/20">
-                  <img
-                    src={img.url}
-                    alt={img.alt}
-                    loading={idx < 3 ? "eager" : "lazy"}
-                    className="w-full h-full object-cover brightness-[0.7] [@media(hover:hover)_and_(pointer:fine)]:hover:brightness-100 [@media(hover:hover)_and_(pointer:fine)]:hover:scale-105 transition-all duration-500"
-                  />
-                </div>
-              ))}
+          {/* Desktop (xl+): 4 Independent Floating Columns */}
+          <div className="hidden xl:flex gap-4 h-[200%] w-full">
+            {/* Column 1 - Moving Up */}
+            <div className="flex-1 overflow-hidden">
+              <div className="marquee-container animate-marquee-col1 flex flex-col gap-4">
+                {col1.map((img, idx) => (
+                  <div key={`col1-${idx}`} className="w-full aspect-[4/3] rounded-[4px] overflow-hidden bg-light-tint shadow-sm">
+                    <img src={img.url} alt={img.alt} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300 opacity-70" />
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
 
-          {/* Column 3 (Tablet >= 768px) */}
-          <div className="hidden md:block overflow-hidden relative h-full">
-            <div className={`flex flex-col gap-3 sm:gap-4 marquee-container animate-marquee-sync xl:animate-marquee-col3`}>
-              {col3.map((img, idx) => (
-                <div key={`${img.id}-c3-${idx}`} className="relative rounded-[4px] overflow-hidden shrink-0 h-44 sm:h-56 bg-muted/20">
-                  <img
-                    src={img.url}
-                    alt={img.alt}
-                    loading={idx < 3 ? "eager" : "lazy"}
-                    className="w-full h-full object-cover brightness-[0.7] [@media(hover:hover)_and_(pointer:fine)]:hover:brightness-100 [@media(hover:hover)_and_(pointer:fine)]:hover:scale-105 transition-all duration-500"
-                  />
-                </div>
-              ))}
+            {/* Column 2 - Moving Down */}
+            <div className="flex-1 overflow-hidden">
+              <div className="marquee-container animate-marquee-col2 flex flex-col gap-4">
+                {col2.map((img, idx) => (
+                  <div key={`col2-${idx}`} className="w-full aspect-[4/3] rounded-[4px] overflow-hidden bg-light-tint shadow-sm">
+                    <img src={img.url} alt={img.alt} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300 opacity-70" />
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
 
-          {/* Column 4 (Desktop >= 1280px) */}
-          <div className="hidden xl:block overflow-hidden relative h-full">
-            <div className={`flex flex-col gap-3 sm:gap-4 marquee-container animate-marquee-col4`}>
-              {col4.map((img, idx) => (
-                <div key={`${img.id}-c4-${idx}`} className="relative rounded-[4px] overflow-hidden shrink-0 h-44 sm:h-56 bg-muted/20">
-                  <img
-                    src={img.url}
-                    alt={img.alt}
-                    loading={idx < 3 ? "eager" : "lazy"}
-                    className="w-full h-full object-cover brightness-[0.7] [@media(hover:hover)_and_(pointer:fine)]:hover:brightness-100 [@media(hover:hover)_and_(pointer:fine)]:hover:scale-105 transition-all duration-500"
-                  />
-                </div>
-              ))}
+            {/* Column 3 - Moving Up */}
+            <div className="flex-1 overflow-hidden">
+              <div className="marquee-container animate-marquee-col3 flex flex-col gap-4">
+                {col3.map((img, idx) => (
+                  <div key={`col3-${idx}`} className="w-full aspect-[4/3] rounded-[4px] overflow-hidden bg-light-tint shadow-sm">
+                    <img src={img.url} alt={img.alt} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300 opacity-70" />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Column 4 - Moving Down */}
+            <div className="flex-1 overflow-hidden">
+              <div className="marquee-container animate-marquee-col4 flex flex-col gap-4">
+                {col4.map((img, idx) => (
+                  <div key={`col4-${idx}`} className="w-full aspect-[4/3] rounded-[4px] overflow-hidden bg-light-tint shadow-sm">
+                    <img src={img.url} alt={img.alt} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300 opacity-70" />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Scrim & Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/95 via-light-tint/85 to-white pointer-events-none" />
+        {/* Overlay Darkening Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/50 to-white/95 pointer-events-none" />
 
-        {/* Centered Hero Overlay Card */}
-        <div className="absolute inset-0 flex items-center justify-center p-4 sm:p-6 z-10">
-          <div className="w-full max-w-xl bg-white border border-muted/50 rounded-[8px] p-6 sm:p-8 text-center space-y-4 shadow-2xl">
+        {/* Compact Glassmorphism Hero Card */}
+        <div className="absolute inset-0 flex items-center justify-center p-4 z-10">
+          <div className="w-full max-w-lg bg-white border border-muted/50 rounded-[8px] p-5 sm:p-6 text-center space-y-3 shadow-xl">
             {/* Secondary Accent Badge */}
-            <div className="inline-flex items-center gap-2 bg-secondary/15 border border-secondary/40 text-secondary px-3.5 py-1.5 rounded-[4px] text-xs font-bold tracking-widest uppercase shadow-sm">
-              <Sparkles className="w-3.5 h-3.5 text-secondary" />
+            <div className="inline-flex items-center gap-1.5 bg-secondary/15 border border-secondary/40 text-secondary px-3 py-1 rounded-[4px] text-[11px] font-bold tracking-widest uppercase shadow-sm">
+              <Sparkles className="w-3 h-3 text-secondary" />
               <span>ACES Archives</span>
             </div>
 
             {/* Main Headline */}
-            <h1 className="font-display text-2xl sm:text-4xl font-black uppercase text-primary tracking-tight leading-tight">
+            <h1 className="font-display text-xl sm:text-2xl font-black uppercase text-primary tracking-tight leading-snug">
               Capturing Moments, <span className="text-secondary">Coding History</span>
             </h1>
 
             {/* Subtitle */}
-            <p className="text-body text-xs sm:text-sm leading-relaxed max-w-md mx-auto font-medium">
+            <p className="text-body text-xs leading-relaxed max-w-md mx-auto font-medium">
               Explore the rich history of technical workshops, national hackathons, cultural festivals, and student leadership at DIT Pune.
             </p>
 
             {/* Action CTA */}
-            <div className="pt-2">
+            <div className="pt-1">
               <button
                 type="button"
                 onClick={handleCtaClick}
-                className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white font-bold text-xs tracking-wider uppercase px-7 py-3 rounded-[4px] transition-all cursor-pointer shadow-brand-glow group"
+                className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white font-bold text-xs tracking-wider uppercase px-6 py-2.5 rounded-[4px] transition-all cursor-pointer shadow-brand-glow group"
               >
                 <span>Explore Gallery</span>
                 {embedded ? (
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 ) : (
-                  <ChevronDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
+                  <ChevronDown className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
                 )}
               </button>
             </div>
@@ -274,11 +288,11 @@ export default function Gallery({ embedded = false }) {
         </div>
       </section>
 
-      {/* SECTION 2: GALLERY GRID & FILTERS (Only shown on standalone /gallery page) */}
+      {/* SECTION 2: DRIFT WALL 3D EVENT GALLERY (Shown on standalone /gallery page) */}
       {!embedded && (
         <section 
           id="gallery-grid" 
-          className="w-full bg-gallery-atmosphere py-12 sm:py-20 relative overflow-hidden scroll-mt-24"
+          className="w-full bg-gallery-atmosphere py-8 sm:py-14 relative overflow-hidden scroll-mt-24"
         >
           {/* Faint Background Watermark Text */}
           <div 
@@ -288,25 +302,25 @@ export default function Gallery({ embedded = false }) {
             ACES
           </div>
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+          <div className="w-full space-y-6">
             {/* Section Title & Info */}
-            <div className="text-center space-y-2 max-w-xl mx-auto">
+            <div className="text-center space-y-2 max-w-xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="inline-flex items-center gap-2 text-secondary bg-light-tint border border-muted/30 px-3 py-1 rounded-[4px] text-xs font-semibold tracking-wider uppercase">
-                <ImageIcon className="w-3.5 h-3.5" /> Club Records
+                <ImageIcon className="w-3.5 h-3.5" /> Drift Wall Archive
               </div>
-              <h2 className="font-display text-3xl sm:text-4xl font-black uppercase text-near-black tracking-tight">Event Gallery</h2>
+              <h2 className="font-display text-2xl sm:text-3xl font-black uppercase text-near-black tracking-tight">Event Gallery</h2>
               <p className="text-body text-xs sm:text-sm font-medium">
-                Filter moments by domain or click any photo to open full preview.
+                Hover over photos to bring them forward in 3D space, or click any moment to inspect high-resolution details.
               </p>
             </div>
 
-            {/* Category Filter Pills */}
-            <div className="flex flex-wrap justify-center gap-2 border-b border-muted/30 pb-6">
+            {/* Category Filter Pills (Seamless without border-b) */}
+            <div className="flex flex-wrap justify-center gap-2 pb-1 px-4">
               {categories.map((category) => (
                 <button
                   key={category}
                   onClick={() => handleCategoryChange(category)}
-                  className={`px-4 py-2 rounded-[4px] text-xs sm:text-sm font-bold tracking-wide transition-all cursor-pointer ${
+                  className={`px-4 py-1.5 rounded-[4px] text-xs font-bold tracking-wide transition-all cursor-pointer ${
                     selectedCategory === category
                       ? 'bg-primary text-white shadow-sm'
                       : 'text-body hover:text-primary hover:bg-light-tint'
@@ -317,89 +331,71 @@ export default function Gallery({ embedded = false }) {
               ))}
             </div>
 
-        {/* Loading Skeletons State */}
-        {isLoading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[1, 2, 3, 4, 5, 6].map((skel) => (
-              <div key={`skel-${skel}`} className="bg-white border border-muted/50 rounded-[4px] overflow-hidden animate-pulse">
-                <div className="h-52 bg-muted/20" />
-                <div className="p-6 space-y-3">
-                  <div className="h-5 bg-muted/20 rounded w-3/4" />
-                  <div className="h-4 bg-muted/10 rounded w-full" />
-                  <div className="h-4 bg-muted/10 rounded w-2/3" />
-                  <div className="pt-4 flex justify-between border-t border-muted/20">
-                    <div className="h-3 bg-muted/20 rounded w-16" />
-                    <div className="h-3 bg-muted/20 rounded w-20" />
+            {/* Loading Skeletons State */}
+            {isLoading ? (
+              <div className="w-full h-[520px] bg-light-tint/60 flex items-center justify-center animate-pulse">
+                <div className="w-72 h-44 bg-muted/20 rounded-[12px]" />
+              </div>
+            ) : filteredItems.length === 0 ? (
+              /* Empty State UI */
+              <div className="text-center py-16 px-4 bg-light-tint border border-muted/50 rounded-[4px] max-w-md mx-auto space-y-4">
+                <div className="w-12 h-12 bg-white text-muted border border-muted/40 rounded-full flex items-center justify-center mx-auto">
+                  <SearchX className="w-6 h-6" />
+                </div>
+                <h3 className="text-lg font-bold text-dark-overlay">No Moments Found</h3>
+                <p className="text-muted text-xs sm:text-sm">
+                  There are currently no gallery items matching the "{selectedCategory}" category.
+                </p>
+                <button
+                  onClick={() => handleCategoryChange('All')}
+                  className="inline-flex items-center gap-2 bg-white hover:bg-light-tint border border-muted/50 text-muted hover:text-primary text-xs font-semibold px-4 py-2 rounded-[4px] transition-colors cursor-pointer"
+                >
+                  Reset to All Categories
+                </button>
+              </div>
+            ) : (
+              /* 3D Horizontal Drift Wall Container - Full Bleed Edge to Edge */
+              <div className="space-y-3">
+                <div className="w-screen relative left-1/2 -translate-x-1/2 overflow-hidden bg-transparent my-1">
+                  <div className="w-full h-[520px] sm:h-[580px] relative overflow-hidden">
+                    <DriftWall
+                      items={filteredItems}
+                      rows={3}
+                      tileWidth={340}
+                      tileHeight={190}
+                      gap={20}
+                      radius={14}
+                      tilt={6}
+                      turn={-3}
+                      roll={0}
+                      perspective={1200}
+                      depth={50}
+                      speed={40}
+                      direction="right"
+                      variance={0.3}
+                      parallax={0.3}
+                      lift={44}
+                      dim={1}
+                      pauseOnHover={true}
+                      grayscale={false}
+                      onItemClick={(item, idx) => {
+                        const origIdx = filteredItems.findIndex(i => i.id === item.id);
+                        setActiveItemIndex(origIdx !== -1 ? origIdx : idx);
+                      }}
+                    />
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        ) : filteredItems.length === 0 ? (
-          /* Empty State UI */
-          <div className="text-center py-16 px-4 bg-light-tint border border-muted/50 rounded-[4px] max-w-md mx-auto space-y-4">
-            <div className="w-12 h-12 bg-white text-muted border border-muted/40 rounded-full flex items-center justify-center mx-auto">
-              <SearchX className="w-6 h-6" />
-            </div>
-            <h3 className="text-lg font-bold text-dark-overlay">No Moments Found</h3>
-            <p className="text-muted text-xs sm:text-sm">
-              There are currently no gallery items matching the "{selectedCategory}" category.
-            </p>
-            <button
-              onClick={() => handleCategoryChange('All')}
-              className="inline-flex items-center gap-2 bg-white hover:bg-light-tint border border-muted/50 text-muted hover:text-primary text-xs font-semibold px-4 py-2 rounded-[4px] transition-colors cursor-pointer"
-            >
-              Reset to All Categories
-            </button>
-          </div>
-        ) : (
-          /* Grid Display */
-          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <AnimatePresence mode="popLayout">
-              {filteredItems.map((item, idx) => (
-                <motion.div
-                  layout
-                  key={item.id}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.25 }}
-                  onClick={() => setActiveItemIndex(idx)}
-                  className="bg-white border border-muted/50 rounded-[4px] overflow-hidden group cursor-pointer hover:border-primary shadow-sm transition-all duration-300"
-                >
-                  <div className="relative overflow-hidden h-52 bg-light-tint">
-                    <img
-                      src={item.thumb || item.image}
-                      alt={item.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <span className="absolute bottom-3 left-3 bg-secondary text-dark-overlay text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-[4px] shadow-sm">
-                      {item.category}
-                    </span>
-                  </div>
 
-                  <div className="p-6 space-y-3">
-                    <h3 className="font-display text-lg font-extrabold text-near-black tracking-tight group-hover:text-primary transition-colors">
-                      {item.title}
-                    </h3>
-                    <p className="text-body text-xs sm:text-sm leading-relaxed line-clamp-2 font-medium">
-                      {item.caption}
-                    </p>
-                    <div className="flex items-center justify-between pt-4 border-t border-muted/30 text-[11px] text-muted font-mono">
-                      <span className="flex items-center gap-1">
-                        <Calendar className="w-3.5 h-3.5 text-muted" /> {item.year}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <MapPin className="w-3.5 h-3.5 text-primary" /> {item.location || 'DIT Pune'}
-                      </span>
-                    </div>
+                {/* Subtitle / Interaction Helper Bar */}
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-muted">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span>Live Drifting Mosaic • Moving left to right • Hover to focus or click to expand</span>
                   </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
-        )}
+                  <span className="font-mono text-dark-overlay/70 font-semibold">{filteredItems.length} moments in view</span>
+                </div>
+              </div>
+            )}
           </div>
         </section>
       )}
@@ -428,7 +424,7 @@ export default function Gallery({ embedded = false }) {
                 {/* Header bar */}
                 <div className="flex items-center justify-between px-6 py-4 border-b border-muted/30 bg-light-tint">
                   <div className="flex items-center gap-2 text-xs text-secondary uppercase font-bold tracking-wider">
-                    <span>{filteredItems[activeItemIndex].category}</span>
+                    <span>{filteredItems[activeItemIndex]?.category}</span>
                     <span className="text-muted">•</span>
                     <span className="text-muted">{activeItemIndex + 1} of {filteredItems.length}</span>
                   </div>
@@ -445,8 +441,8 @@ export default function Gallery({ embedded = false }) {
                 {/* Main Image View */}
                 <div className="relative flex-grow overflow-hidden bg-light-tint flex items-center justify-center min-h-[260px] sm:min-h-[380px]">
                   <img
-                    src={filteredItems[activeItemIndex].image}
-                    alt={filteredItems[activeItemIndex].title}
+                    src={filteredItems[activeItemIndex]?.image}
+                    alt={filteredItems[activeItemIndex]?.title}
                     className="max-h-[60vh] w-auto max-w-full object-contain select-none shadow-md"
                   />
 
@@ -473,19 +469,21 @@ export default function Gallery({ embedded = false }) {
                 <div className="p-6 bg-white border-t border-muted/30 space-y-2">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <h3 className="text-xl font-bold font-display text-dark-overlay">
-                      {filteredItems[activeItemIndex].title}
+                      {filteredItems[activeItemIndex]?.title}
                     </h3>
                     <div className="flex items-center gap-4 text-xs text-muted font-mono">
                       <span className="flex items-center gap-1">
-                        <Calendar className="w-3.5 h-3.5 text-muted" /> {filteredItems[activeItemIndex].year}
+                        <Calendar className="w-3.5 h-3.5 text-secondary" />
+                        {filteredItems[activeItemIndex]?.year}
                       </span>
                       <span className="flex items-center gap-1">
-                        <MapPin className="w-3.5 h-3.5 text-primary" /> {filteredItems[activeItemIndex].location || 'DIT Pune'}
+                        <MapPin className="w-3.5 h-3.5 text-primary" />
+                        {filteredItems[activeItemIndex]?.location}
                       </span>
                     </div>
                   </div>
-                  <p className="text-muted text-xs sm:text-sm leading-relaxed">
-                    {filteredItems[activeItemIndex].caption}
+                  <p className="text-muted text-sm leading-relaxed font-sans">
+                    {filteredItems[activeItemIndex]?.caption}
                   </p>
                 </div>
               </div>
