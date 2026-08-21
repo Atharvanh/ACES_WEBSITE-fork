@@ -23,11 +23,11 @@ export default function MembersList() {
   }
 
   return (
-    <div className="min-h-screen pt-8 pb-24 px-4 md:px-8 font-sans">
+    <div className="min-h-screen bg-members-atmosphere pt-28 sm:pt-36 pb-24 px-4 md:px-8 font-sans">
       <div className="max-w-6xl mx-auto">
         <button 
           onClick={() => navigate('/members')}
-          className="flex items-center gap-2 text-muted hover:text-primary mb-8 transition-colors cursor-pointer text-sm font-medium"
+          className="flex items-center gap-2 text-body hover:text-primary mb-8 transition-colors cursor-pointer text-sm font-bold uppercase tracking-wider"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Members</span>
@@ -35,7 +35,7 @@ export default function MembersList() {
 
         <header className="mb-12 space-y-2 border-l-[3px] border-secondary pl-4 reveal-heading">
           <h1 className="font-display text-3xl md:text-5xl font-black uppercase text-gradient-brand mb-2">{category.title}</h1>
-          <p className="text-muted text-sm sm:text-base leading-relaxed max-w-2xl">{category.description}</p>
+          <p className="text-body text-sm sm:text-base leading-relaxed max-w-2xl font-medium">{category.description}</p>
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 justify-items-center">

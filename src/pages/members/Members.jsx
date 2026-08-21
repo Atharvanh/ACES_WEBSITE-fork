@@ -8,25 +8,25 @@ export default function Members({ embedded = false }) {
   const navigate = useNavigate();
 
   return (
-    <div id="members" className={`${embedded ? 'pt-8 pb-20' : 'min-h-screen pt-20 pb-24'} font-sans`}>
+    <div id="members" className={`bg-members-atmosphere ${embedded ? 'pt-8 pb-20' : 'min-h-screen pt-20 pb-24'} font-sans`}>
       {/* Full-width Faint Gradient Header Banner */}
       <div 
         className="w-full py-12 md:py-16 px-4 md:px-8 border-b border-muted/30 mb-12"
-        style={{ background: 'linear-gradient(135deg, rgba(178,43,47,0.04) 0%, rgba(209,165,80,0.04) 100%)' }}
+        style={{ background: 'linear-gradient(135deg, rgba(178,43,47,0.06) 0%, rgba(209,165,80,0.06) 100%)' }}
       >
         <div className="max-w-6xl mx-auto reveal-heading">
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-10 h-10 rounded-[6px] bg-primary/10 border border-primary/30 flex items-center justify-center text-primary shadow-brand-glow">
+            <div className="w-10 h-10 rounded-[8px] bg-primary/10 border border-primary/30 flex items-center justify-center text-primary shadow-brand-glow">
               <Users className="w-5 h-5" />
             </div>
             <h1 className="font-display text-3xl md:text-5xl font-black uppercase text-gradient-brand tracking-tight">
               ACES Members
             </h1>
           </div>
-          <h2 className="font-display text-xl md:text-2xl font-bold text-primary mb-3">
+          <h2 className="font-display text-xl md:text-2xl font-extrabold text-primary mb-3">
             Meet the people behind ACES.
           </h2>
-          <p className="text-muted leading-relaxed font-sans max-w-3xl text-sm sm:text-base">
+          <p className="text-body leading-relaxed font-sans max-w-3xl text-sm sm:text-base font-medium">
             Meet the passionate individuals who inspire and drive ACES forward. We are the students and leaders who contribute to the technical, creative, and organizational activities of ACES.
           </p>
         </div>
@@ -41,11 +41,11 @@ export default function Members({ embedded = false }) {
             <section key={category.id} className="border-t border-muted/40 pt-10 reveal">
               <div className="flex flex-col mb-8 reveal-heading">
                 <h3 
-                  className="font-display text-2xl font-black text-primary mb-2 uppercase tracking-[0.08em] border-l-[3px] border-secondary pl-3"
+                  className="font-display text-2xl font-black text-primary mb-2 uppercase tracking-[0.06em] border-l-[3px] border-secondary pl-3"
                 >
                   {category.title}
                 </h3>
-                <p className="text-muted text-sm pl-3">
+                <p className="text-body text-sm pl-3 font-medium">
                   {category.description}
                 </p>
               </div>
@@ -58,8 +58,8 @@ export default function Members({ embedded = false }) {
                     </div>
                   ))
                 ) : (
-                  <div className="bg-light-tint border border-muted/50 p-8 text-center rounded-[8px] col-span-full w-full shadow-sm">
-                    <p className="text-muted">No members found in this category yet.</p>
+                  <div className="bg-white border border-muted/50 p-8 text-center rounded-[12px] col-span-full w-full shadow-sm">
+                    <p className="text-body font-medium">No members found in this category yet.</p>
                   </div>
                 )}
               </div>
@@ -68,10 +68,10 @@ export default function Members({ embedded = false }) {
                 <div className="mt-10 flex justify-center">
                   <button 
                     onClick={() => navigate(`/members/${category.id}`)}
-                    className="flex items-center gap-2 text-primary hover:text-white transition-all duration-200 px-8 py-3 border border-primary rounded-[4px] bg-transparent hover:bg-primary hover:-translate-y-0.5 hover:shadow-[0_4px_16px_rgba(178,43,47,0.25)] cursor-pointer font-semibold text-sm shadow-sm"
+                    className="flex items-center gap-2 text-primary hover:text-white transition-all duration-200 px-8 py-3.5 border border-primary rounded-[4px] bg-transparent hover:bg-primary hover:-translate-y-0.5 hover:shadow-[0_4px_16px_rgba(178,43,47,0.25)] cursor-pointer font-bold text-xs sm:text-sm uppercase tracking-wider shadow-sm"
                   >
-                    <span>Explore the {category.title}</span>
-                    <ArrowRight className="w-5 h-5" />
+                    <span>Explore {category.title}</span>
+                    <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
               )}

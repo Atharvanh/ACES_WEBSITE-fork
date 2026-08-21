@@ -30,14 +30,14 @@ export default function MemberProfile() {
   const categoryName = category ? category.title : 'Category';
 
   return (
-    <div className="min-h-screen bg-white pt-8 pb-20 px-4 md:px-8 relative overflow-hidden">
+    <div className="min-h-screen bg-members-atmosphere pt-28 sm:pt-36 pb-24 px-4 md:px-8 relative overflow-hidden">
       {/* Background glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-2xl h-[500px] bg-radial-[ellipse_at_top,rgba(178,43,47,0.06),transparent_70%] pointer-events-none"></div>
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-2xl h-[500px] bg-radial-[ellipse_at_top,rgba(178,43,47,0.06),transparent_70%] pointer-events-none" />
 
       <div className="max-w-3xl mx-auto relative z-10">
         <button 
           onClick={() => navigate(`/members/${member.category}`)}
-          className="flex items-center gap-2 text-muted hover:text-primary mb-8 transition-colors cursor-pointer text-sm font-medium"
+          className="flex items-center gap-2 text-body hover:text-primary mb-8 transition-colors cursor-pointer text-sm font-bold uppercase tracking-wider"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to {categoryName}</span>
@@ -46,7 +46,7 @@ export default function MemberProfile() {
         {/* Profile Header */}
         <div className="flex flex-col items-center text-center mb-12">
           <div className="relative mb-6">
-            <div className="absolute inset-0 bg-primary/15 rounded-full blur-xl animate-pulse"></div>
+            <div className="absolute inset-0 bg-primary/15 rounded-full blur-xl animate-pulse" />
             <img 
               src={member.image} 
               alt={member.name} 
@@ -54,8 +54,8 @@ export default function MemberProfile() {
             />
           </div>
           
-          <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-dark-overlay mb-2">{member.name}</h1>
-          <h2 className="font-display text-lg sm:text-xl text-secondary font-semibold mb-3">
+          <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-black text-near-black mb-2">{member.name}</h1>
+          <h2 className="font-display text-lg sm:text-xl text-secondary font-bold mb-3">
             {member.role} — ACES
           </h2>
           <p className="text-muted text-base">

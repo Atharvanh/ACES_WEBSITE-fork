@@ -1,130 +1,77 @@
 import React from 'react';
-import { Rss, Clock, ArrowRight, Film, Play, Eye, Heart } from 'lucide-react';
+import { Rss, Film, Play, Eye, Heart } from 'lucide-react';
 import { posts, reels } from './feedData';
+import AccordionGallery from '../../components/AccordionGallery';
 
 export default function Feed({ embedded = false }) {
-  // Duplicate for seamless infinite continuous glide
-  const marqueePosts = [...posts, ...posts, ...posts];
-
   return (
-    <div id="feed" className={`w-full ${embedded ? 'pt-2 pb-16 sm:pb-20 border-b border-muted/30' : 'min-h-screen pt-28 sm:pt-32 pb-16'} space-y-8 relative overflow-hidden select-none`}>
-      {/* Embedded CSS for smooth continuous marquee flow */}
-      <style>{`
-        @keyframes continuousBlogStream {
-          0% { transform: translateX(0%); }
-          100% { transform: translateX(-33.333%); }
-        }
-
-        .blog-marquee-track {
-          display: flex;
-          gap: 1.5rem;
-          width: max-content;
-          animation: continuousBlogStream 26s linear infinite;
-          will-change: transform;
-        }
-
-        .blog-marquee-track:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
-
-      {/* Radial Glow Ambient Effect */}
-      <div 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[500px] pointer-events-none -z-10" 
-        style={{ background: 'radial-gradient(circle, rgba(209,165,80,0.1) 0%, rgba(178,43,47,0.05) 45%, transparent 70%)' }}
-      />
-
-      {/* Header */}
+    <div id="feed" className={`w-full bg-feed-editorial ${embedded ? 'pt-16 pb-16 sm:pb-20' : 'min-h-screen pt-28 sm:pt-36 pb-20'} space-y-10 relative overflow-hidden select-none`}>
+      
+      {/* Section Header */}
       <div className="text-center space-y-2 max-w-xl mx-auto px-4 reveal-heading">
-        <div className="inline-flex items-center gap-2 text-white bg-dark-overlay border border-muted/40 px-3.5 py-1 rounded-[4px] text-xs font-semibold tracking-wider uppercase shadow-brand-glow">
+        <div className="inline-flex items-center gap-2 text-white bg-dark-overlay border border-muted/40 px-3.5 py-1 rounded-[4px] text-xs font-bold tracking-wider uppercase shadow-brand-glow">
           <Rss className="w-3.5 h-3.5 text-secondary" /> Blogs & Achievements
         </div>
-        <h2 className="font-display text-3xl sm:text-4xl font-black uppercase text-gradient-brand tracking-tight">
-          Featured Stories
+        <h2 className="font-display text-3xl sm:text-5xl font-black uppercase text-near-black tracking-tight">
+          Featured <span className="text-primary">Stories</span>
         </h2>
-        <p className="text-muted text-xs sm:text-sm font-sans">
-          Auto-sliding technology articles, competition victories, and engineering insights.
+        <p className="text-body text-xs sm:text-sm font-sans font-medium">
+          Hover across stories to expand technical breakthroughs, student insights, and competition victories.
         </p>
       </div>
 
-      {/* ─── Photo-Centric Infinite Continuous Marquee Stream ─── */}
-      <div className="w-full overflow-hidden py-4">
-        <div className="blog-marquee-track cursor-pointer">
-          {marqueePosts.map((post, idx) => (
-            <div
-              key={`post-${post.id}-${idx}`}
-              className="w-[280px] sm:w-[320px] bg-white border border-[#e8e6e1] hover:border-primary/50 hover:shadow-[0_16px_40px_rgba(178,43,47,0.14)] p-4 sm:p-5 rounded-[22px] transition-all duration-300 flex-shrink-0 flex flex-col justify-between group"
-            >
-              {/* Category & Date Header */}
-              <div>
-                <div className="flex items-center justify-between mb-2.5">
-                  <span className="text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-primary px-2.5 py-0.5 rounded-[4px]">
-                    {post.category || 'Article'}
-                  </span>
-                  <span className="text-[10px] text-muted font-mono flex items-center gap-1">
-                    <Clock className="w-3 h-3 text-muted" /> {post.date}
-                  </span>
-                </div>
-
-                <h3 className="font-display text-sm sm:text-base font-bold text-dark-overlay leading-snug line-clamp-2 group-hover:text-primary transition-colors">
-                  {post.title}
-                </h3>
-              </div>
-
-              {/* High-Resolution Photo (Primary Focal Point) */}
-              <div className="w-full h-44 sm:h-52 rounded-[16px] overflow-hidden relative my-3 bg-light-tint border border-muted/30 shadow-inner">
-                <img
-                  src={post.image}
-                  alt={post.title}
-                  loading="lazy"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-dark-overlay/40 via-transparent to-transparent pointer-events-none" />
-              </div>
-
-              {/* Author & Action Footer (No description) */}
-              <div className="flex items-center justify-between pt-2 border-t border-muted/30 text-xs">
-                <span className="text-muted text-[11px]">
-                  By <span className="font-semibold text-dark-overlay">{post.author}</span>
-                </span>
-                <span className="inline-flex items-center gap-1 text-primary font-semibold group-hover:translate-x-0.5 transition-transform">
-                  <span>Read</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
+      {/* ─── Interactive Accordion Gallery Animation ─── */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <AccordionGallery
+          items={posts}
+          defaultIndex={1}
+          expandRatio={0.46}
+          trigger="hover"
+          accentColor="#b22b2f"
+          overlayColor="#0a0812"
+          textColor="#ffffff"
+          grayscale={false}
+          showLabels={true}
+          duration={0.8}
+          ease="power3.out"
+          parallax={0.5}
+          tilt={10}
+          stagger={0.08}
+          height={480}
+          gap={12}
+          radius={24}
+          orientation="horizontal"
+        />
       </div>
 
       {/* ─── Compact Reels Showcase ─── */}
-      <div className="max-w-5xl mx-auto px-4 pt-4">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
         <div className="flex items-center justify-between border-b border-muted/30 pb-3 mb-6">
-          <h3 className="font-display text-lg sm:text-xl font-bold uppercase text-dark-overlay tracking-wider border-l-[3px] border-secondary pl-3 flex items-center gap-2">
+          <h3 className="font-display text-lg sm:text-xl font-extrabold uppercase text-near-black tracking-wider border-l-[3px] border-secondary pl-3 flex items-center gap-2">
             <Film className="w-5 h-5 text-secondary" /> Student Vlogs & Reels
           </h3>
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           {reels.map((reel, idx) => (
             <div
               key={reel.id}
-              className={`bg-white border border-muted/50 p-4 rounded-[14px] flex gap-4 items-center group hover:scale-[1.02] hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] hover:border-primary transition-all duration-250 cursor-pointer shadow-sm reveal-card delay-${(idx + 1) * 100}`}
+              className={`bg-white border border-[#e8e6e1] p-4 rounded-[16px] flex gap-4 items-center group hover:scale-[1.02] hover:shadow-[0_12px_32px_rgba(178,43,47,0.12)] hover:border-primary/50 transition-all duration-250 cursor-pointer shadow-sm reveal-card delay-${(idx + 1) * 100}`}
             >
-              <div className={`relative w-16 h-20 rounded-[8px] bg-gradient-to-br ${reel.videoPlaceholderColor} flex-shrink-0 flex items-center justify-center overflow-hidden shadow-inner`}>
+              <div className={`relative w-16 h-20 rounded-[10px] bg-gradient-to-br ${reel.videoPlaceholderColor} flex-shrink-0 flex items-center justify-center overflow-hidden shadow-inner`}>
                 <div className="absolute inset-0 bg-dark-overlay/20 group-hover:bg-dark-overlay/5 transition-colors" />
                 <Play className="w-5 h-5 text-white absolute group-hover:scale-110 transition-transform" />
               </div>
               
               <div className="space-y-1.5 flex-1">
-                <h4 className="font-display text-xs sm:text-sm font-bold text-dark-overlay leading-snug group-hover:text-primary transition-colors line-clamp-2">
+                <h4 className="font-display text-xs sm:text-sm font-bold text-near-black leading-snug group-hover:text-primary transition-colors line-clamp-2">
                   {reel.title}
                 </h4>
                 <div className="flex gap-3 text-[10px] text-muted font-mono">
                   <span className="flex items-center gap-1">
                     <Eye className="w-3 h-3 text-muted" /> {reel.views}
                   </span>
-                  <span className="flex items-center gap-1 text-primary font-semibold">
+                  <span className="flex items-center gap-1 text-primary font-bold">
                     <Heart className="w-3 h-3 fill-current" /> {reel.likes}
                   </span>
                 </div>
@@ -133,6 +80,7 @@ export default function Feed({ embedded = false }) {
           ))}
         </div>
       </div>
+
     </div>
   );
 }

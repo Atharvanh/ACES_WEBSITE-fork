@@ -8,7 +8,9 @@ const REELS_DATA = [
     id: 'reel-1',
     title: 'ACES Club Launch & Hackathon 2026',
     author: 'acunetix.dit',
-    embedUrl: 'https://www.instagram.com/reel/DWRMReaiLGT/embed/',
+    videoSrc: '/videos/reel-hackathon-2026.mp4',
+    posterSrc: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&auto=format&fit=crop&q=80',
+    instagramUrl: 'https://www.instagram.com/reel/DWRMReaiLGT/',
     likes: '1.4k',
     comments: '86',
     tag: 'Flagship Event'
@@ -17,7 +19,9 @@ const REELS_DATA = [
     id: 'reel-2',
     title: 'Hands-on Web3 & AI Workshop Teaser',
     author: 'aces.dit',
-    embedUrl: 'https://www.instagram.com/reel/DWRMReaiLGT/embed/',
+    videoSrc: '/videos/reel-workshop-2026.mp4',
+    posterSrc: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format&fit=crop&q=80',
+    instagramUrl: 'https://www.instagram.com/acesdit/',
     likes: '890',
     comments: '42',
     tag: 'Technical Bootcamp'
@@ -26,7 +30,9 @@ const REELS_DATA = [
     id: 'reel-3',
     title: 'Behind the Scenes: Core Design Committee',
     author: 'aces.dit',
-    embedUrl: 'https://www.instagram.com/reel/DWRMReaiLGT/embed/',
+    videoSrc: '/videos/reel-bts-design.mp4',
+    posterSrc: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&auto=format&fit=crop&q=80',
+    instagramUrl: 'https://www.instagram.com/acesdit/',
     likes: '2.1k',
     comments: '134',
     tag: 'Campus Life'
@@ -35,7 +41,9 @@ const REELS_DATA = [
     id: 'reel-4',
     title: 'Smart India Hackathon Victory Journey 🏆',
     author: 'aces.dit',
-    embedUrl: 'https://www.instagram.com/reel/DWRMReaiLGT/embed/',
+    videoSrc: '/videos/reel-sih-victory.mp4',
+    posterSrc: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&auto=format&fit=crop&q=80',
+    instagramUrl: 'https://www.instagram.com/acesdit/',
     likes: '3.4k',
     comments: '210',
     tag: 'National Award'
@@ -127,8 +135,19 @@ export default function Social({ embedded = false }) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [activeTab, activeReelIndex, activePostIndex]);
 
+  const getCardSpacing = () => {
+    if (typeof window === 'undefined') return 330;
+    const w = window.innerWidth;
+    if (w < 640) return 270;
+    if (w < 1024) return 310;
+    if (w < 1440) return 330;
+    return 350;
+  };
+
+  const cardSpacing = getCardSpacing();
+
   return (
-    <div id="social" className={`${embedded ? 'py-16 sm:py-24 border-b border-muted/30' : 'min-h-screen pt-28 sm:pt-32 pb-24'} px-2 sm:px-4 flex flex-col items-center font-sans relative overflow-hidden select-none`}>
+    <div id="social" className={`bg-social-atmosphere ${embedded ? 'py-16 sm:py-24' : 'min-h-screen pt-28 sm:pt-36 pb-24'} px-2 sm:px-4 flex flex-col items-center font-sans relative overflow-hidden select-none`}>
       {/* Subtle Background Glow */}
       <div 
         className="absolute top-1/4 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[600px] pointer-events-none -z-10" 
@@ -143,7 +162,7 @@ export default function Social({ embedded = false }) {
         <h1 className="font-display text-4xl sm:text-5xl font-black uppercase text-gradient-brand tracking-tight">
           Social Highlights
         </h1>
-        <p className="text-muted text-xs sm:text-sm font-sans">
+        <p className="text-body text-xs sm:text-sm font-sans font-medium">
           Swipe left or right or use arrow buttons to explore interactive reels and updates.
         </p>
       </div>
@@ -172,219 +191,158 @@ export default function Social({ embedded = false }) {
         </button>
       </div>
 
-      {/* ─── 3D Framer Motion Carousel Container ─── */}
-      <div className="w-full max-w-6xl flex flex-col items-center justify-center relative">
-        <div className="relative w-full h-[600px] sm:h-[660px] flex items-center justify-center overflow-hidden [perspective:1200px]">
-          
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeTab}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.25 }}
-              drag="x"
-              dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={0.15}
-              onDragEnd={handleDragEnd}
-              className="relative w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing"
-              style={{ touchAction: 'pan-y' }}
-            >
-              {activeList.map((item, idx) => {
-                // Shortest circular offset calculation
-                let offset = idx - activeIndex;
-                if (offset > total / 2) offset -= total;
-                if (offset < -total / 2) offset += total;
+      {/* 3D Carousel Viewport */}
+      <div className="relative w-full max-w-6xl h-[560px] sm:h-[620px] flex items-center justify-center overflow-hidden [perspective:1200px] mb-6">
+        <motion.div
+          drag="x"
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.15}
+          onDragEnd={handleDragEnd}
+          className="relative w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing"
+          style={{ touchAction: 'pan-y' }}
+        >
+          <AnimatePresence mode="popLayout">
+            {activeList.map((item, idx) => {
+              let offset = idx - activeIndex;
+              if (offset > total / 2) offset -= total;
+              if (offset < -total / 2) offset += total;
 
-                const isCenter = offset === 0;
-                const isVisible = Math.abs(offset) <= 1.5;
-                const cardSpacing = typeof window !== 'undefined' && window.innerWidth < 640 ? 300 : 380;
+              const isCenter = offset === 0;
+              const isVisible = Math.abs(offset) <= 2;
 
-                return (
-                  <motion.div
-                    key={item.id}
-                    onClick={() => setActiveIndex(idx)}
-                    initial={false}
-                    animate={{
-                      scale: isCenter ? 1 : 0.86,
-                      opacity: isCenter ? 1 : isVisible ? 0.45 : 0,
-                      x: offset * cardSpacing,
-                      rotateY: offset * -12,
-                      zIndex: isCenter ? 30 : 20 - Math.abs(Math.round(offset)) * 5,
-                    }}
-                    transition={{
-                      type: 'spring',
-                      stiffness: 280,
-                      damping: 30,
-                      mass: 0.8,
-                    }}
-                    className={`absolute w-[86vw] max-w-[340px] sm:w-[360px] h-[560px] sm:h-[620px] flex-shrink-0 cursor-pointer rounded-[20px] overflow-hidden border border-[#e8e6e1] bg-white transition-all duration-300 ${
-                      isCenter 
-                        ? 'shadow-[0_16px_48px_rgba(178,43,47,0.16),0_2px_8px_rgba(0,0,0,0.04)] border-primary/40' 
-                        : 'shadow-md hover:border-primary/30'
-                    }`}
-                  >
-                    {activeTab === 'reels' ? (
-                      /* ─── High-Quality Reel Embed ─── */
-                      <div className="w-full h-full flex flex-col bg-white">
-                        {/* Reel Header */}
-                        <div className="flex items-center justify-between px-4 py-3 bg-light-tint/60 border-b border-muted/30">
-                          <div className="flex items-center gap-2">
-                            <div className="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center font-bold text-[10px] shadow-sm">
-                              A
-                            </div>
-                            <div>
-                              <p className="text-xs font-bold text-dark-overlay leading-none">{item.author}</p>
-                              <span className="text-[10px] text-secondary font-medium">{item.tag}</span>
-                            </div>
-                          </div>
-                          <span className="text-[10px] font-mono font-bold bg-primary/10 text-primary px-2 py-0.5 rounded-[4px]">
-                            REEL
-                          </span>
-                        </div>
-
-                        {/* Interactive Playable Embed Video Viewport */}
-                        <div className="flex-1 w-full relative bg-black flex items-center justify-center overflow-hidden">
-                          <iframe
-                            src={item.embedUrl}
-                            className="w-full h-full border-none pointer-events-auto"
-                            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                            allowFullScreen
-                            title={item.title}
-                            scrolling="no"
-                          />
-                        </div>
-
-                        {/* Reel Footer Strip */}
-                        <div className="p-3.5 bg-white border-t border-muted/30 flex items-center justify-between text-xs font-mono text-muted">
-                          <div className="flex items-center gap-3">
-                            <span className="flex items-center gap-1 text-primary font-semibold">
-                              <Heart className="w-3.5 h-3.5 fill-current" /> {item.likes}
-                            </span>
-                            <span className="flex items-center gap-1">
-                              <MessageCircle className="w-3.5 h-3.5" /> {item.comments}
-                            </span>
-                          </div>
-                          <a 
-                            href="https://www.instagram.com/reel/DWRMReaiLGT/" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="text-[11px] text-secondary hover:text-primary flex items-center gap-1 font-semibold transition-colors"
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            <span>Open</span>
-                            <ExternalLink className="w-3 h-3" />
-                          </a>
-                        </div>
+              return (
+                <motion.div
+                  key={`${activeTab}-${item.id}`}
+                  onClick={() => setActiveIndex(idx)}
+                  initial={false}
+                  animate={{
+                    scale: isCenter ? 1 : 0.85,
+                    opacity: isCenter ? 1 : isVisible ? 0.55 : 0,
+                    x: offset * cardSpacing,
+                    rotateY: offset * -10,
+                    zIndex: isCenter ? 30 : 20 - Math.abs(Math.round(offset)) * 5,
+                  }}
+                  transition={{
+                    type: 'spring',
+                    stiffness: 280,
+                    damping: 30,
+                    mass: 0.8,
+                  }}
+                  className={`absolute w-[80vw] max-w-[310px] sm:w-[330px] lg:w-[340px] h-[520px] sm:h-[570px] flex-shrink-0 cursor-pointer rounded-[24px] overflow-hidden border border-[#e8e6e1] bg-white transition-colors duration-200 flex flex-col justify-between shadow-sm ${
+                    isCenter 
+                      ? 'shadow-[0_16px_48px_rgba(178,43,47,0.16),0_2px_8px_rgba(0,0,0,0.04)] border-primary/40' 
+                      : 'shadow-md hover:border-primary/30'
+                  }`}
+                >
+                  {/* Card Header Strip */}
+                  <div className="p-4 bg-white/95 border-b border-muted/30 flex items-center justify-between z-10">
+                    <div className="flex items-center gap-2">
+                      <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white">
+                        <InstagramIcon className="w-3.5 h-3.5" />
                       </div>
-                    ) : (
-                      /* ─── Framer Motion Post Card ─── */
-                      <div className="w-full h-full flex flex-col justify-between p-5 bg-white">
-                        {/* Post Header */}
-                        <div>
-                          <div className="flex items-center justify-between mb-3">
-                            <div className="flex items-center gap-2">
-                              <div className="w-7 h-7 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xs shadow-sm">
-                                A
-                              </div>
-                              <div>
-                                <h3 className="text-xs font-bold text-dark-overlay leading-tight">{item.author}</h3>
-                                <p className="text-[10px] text-muted font-mono">{item.date}</p>
-                              </div>
-                            </div>
-                            <span className="bg-secondary/15 text-dark-overlay text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-[4px]">
-                              {item.category}
-                            </span>
-                          </div>
+                      <span className="font-bold text-xs text-near-black font-sans">{item.author}</span>
+                    </div>
+                    <span className="text-[10px] font-bold uppercase tracking-wider bg-secondary/15 text-dark-overlay px-2 py-0.5 rounded-[4px]">
+                      {item.tag || item.category}
+                    </span>
+                  </div>
 
-                          <h2 className="font-display text-lg font-bold text-dark-overlay leading-tight mb-2">
-                            {item.title}
-                          </h2>
+                  {/* Card Main Media Area */}
+                  {activeTab === 'reels' ? (
+                    <div className="flex-1 w-full relative bg-black flex items-center justify-center overflow-hidden group/video">
+                      <video
+                        src={item.videoSrc}
+                        poster={item.posterSrc}
+                        controls
+                        playsInline
+                        preload="none"
+                        className="w-full h-full object-cover"
+                        onClick={(e) => e.stopPropagation()}
+                      />
+                      {/* Overlay fallback if video isn't loaded */}
+                      {!item.videoSrc && (
+                        <div className="absolute inset-0 bg-dark-overlay/80 flex flex-col items-center justify-center gap-3 pointer-events-none">
+                          <Play className="w-12 h-12 text-white opacity-60" />
+                          <span className="text-white/50 text-xs font-mono">Video coming soon</span>
                         </div>
-
-                        {/* Post Image with subtle zoom on hover */}
-                        <div className="w-full h-56 rounded-[12px] overflow-hidden relative my-2 bg-light-tint border border-muted/30 shadow-inner group">
-                          <img
-                            src={item.image}
-                            alt={item.title}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                            draggable={false}
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-dark-overlay/40 via-transparent to-transparent pointer-events-none" />
-                        </div>
-
-                        {/* Caption & Interaction */}
-                        <div className="space-y-3 pt-1">
-                          <p className="text-xs text-muted leading-relaxed line-clamp-2">
-                            {item.caption}
-                          </p>
-
-                          <div className="flex items-center justify-between pt-3 border-t border-muted/30 text-xs font-mono">
-                            <div className="flex items-center gap-4">
-                              <span className="flex items-center gap-1 text-primary font-semibold">
-                                <Heart className="w-3.5 h-3.5 fill-current" /> {item.likes}
-                              </span>
-                              <span className="flex items-center gap-1 text-muted">
-                                <MessageCircle className="w-3.5 h-3.5" /> {item.comments}
-                              </span>
-                            </div>
-                            <a 
-                              href="https://instagram.com" 
-                              target="_blank" 
-                              rel="noopener noreferrer"
-                              className="text-[11px] text-secondary hover:text-primary font-semibold flex items-center gap-1 transition-colors"
-                              onClick={(e) => e.stopPropagation()}
-                            >
-                              <span>Instagram</span>
-                              <ExternalLink className="w-3 h-3" />
-                            </a>
-                          </div>
-                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="flex-1 w-full relative overflow-hidden bg-light-tint flex flex-col justify-between p-4 space-y-3">
+                      <div className="w-full h-48 rounded-[12px] overflow-hidden relative shadow-inner">
+                        <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
                       </div>
-                    )}
-                  </motion.div>
-                );
-              })}
-            </motion.div>
+                      <div className="space-y-2">
+                        <h3 className="font-display font-extrabold text-sm sm:text-base text-near-black leading-snug line-clamp-2">
+                          {item.title}
+                        </h3>
+                        <p className="text-body text-xs leading-relaxed line-clamp-3 font-medium">
+                          {item.caption}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Card Footer Strip with Instagram Link */}
+                  <div className="p-3.5 bg-white border-t border-muted/30 flex items-center justify-between text-xs font-mono text-muted">
+                    <div className="flex items-center gap-3">
+                      <span className="flex items-center gap-1 text-primary font-bold">
+                        <Heart className="w-3.5 h-3.5 fill-current" /> {item.likes}
+                      </span>
+                      <span className="flex items-center gap-1 text-body">
+                        <MessageCircle className="w-3.5 h-3.5" /> {item.comments}
+                      </span>
+                    </div>
+                    <a 
+                      href={item.instagramUrl || "https://www.instagram.com/acesdit/"}
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 bg-primary/10 hover:bg-primary text-primary hover:text-white text-[11px] font-bold px-3 py-1.5 rounded-[4px] transition-all cursor-pointer"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <span>Instagram</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
+                </motion.div>
+              );
+            })}
           </AnimatePresence>
+        </motion.div>
+      </div>
 
+      {/* Navigation Buttons & Indicators */}
+      <div className="flex items-center justify-between w-full max-w-sm px-6">
+        <button
+          onClick={handlePrev}
+          className="p-3 bg-white hover:bg-light-tint border border-muted/50 text-muted hover:text-primary hover:border-primary rounded-full transition-all cursor-pointer shadow-md active:scale-95"
+          aria-label="Previous slide"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+
+        <div className="flex gap-2 items-center">
+          {activeList.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setActiveIndex(idx)}
+              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                idx === activeIndex 
+                  ? 'w-7 bg-primary shadow-brand-glow' 
+                  : 'w-2 bg-muted/40 hover:bg-muted'
+              }`}
+              aria-label={`Slide ${idx + 1}`}
+            />
+          ))}
         </div>
 
-        {/* ─── Navigation Controls ─── */}
-        <div className="flex items-center justify-between w-full max-w-md px-6 pt-4">
-          <button
-            onClick={handlePrev}
-            className="p-3 bg-white hover:bg-light-tint border border-muted/50 text-muted hover:text-primary hover:border-primary rounded-full transition-all cursor-pointer shadow-md active:scale-95"
-            aria-label="Previous item"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-
-          {/* Pagination Indicator Dots */}
-          <div className="flex gap-2 items-center">
-            {activeList.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setActiveIndex(idx)}
-                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                  idx === activeIndex 
-                    ? 'w-7 bg-primary shadow-brand-glow' 
-                    : 'w-2 bg-muted/40 hover:bg-muted'
-                }`}
-                aria-label={`Go to slide ${idx + 1}`}
-              />
-            ))}
-          </div>
-
-          <button
-            onClick={handleNext}
-            className="p-3 bg-white hover:bg-light-tint border border-muted/50 text-muted hover:text-primary hover:border-primary rounded-full transition-all cursor-pointer shadow-md active:scale-95"
-            aria-label="Next item"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
-        </div>
-
+        <button
+          onClick={handleNext}
+          className="p-3 bg-white hover:bg-light-tint border border-muted/50 text-muted hover:text-primary hover:border-primary rounded-full transition-all cursor-pointer shadow-md active:scale-95"
+          aria-label="Next slide"
+        >
+          <ChevronRight className="w-5 h-5" />
+        </button>
       </div>
     </div>
   );
