@@ -167,16 +167,13 @@ export default function Navbar() {
               <div className="p-5 border-b border-muted/30 bg-light-tint/60">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">
-                    <div className="w-9 h-9 rounded-[4px] bg-primary flex items-center justify-center text-white font-bold shadow-sm">
-                      <Zap className="w-5 h-5 fill-current" />
+                    <div className="w-10 h-10 flex items-center justify-center">
+                      <img src="/mascot.svg" alt="ACES Mascot" className="w-full h-full object-contain" />
                     </div>
                     <div>
                       <div className="flex items-center space-x-2">
-                        <span className="font-display font-extrabold tracking-wider text-primary text-lg">
+                        <span className="font-serif font-black tracking-[0.15em] text-primary text-xl">
                           ACES
-                        </span>
-                        <span className="px-1.5 py-0.5 text-[10px] font-semibold bg-primary/10 text-primary border border-primary/30 rounded-[4px]">
-                          CLUB
                         </span>
                       </div>
                     </div>
