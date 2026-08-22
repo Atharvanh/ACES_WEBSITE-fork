@@ -34,7 +34,7 @@ export default function Members({ embedded = false }) {
       <div className="max-w-6xl mx-auto px-4 md:px-8 space-y-20">
         {categories.map((category) => {
           const membersList = getMembersByCategory(category.id);
-          const previewMembers = membersList.slice(0, 3);
+          const previewMembers = category.hasViewMore === false ? membersList : membersList.slice(0, 3);
 
           return (
             <section key={category.id} className="border-t border-muted/40 pt-10 reveal">
@@ -63,7 +63,7 @@ export default function Members({ embedded = false }) {
                 )}
               </div>
 
-              {membersList.length > 0 && category.id !== 'faculty-coordinator' && (
+              {membersList.length > 0 && category.hasViewMore !== false && (
                 <div className="mt-10 flex justify-center">
                   <button 
                     onClick={() => navigate(`/members/${category.id}`)}
