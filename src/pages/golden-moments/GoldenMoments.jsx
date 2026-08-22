@@ -182,7 +182,7 @@ export default function GoldenMoments({ embedded = false }) {
         </div>
 
         {/* Bottom Pagination Dots */}
-        <div className="flex items-center justify-center gap-2.5 pt-2">
+        <div className="flex items-center justify-center gap-2.5 pt-2 pb-2">
           {goldenMoments.map((_, idx) => (
             <button
               key={idx}
@@ -195,16 +195,6 @@ export default function GoldenMoments({ embedded = false }) {
               aria-label={`Milestone ${idx + 1}`}
             />
           ))}
-        </div>
-
-        {/* Event / Photo Detail caption below card */}
-        <div className="text-center space-y-2 pt-2 px-4 max-w-2xl mx-auto">
-          <p className="font-display text-base sm:text-xl font-bold text-near-black tracking-wide">
-            <span className="text-primary font-black uppercase">{goldenMoments[activeIndex].eventName}</span> — {goldenMoments[activeIndex].title} (<span className="text-secondary font-bold">{goldenMoments[activeIndex].year}</span>)
-          </p>
-          <p className="text-body text-xs sm:text-sm lg:text-base leading-relaxed font-sans font-medium max-w-xl mx-auto">
-            {goldenMoments[activeIndex].description}
-          </p>
         </div>
 
       </div>
