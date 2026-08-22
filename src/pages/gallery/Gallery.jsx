@@ -355,44 +355,33 @@ export default function Gallery({ embedded = false }) {
               </div>
             ) : (
               /* 3D Horizontal Drift Wall Container - Full Bleed Edge to Edge */
-              <div className="space-y-3">
-                <div className="w-screen relative left-1/2 -translate-x-1/2 overflow-hidden bg-transparent my-1">
-                  <div className="w-full h-[520px] sm:h-[580px] relative overflow-hidden">
-                    <DriftWall
-                      items={filteredItems}
-                      rows={3}
-                      tileWidth={340}
-                      tileHeight={190}
-                      gap={20}
-                      radius={14}
-                      tilt={6}
-                      turn={-3}
-                      roll={0}
-                      perspective={1200}
-                      depth={50}
-                      speed={40}
-                      direction="right"
-                      variance={0.3}
-                      parallax={0.3}
-                      lift={44}
-                      dim={1}
-                      pauseOnHover={true}
-                      grayscale={false}
-                      onItemClick={(item, idx) => {
-                        const origIdx = filteredItems.findIndex(i => i.id === item.id);
-                        setActiveItemIndex(origIdx !== -1 ? origIdx : idx);
-                      }}
-                    />
-                  </div>
-                </div>
-
-                {/* Subtitle / Interaction Helper Bar */}
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-muted">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span>Live Drifting Mosaic • Moving left to right • Hover to focus or click to expand</span>
-                  </div>
-                  <span className="font-mono text-dark-overlay/70 font-semibold">{filteredItems.length} moments in view</span>
+              <div className="w-screen relative left-1/2 -translate-x-1/2 overflow-hidden bg-transparent my-1">
+                <div className="w-full h-[740px] sm:h-[800px] lg:h-[840px] relative overflow-hidden flex items-center justify-center">
+                  <DriftWall
+                    items={filteredItems}
+                    rows={3}
+                    tileWidth={360}
+                    tileHeight={220}
+                    gap={24}
+                    radius={16}
+                    tilt={4}
+                    turn={-2}
+                    roll={0}
+                    perspective={1200}
+                    depth={40}
+                    speed={38}
+                    direction="right"
+                    variance={0.3}
+                    parallax={0.25}
+                    lift={40}
+                    dim={1}
+                    pauseOnHover={true}
+                    grayscale={false}
+                    onItemClick={(item, idx) => {
+                      const origIdx = filteredItems.findIndex(i => i.id === item.id);
+                      setActiveItemIndex(origIdx !== -1 ? origIdx : idx);
+                    }}
+                  />
                 </div>
               </div>
             )}
