@@ -167,8 +167,6 @@ export default function Navbar() {
           aria-label="Open menu"
         >
           <Menu className="w-5 h-5 text-current transition-transform group-hover:scale-110" />
-          {/* Red pulse dot */}
-          <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-primary rounded-full animate-pulse"></span>
         </button>
       </div>
 

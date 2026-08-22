@@ -1,51 +1,52 @@
 export const goldenMoments = [
   {
     id: "gm-1",
-    title: "10th Anniversary Reunion",
+    title: "HackSeries 25th Grand Opening",
     year: "2025",
-    description: "Gathered alumni from the last decade for a landmark panel discussion on the future of AI engineering and institutional mentorship.",
-    image: "https://images.unsplash.com/photo-1511578314322-379afb476865?w=1200&auto=format&fit=crop&q=80"
+    description: "Inaugural address and briefing 500+ participants on national problem statements at the flagship 36-hour sprint.",
+    image: "/images/gallery/hackseries-25-1.jpg"
   },
   {
     id: "gm-2",
-    title: "Top 3 Team in Smart India Hackathon",
+    title: "National Hackathon Finalist Stage",
     year: "2026",
-    description: "Our technical core team won national laurels among 800+ teams with a decentralized healthcare dispatch platform.",
-    image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1200&auto=format&fit=crop&q=80"
+    description: "Top engineering teams demonstrating working full-stack and AI prototypes to industry jury members.",
+    image: "/images/gallery/hackathon-main-1.jpg"
   },
   {
     id: "gm-3",
-    title: "Inaugural TechXpo Summit",
+    title: "Indo-German Tech & Academic Delegation",
     year: "2026",
-    description: "Hosted 40+ college project showcases and inaugurated the student incubation hub with industry tech leaders.",
-    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&auto=format&fit=crop&q=80"
+    description: "International faculty and tech leaders hosting bilateral talks on future robotics and computing research.",
+    image: "/images/gallery/german-event-1.jpg"
   },
   {
     id: "gm-4",
-    title: "National Coding Championship",
+    title: "Overnight Collaborative Coding Sprint",
     year: "2025",
-    description: "ACES competitive programming team secured the first place in the Inter-College Algorithmic Challenge with clean score.",
-    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&auto=format&fit=crop&q=80"
+    description: "Over 400 developers actively pushing code and deploying microservices throughout the 24-hour hackathon floor.",
+    image: "/images/gallery/hackseries-25-8.jpg"
   },
   {
     id: "gm-5",
-    title: "HackSeries 2.0 Mega Hackathon",
+    title: "ACES Operations & Organizing Core",
     year: "2026",
-    description: "36 hours of non-stop coding, building, and deployment with 500+ participants across 12 universities.",
-    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1200&auto=format&fit=crop&q=80"
+    description: "The hardworking event managers, logistics team, and crew behind the seamless execution of our flagship events.",
+    image: "/images/gallery/hackathon-bts-1.jpg"
   },
   {
     id: "gm-6",
-    title: "Cloud & DevOps Immersion Bootcamp",
+    title: "Industry Mentorship & Architecture Review",
     year: "2025",
-    description: "Intensive 3-day certified workshop covering Kubernetes, CI/CD pipelines, and cloud native architectures.",
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&auto=format&fit=crop&q=80"
+    description: "Technical mentors providing live git and architecture feedback to budding student innovators.",
+    image: "/images/gallery/hackseries-25-16.jpg"
   },
   {
     id: "gm-7",
-    title: "Annual Phoenix Cultural Night",
+    title: "Grand Felicitation & Awards Gala",
     year: "2026",
-    description: "Celebrating computer engineering talents with cultural performances, awards felicitations, and student recognition.",
-    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1200&auto=format&fit=crop&q=80"
+    description: "Honoring top hackathon innovators, outstanding contributors, and student leaders on the main auditorium stage.",
+    image: "/images/gallery/hackathon-main-20.jpg"
   }
 ];
+

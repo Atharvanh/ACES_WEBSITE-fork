@@ -1,35 +1,58 @@
 export const events = [
   {
-    id: "hack-aces-2026",
-    title: "HackACES 2026",
+    id: "hack-series-25",
+    title: "HackSeries 25th Edition",
     tagline: "36-Hour National Level Hackathon",
     category: "Hackathons",
+    date: "February 24 - 26, 2026",
+    venue: "Main Auditorium & Tech Hub, DIT Pune",
+    status: "past",
+    image: "/images/events/hackseries-25-1.jpg",
+    description: "The flagship 25th edition of HackSeries uniting 500+ student developers, creators, and innovators to build cutting-edge solutions in AI, Cloud, and Web3."
+  },
+  {
+    id: "hackaces-flagship",
+    title: "ACES Grand Hackathon",
+    tagline: "Annual Showcase of Problem Solving",
+    category: "Hackathons",
     date: "October 18 - 20, 2026",
-    venue: "Main Auditorium, DIT Pune",
+    venue: "DIT Central Auditorium",
     status: "upcoming",
-    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&auto=format&fit=crop&q=80",
-    description: "The flagship annual hackathon bringing together over 500+ builders to solve real-world problems in AI, Web3, and HealthTech."
+    image: "/images/events/hackathon-main-1.jpg",
+    description: "Our national flagship hackathon bringing together visionary engineers to build high-impact real-world prototypes with top industry mentors."
   },
   {
-    id: "web-dev-workshop",
-    title: "React & Tailwind Masterclass",
-    tagline: "Hands-on Technical Boot Camp",
+    id: "indo-german-exchange",
+    title: "Indo-German Technical Colloquium",
+    tagline: "Global Academic & Engineering Seminar",
     category: "Workshops",
-    date: "September 05, 2026",
-    venue: "Lab 5, Computer Department",
-    status: "upcoming",
-    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&auto=format&fit=crop&q=80",
-    description: "Dive deep into component architectures, styling with Tailwind CSS v4, and state management in modern React application development."
+    date: "January 14, 2026",
+    venue: "International Conference Hall",
+    status: "past",
+    image: "/images/events/german-event-1.jpg",
+    description: "Distinguished delegation and international experts discussing autonomous systems, global higher education, and modern engineering research."
   },
   {
-    id: "genesis-expo",
-    title: "Technical Project Exhibition",
-    tagline: "Annual Showcase of Ingenuity",
+    id: "hackseries-01",
+    title: "HackSeries 0.1 Kickoff",
+    tagline: "First-Year Development Sprint",
     category: "Technical",
-    date: "March 15, 2026",
+    date: "August 2025",
+    venue: "ACES Innovation Cell",
+    status: "past",
+    image: "/images/events/hackseries-01-1.jpg",
+    description: "The opening chapter of the HackSeries franchise designed to introduce fresh engineering minds to system design, git workflows, and hackathons."
+  },
+  {
+    id: "hackathon-bts-crew",
+    title: "ACES Operations & Leadership Summit",
+    tagline: "Behind The Scenes Execution",
+    category: "Leadership",
+    date: "March 2026",
     venue: "Central Seminar Hall",
     status: "past",
-    image: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=800&auto=format&fit=crop&q=80",
-    description: "Students presented innovative capstone and mini projects to industrial evaluators, competing for cash prizes and mentorship."
+    image: "/images/events/hackathon-bts-1.jpg",
+    description: "Celebrating the dedicated core committee and logistics teams who orchestrate seamless national level technical and cultural events."
   }
 ];
+

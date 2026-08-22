@@ -1,315 +1,1065 @@
 export const galleryItems = [
   {
-    id: "gal-1",
-    title: "HackACES Flagship Inauguration",
-    category: "Hackathons",
-    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&auto=format&fit=crop&q=80",
-    thumb: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&auto=format&fit=crop&q=75",
-    caption: "The ceremonial lighting of the lamp during our 36-hour national flagship hackathon.",
-    year: "2025",
-    location: "DIT Auditorium, Pune"
+    "id": "gal-1",
+    "title": "HackSeries 25th Flagship Keynote #1",
+    "category": "Hackathons",
+    "image": "/images/gallery/hackseries-25-1.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-1.jpg",
+    "caption": "Opening address, team registrations, and briefing on problem statements during HackSeries 25.",
+    "year": "2025",
+    "location": "DIT Main Auditorium"
   },
   {
-    id: "gal-2",
-    title: "Deep Learning & NLP Masterclass",
-    category: "Workshops",
-    image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1200&auto=format&fit=crop&q=80",
-    thumb: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&auto=format&fit=crop&q=75",
-    caption: "Hands-on session with industry experts training students on Transformer models.",
-    year: "2025",
-    location: "Computer Lab 3"
+    "id": "gal-2",
+    "title": "HackSeries 25th Flagship Keynote #2",
+    "category": "Hackathons",
+    "image": "/images/gallery/hackseries-25-2.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-2.jpg",
+    "caption": "Opening address, team registrations, and briefing on problem statements during HackSeries 25.",
+    "year": "2025",
+    "location": "DIT Main Auditorium"
   },
   {
-    id: "gal-3",
-    title: "ACES Dev Core Code Review",
-    category: "Technical",
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&auto=format&fit=crop&q=80",
-    thumb: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&auto=format&fit=crop&q=75",
-    caption: "Core technical team performing high-level design review for open-source initiatives.",
-    year: "2026",
-    location: "ACES Tech Hub"
+    "id": "gal-3",
+    "title": "HackSeries 25th Flagship Keynote #3",
+    "category": "Hackathons",
+    "image": "/images/gallery/hackseries-25-3.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-3.jpg",
+    "caption": "Opening address, team registrations, and briefing on problem statements during HackSeries 25.",
+    "year": "2025",
+    "location": "DIT Main Auditorium"
   },
   {
-    id: "gal-4",
-    title: "Cultural Phoenix Night",
-    category: "Cultural",
-    image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1200&auto=format&fit=crop&q=80",
-    thumb: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=75",
-    caption: "Live acoustic and band performances during our annual student cultural festival.",
-    year: "2025",
-    location: "Open Air Theatre"
+    "id": "gal-4",
+    "title": "HackSeries 25th Flagship Keynote #4",
+    "category": "Hackathons",
+    "image": "/images/gallery/hackseries-25-4.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-4.jpg",
+    "caption": "Opening address, team registrations, and briefing on problem statements during HackSeries 25.",
+    "year": "2025",
+    "location": "DIT Main Auditorium"
   },
   {
-    id: "gal-5",
-    title: "Executive Leadership Summit",
-    category: "Leadership",
-    image: "https://images.unsplash.com/photo-1473649035226-1175be587dfd?w=1200&auto=format&fit=crop&q=80",
-    thumb: "https://images.unsplash.com/photo-1473649035226-1175be587dfd?w=600&auto=format&fit=crop&q=75",
-    caption: "Annual executive board strategy meeting setting goals for upcoming student initiatives.",
-    year: "2026",
-    location: "Conference Room B"
+    "id": "gal-5",
+    "title": "HackSeries 25th Flagship Keynote #5",
+    "category": "Hackathons",
+    "image": "/images/gallery/hackseries-25-5.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-5.jpg",
+    "caption": "Opening address, team registrations, and briefing on problem statements during HackSeries 25.",
+    "year": "2025",
+    "location": "DIT Main Auditorium"
   },
   {
-    id: "gal-6",
-    title: "Web3 & Smart Contract Bootcamp",
-    category: "Technical",
-    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1200&auto=format&fit=crop&q=80",
-    thumb: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=75",
-    caption: "Building decentralized applications with Solidity and Ethereum tools.",
-    year: "2025",
-    location: "Seminar Hall 1"
+    "id": "gal-6",
+    "title": "HackSeries 25th Flagship Keynote #6",
+    "category": "Hackathons",
+    "image": "/images/gallery/hackseries-25-6.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-6.jpg",
+    "caption": "Opening address, team registrations, and briefing on problem statements during HackSeries 25.",
+    "year": "2025",
+    "location": "DIT Main Auditorium"
   },
   {
-    id: "gal-7",
-    title: "Hackathon Pitching & Finals",
-    category: "Hackathons",
-    image: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=1200&auto=format&fit=crop&q=80",
-    thumb: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=600&auto=format&fit=crop&q=75",
-    caption: "Top finalist teams presenting their prototypes to a panel of venture judges.",
-    year: "2025",
-    location: "Main Stage"
+    "id": "gal-7",
+    "title": "HackSeries 25th Flagship Keynote #7",
+    "category": "Hackathons",
+    "image": "/images/gallery/hackseries-25-7.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-7.jpg",
+    "caption": "Opening address, team registrations, and briefing on problem statements during HackSeries 25.",
+    "year": "2025",
+    "location": "DIT Main Auditorium"
   },
   {
-    id: "gal-8",
-    title: "Robotics & Embedded Systems Expo",
-    category: "Workshops",
-    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200&auto=format&fit=crop&q=80",
-    thumb: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&auto=format&fit=crop&q=75",
-    caption: "Interactive hardware display featuring custom IoT setups and autonomous bots.",
-    year: "2026",
-    location: "Robotics Lab"
+    "id": "gal-8",
+    "title": "HackSeries 25th Coding Sprints #1",
+    "category": "Technical",
+    "image": "/images/gallery/hackseries-25-8.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-8.jpg",
+    "caption": "Engineering squads collaborating intensively on architecture design and prototyping.",
+    "year": "2025",
+    "location": "ACES Computing Lab"
   },
   {
-    id: "gal-9",
-    title: "National Coding Championship Grand Finale",
-    category: "Technical",
-    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&auto=format&fit=crop&q=80",
-    thumb: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&auto=format&fit=crop&q=75",
-    caption: "Over 400 competitive programmers battling through algorithmic challenge rounds.",
-    year: "2026",
-    location: "Central Computing Center"
+    "id": "gal-9",
+    "title": "HackSeries 25th Coding Sprints #2",
+    "category": "Technical",
+    "image": "/images/gallery/hackseries-25-9.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-9.jpg",
+    "caption": "Engineering squads collaborating intensively on architecture design and prototyping.",
+    "year": "2025",
+    "location": "ACES Computing Lab"
   },
   {
-    id: "gal-10",
-    title: "Alumni Network & Career Panel",
-    category: "Leadership",
-    image: "https://images.unsplash.com/photo-1511578314322-379afb476865?w=1200&auto=format&fit=crop&q=80",
-    thumb: "https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&auto=format&fit=crop&q=75",
-    caption: "Distinguished alumni returning to share tech trends, interview tips, and industry insights.",
-    year: "2025",
-    location: "DIT Seminar Hall"
+    "id": "gal-10",
+    "title": "HackSeries 25th Coding Sprints #3",
+    "category": "Technical",
+    "image": "/images/gallery/hackseries-25-10.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-10.jpg",
+    "caption": "Engineering squads collaborating intensively on architecture design and prototyping.",
+    "year": "2025",
+    "location": "ACES Computing Lab"
   },
   {
-    id: "gal-11",
-    title: "Annual TechXpo Showcase Day",
-    category: "Hackathons",
-    image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1200&auto=format&fit=crop&q=80",
-    thumb: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=600&auto=format&fit=crop&q=75",
-    caption: "Demonstration of student hardware and software projects to industry leaders.",
-    year: "2026",
-    location: "ACES Exhibition Arena"
+    "id": "gal-11",
+    "title": "HackSeries 25th Coding Sprints #4",
+    "category": "Technical",
+    "image": "/images/gallery/hackseries-25-11.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-11.jpg",
+    "caption": "Engineering squads collaborating intensively on architecture design and prototyping.",
+    "year": "2025",
+    "location": "ACES Computing Lab"
   },
   {
-    id: "gal-12",
-    title: "Cyber Security CTF Challenge",
-    category: "Workshops",
-    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1200&auto=format&fit=crop&q=80",
-    thumb: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=75",
-    caption: "24-hour Capture The Flag challenge testing ethical hacking and digital forensics skills.",
-    year: "2025",
-    location: "Lab 7 & 8"
+    "id": "gal-12",
+    "title": "HackSeries 25th Coding Sprints #5",
+    "category": "Technical",
+    "image": "/images/gallery/hackseries-25-12.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-12.jpg",
+    "caption": "Engineering squads collaborating intensively on architecture design and prototyping.",
+    "year": "2025",
+    "location": "ACES Computing Lab"
   },
   {
-    id: "gal-13",
-    title: "ACES Music & Band Night",
-    category: "Cultural",
-    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1200&auto=format&fit=crop&q=80",
-    thumb: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&auto=format&fit=crop&q=75",
-    caption: "Vibrant musical performances and student jam session celebrating annual club milestones.",
-    year: "2026",
-    location: "Amphitheatre"
+    "id": "gal-13",
+    "title": "HackSeries 25th Coding Sprints #6",
+    "category": "Technical",
+    "image": "/images/gallery/hackseries-25-13.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-13.jpg",
+    "caption": "Engineering squads collaborating intensively on architecture design and prototyping.",
+    "year": "2025",
+    "location": "ACES Computing Lab"
   },
   {
-    id: "gal-14",
-    title: "AI Research Paper Colloquium",
-    category: "Technical",
-    image: "https://images.unsplash.com/photo-1505765050516-f72dcac9c60e?w=1200&auto=format&fit=crop&q=80",
-    thumb: "https://images.unsplash.com/photo-1505765050516-f72dcac9c60e?w=600&auto=format&fit=crop&q=75",
-    caption: "Students presenting published research papers on deep learning and edge compute.",
-    year: "2025",
-    location: "Conference Room A"
+    "id": "gal-14",
+    "title": "HackSeries 25th Coding Sprints #7",
+    "category": "Technical",
+    "image": "/images/gallery/hackseries-25-14.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-14.jpg",
+    "caption": "Engineering squads collaborating intensively on architecture design and prototyping.",
+    "year": "2025",
+    "location": "ACES Computing Lab"
   },
   {
-    id: "gal-15",
-    title: "ACES Orientation & Welcome",
-    category: "Leadership",
-    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200&auto=format&fit=crop&q=80",
-    thumb: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&auto=format&fit=crop&q=75",
-    caption: "Welcoming 250+ new freshmen engineers into the official ACES family.",
-    year: "2025",
-    location: "Main Auditorium"
+    "id": "gal-15",
+    "title": "HackSeries 25th Coding Sprints #8",
+    "category": "Technical",
+    "image": "/images/gallery/hackseries-25-15.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-15.jpg",
+    "caption": "Engineering squads collaborating intensively on architecture design and prototyping.",
+    "year": "2025",
+    "location": "ACES Computing Lab"
   },
   {
-    id: "gal-16",
-    title: "Overnight Hackathon Sprint",
-    category: "Hackathons",
-    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&auto=format&fit=crop&q=80",
-    thumb: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&auto=format&fit=crop&q=75",
-    caption: "Participants coding late into the night during the 36-hour sprint.",
-    year: "2026",
-    location: "ACES Tech Floor"
+    "id": "gal-16",
+    "title": "Mentor Review & Code Diagnostics #1",
+    "category": "Workshops",
+    "image": "/images/gallery/hackseries-25-16.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-16.jpg",
+    "caption": "Domain specialists and technical mentors reviewing team git repositories and system design.",
+    "year": "2025",
+    "location": "Innovation Floor"
   },
   {
-    id: "gal-17",
-    title: "Cloud Infrastructure Workshop",
-    category: "Workshops",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&auto=format&fit=crop&q=80",
-    thumb: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=75",
-    caption: "Hands-on session architecting microservices and cloud deployments on GCP.",
-    year: "2025",
-    location: "Cloud Computing Lab"
+    "id": "gal-17",
+    "title": "Mentor Review & Code Diagnostics #2",
+    "category": "Workshops",
+    "image": "/images/gallery/hackseries-25-17.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-17.jpg",
+    "caption": "Domain specialists and technical mentors reviewing team git repositories and system design.",
+    "year": "2025",
+    "location": "Innovation Floor"
   },
   {
-    id: "gal-18",
-    title: "Open Source Hack Night",
-    category: "Technical",
-    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&auto=format&fit=crop&q=80",
-    thumb: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&auto=format&fit=crop&q=75",
-    caption: "Contributing to community repositories and open-source tooling.",
-    year: "2026",
-    location: "Innovation Cell"
+    "id": "gal-18",
+    "title": "Mentor Review & Code Diagnostics #3",
+    "category": "Workshops",
+    "image": "/images/gallery/hackseries-25-18.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-18.jpg",
+    "caption": "Domain specialists and technical mentors reviewing team git repositories and system design.",
+    "year": "2025",
+    "location": "Innovation Floor"
   },
   {
-    id: "gal-19",
-    title: "Battle of the Bands",
-    category: "Cultural",
-    image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=1200&auto=format&fit=crop&q=80",
-    thumb: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600&auto=format&fit=crop&q=75",
-    caption: "Electrifying live music and band performances during the cultural finale.",
-    year: "2025",
-    location: "Campus Amphitheatre"
+    "id": "gal-19",
+    "title": "Mentor Review & Code Diagnostics #4",
+    "category": "Workshops",
+    "image": "/images/gallery/hackseries-25-19.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-19.jpg",
+    "caption": "Domain specialists and technical mentors reviewing team git repositories and system design.",
+    "year": "2025",
+    "location": "Innovation Floor"
   },
   {
-    id: "gal-20",
-    title: "Student Council Election & Induction",
-    category: "Leadership",
-    image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1200&auto=format&fit=crop&q=80",
-    thumb: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&auto=format&fit=crop&q=75",
-    caption: "Inducting the newly appointed student officers and domain leads.",
-    year: "2026",
-    location: "Council Hall"
+    "id": "gal-20",
+    "title": "Mentor Review & Code Diagnostics #5",
+    "category": "Workshops",
+    "image": "/images/gallery/hackseries-25-20.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-20.jpg",
+    "caption": "Domain specialists and technical mentors reviewing team git repositories and system design.",
+    "year": "2025",
+    "location": "Innovation Floor"
   },
   {
-    id: "gal-21",
-    title: "AI Project Showcase & Expo",
-    category: "Hackathons",
-    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1200&auto=format&fit=crop&q=80",
-    thumb: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=75",
-    caption: "Teams demonstrating cutting-edge autonomous agents and vision solutions.",
-    year: "2026",
-    location: "Exhibition Center"
+    "id": "gal-21",
+    "title": "Mentor Review & Code Diagnostics #6",
+    "category": "Workshops",
+    "image": "/images/gallery/hackseries-25-21.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-21.jpg",
+    "caption": "Domain specialists and technical mentors reviewing team git repositories and system design.",
+    "year": "2025",
+    "location": "Innovation Floor"
   },
   {
-    id: "gal-22",
-    title: "Quantum Computing Foundations",
-    category: "Workshops",
-    image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1200&auto=format&fit=crop&q=80",
-    thumb: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&auto=format&fit=crop&q=75",
-    caption: "Exploring quantum algorithms and qubit simulations with guest lecturers.",
-    year: "2025",
-    location: "Seminar Hall 2"
+    "id": "gal-22",
+    "title": "Mentor Review & Code Diagnostics #7",
+    "category": "Workshops",
+    "image": "/images/gallery/hackseries-25-22.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-22.jpg",
+    "caption": "Domain specialists and technical mentors reviewing team git repositories and system design.",
+    "year": "2025",
+    "location": "Innovation Floor"
   },
   {
-    id: "gal-23",
-    title: "System Architecture Sprint",
-    category: "Technical",
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&auto=format&fit=crop&q=80",
-    thumb: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&auto=format&fit=crop&q=75",
-    caption: "Designing scalable backend microservices and distributed database topologies.",
-    year: "2026",
-    location: "Server Lab"
+    "id": "gal-23",
+    "title": "Student Collaboration Hub #1",
+    "category": "Technical",
+    "image": "/images/gallery/hackseries-25-23.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-23.jpg",
+    "caption": "Engaged developers and UI/UX designers building responsive full-stack solutions.",
+    "year": "2025",
+    "location": "Central Tech Arena"
   },
   {
-    id: "gal-24",
-    title: "Gala Night & Awards Ceremony",
-    category: "Cultural",
-    image: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1200&auto=format&fit=crop&q=80",
-    thumb: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600&auto=format&fit=crop&q=75",
-    caption: "Celebrating outstanding club contributors and memorable achievements.",
-    year: "2025",
-    location: "Grand Banquet Hall"
+    "id": "gal-24",
+    "title": "Student Collaboration Hub #2",
+    "category": "Technical",
+    "image": "/images/gallery/hackseries-25-24.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-24.jpg",
+    "caption": "Engaged developers and UI/UX designers building responsive full-stack solutions.",
+    "year": "2025",
+    "location": "Central Tech Arena"
   },
   {
-    id: "gal-25",
-    title: "Industry Mentorship Meet",
-    category: "Leadership",
-    image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200&auto=format&fit=crop&q=80",
-    thumb: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&auto=format&fit=crop&q=75",
-    caption: "Connecting passionate student leaders with tech executives and mentors.",
-    year: "2026",
-    location: "Executive Boardroom"
+    "id": "gal-25",
+    "title": "Student Collaboration Hub #3",
+    "category": "Technical",
+    "image": "/images/gallery/hackseries-25-25.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-25.jpg",
+    "caption": "Engaged developers and UI/UX designers building responsive full-stack solutions.",
+    "year": "2025",
+    "location": "Central Tech Arena"
+  },
+  {
+    "id": "gal-26",
+    "title": "Student Collaboration Hub #4",
+    "category": "Technical",
+    "image": "/images/gallery/hackseries-25-26.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-26.jpg",
+    "caption": "Engaged developers and UI/UX designers building responsive full-stack solutions.",
+    "year": "2025",
+    "location": "Central Tech Arena"
+  },
+  {
+    "id": "gal-27",
+    "title": "Student Collaboration Hub #5",
+    "category": "Technical",
+    "image": "/images/gallery/hackseries-25-27.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-27.jpg",
+    "caption": "Engaged developers and UI/UX designers building responsive full-stack solutions.",
+    "year": "2025",
+    "location": "Central Tech Arena"
+  },
+  {
+    "id": "gal-28",
+    "title": "Student Collaboration Hub #6",
+    "category": "Technical",
+    "image": "/images/gallery/hackseries-25-28.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-28.jpg",
+    "caption": "Engaged developers and UI/UX designers building responsive full-stack solutions.",
+    "year": "2025",
+    "location": "Central Tech Arena"
+  },
+  {
+    "id": "gal-29",
+    "title": "Student Collaboration Hub #7",
+    "category": "Technical",
+    "image": "/images/gallery/hackseries-25-29.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-29.jpg",
+    "caption": "Engaged developers and UI/UX designers building responsive full-stack solutions.",
+    "year": "2025",
+    "location": "Central Tech Arena"
+  },
+  {
+    "id": "gal-30",
+    "title": "Student Collaboration Hub #8",
+    "category": "Technical",
+    "image": "/images/gallery/hackseries-25-30.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-30.jpg",
+    "caption": "Engaged developers and UI/UX designers building responsive full-stack solutions.",
+    "year": "2025",
+    "location": "Central Tech Arena"
+  },
+  {
+    "id": "gal-31",
+    "title": "HackSeries 25th Showcase & Felicitation #1",
+    "category": "Leadership",
+    "image": "/images/gallery/hackseries-25-31.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-31.jpg",
+    "caption": "Ceremony honoring outstanding project submissions, open-source work, and committee leadership.",
+    "year": "2025",
+    "location": "DIT Seminar Hall"
+  },
+  {
+    "id": "gal-32",
+    "title": "HackSeries 25th Showcase & Felicitation #2",
+    "category": "Leadership",
+    "image": "/images/gallery/hackseries-25-32.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-32.jpg",
+    "caption": "Ceremony honoring outstanding project submissions, open-source work, and committee leadership.",
+    "year": "2025",
+    "location": "DIT Seminar Hall"
+  },
+  {
+    "id": "gal-33",
+    "title": "HackSeries 25th Showcase & Felicitation #3",
+    "category": "Leadership",
+    "image": "/images/gallery/hackseries-25-33.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-33.jpg",
+    "caption": "Ceremony honoring outstanding project submissions, open-source work, and committee leadership.",
+    "year": "2025",
+    "location": "DIT Seminar Hall"
+  },
+  {
+    "id": "gal-34",
+    "title": "HackSeries 25th Showcase & Felicitation #4",
+    "category": "Leadership",
+    "image": "/images/gallery/hackseries-25-34.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-34.jpg",
+    "caption": "Ceremony honoring outstanding project submissions, open-source work, and committee leadership.",
+    "year": "2025",
+    "location": "DIT Seminar Hall"
+  },
+  {
+    "id": "gal-35",
+    "title": "HackSeries 25th Showcase & Felicitation #5",
+    "category": "Leadership",
+    "image": "/images/gallery/hackseries-25-35.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-35.jpg",
+    "caption": "Ceremony honoring outstanding project submissions, open-source work, and committee leadership.",
+    "year": "2025",
+    "location": "DIT Seminar Hall"
+  },
+  {
+    "id": "gal-36",
+    "title": "HackSeries 25th Showcase & Felicitation #6",
+    "category": "Leadership",
+    "image": "/images/gallery/hackseries-25-36.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-36.jpg",
+    "caption": "Ceremony honoring outstanding project submissions, open-source work, and committee leadership.",
+    "year": "2025",
+    "location": "DIT Seminar Hall"
+  },
+  {
+    "id": "gal-37",
+    "title": "HackSeries 25th Showcase & Felicitation #7",
+    "category": "Leadership",
+    "image": "/images/gallery/hackseries-25-37.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-37.jpg",
+    "caption": "Ceremony honoring outstanding project submissions, open-source work, and committee leadership.",
+    "year": "2025",
+    "location": "DIT Seminar Hall"
+  },
+  {
+    "id": "gal-38",
+    "title": "HackSeries 25th Showcase & Felicitation #8",
+    "category": "Leadership",
+    "image": "/images/gallery/hackseries-25-38.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-38.jpg",
+    "caption": "Ceremony honoring outstanding project submissions, open-source work, and committee leadership.",
+    "year": "2025",
+    "location": "DIT Seminar Hall"
+  },
+  {
+    "id": "gal-39",
+    "title": "HackSeries 25th Showcase & Felicitation #9",
+    "category": "Leadership",
+    "image": "/images/gallery/hackseries-25-39.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-39.jpg",
+    "caption": "Ceremony honoring outstanding project submissions, open-source work, and committee leadership.",
+    "year": "2025",
+    "location": "DIT Seminar Hall"
+  },
+  {
+    "id": "gal-40",
+    "title": "HackSeries 25th Showcase & Felicitation #10",
+    "category": "Leadership",
+    "image": "/images/gallery/hackseries-25-40.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-25-40.jpg",
+    "caption": "Ceremony honoring outstanding project submissions, open-source work, and committee leadership.",
+    "year": "2025",
+    "location": "DIT Seminar Hall"
+  },
+  {
+    "id": "gal-41",
+    "title": "National Hackathon Pitch Stage #1",
+    "category": "Hackathons",
+    "image": "/images/gallery/hackathon-main-1.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-main-1.jpg",
+    "caption": "Finalist squads demonstrating working AI and web prototypes live to the jury panel.",
+    "year": "2026",
+    "location": "Main Stage, Pune"
+  },
+  {
+    "id": "gal-42",
+    "title": "National Hackathon Pitch Stage #2",
+    "category": "Hackathons",
+    "image": "/images/gallery/hackathon-main-2.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-main-2.jpg",
+    "caption": "Finalist squads demonstrating working AI and web prototypes live to the jury panel.",
+    "year": "2026",
+    "location": "Main Stage, Pune"
+  },
+  {
+    "id": "gal-43",
+    "title": "National Hackathon Pitch Stage #3",
+    "category": "Hackathons",
+    "image": "/images/gallery/hackathon-main-3.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-main-3.jpg",
+    "caption": "Finalist squads demonstrating working AI and web prototypes live to the jury panel.",
+    "year": "2026",
+    "location": "Main Stage, Pune"
+  },
+  {
+    "id": "gal-44",
+    "title": "National Hackathon Pitch Stage #4",
+    "category": "Hackathons",
+    "image": "/images/gallery/hackathon-main-4.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-main-4.jpg",
+    "caption": "Finalist squads demonstrating working AI and web prototypes live to the jury panel.",
+    "year": "2026",
+    "location": "Main Stage, Pune"
+  },
+  {
+    "id": "gal-45",
+    "title": "National Hackathon Pitch Stage #5",
+    "category": "Hackathons",
+    "image": "/images/gallery/hackathon-main-5.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-main-5.jpg",
+    "caption": "Finalist squads demonstrating working AI and web prototypes live to the jury panel.",
+    "year": "2026",
+    "location": "Main Stage, Pune"
+  },
+  {
+    "id": "gal-46",
+    "title": "National Hackathon Pitch Stage #6",
+    "category": "Hackathons",
+    "image": "/images/gallery/hackathon-main-6.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-main-6.jpg",
+    "caption": "Finalist squads demonstrating working AI and web prototypes live to the jury panel.",
+    "year": "2026",
+    "location": "Main Stage, Pune"
+  },
+  {
+    "id": "gal-47",
+    "title": "24-Hour Hackathon Development #1",
+    "category": "Technical",
+    "image": "/images/gallery/hackathon-main-7.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-main-7.jpg",
+    "caption": "Teams pushing commits late into the night during the national hackathon sprint.",
+    "year": "2026",
+    "location": "Tech Hub Lab 4"
+  },
+  {
+    "id": "gal-48",
+    "title": "24-Hour Hackathon Development #2",
+    "category": "Technical",
+    "image": "/images/gallery/hackathon-main-8.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-main-8.jpg",
+    "caption": "Teams pushing commits late into the night during the national hackathon sprint.",
+    "year": "2026",
+    "location": "Tech Hub Lab 4"
+  },
+  {
+    "id": "gal-49",
+    "title": "24-Hour Hackathon Development #3",
+    "category": "Technical",
+    "image": "/images/gallery/hackathon-main-9.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-main-9.jpg",
+    "caption": "Teams pushing commits late into the night during the national hackathon sprint.",
+    "year": "2026",
+    "location": "Tech Hub Lab 4"
+  },
+  {
+    "id": "gal-50",
+    "title": "24-Hour Hackathon Development #4",
+    "category": "Technical",
+    "image": "/images/gallery/hackathon-main-10.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-main-10.jpg",
+    "caption": "Teams pushing commits late into the night during the national hackathon sprint.",
+    "year": "2026",
+    "location": "Tech Hub Lab 4"
+  },
+  {
+    "id": "gal-51",
+    "title": "24-Hour Hackathon Development #5",
+    "category": "Technical",
+    "image": "/images/gallery/hackathon-main-11.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-main-11.jpg",
+    "caption": "Teams pushing commits late into the night during the national hackathon sprint.",
+    "year": "2026",
+    "location": "Tech Hub Lab 4"
+  },
+  {
+    "id": "gal-52",
+    "title": "24-Hour Hackathon Development #6",
+    "category": "Technical",
+    "image": "/images/gallery/hackathon-main-12.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-main-12.jpg",
+    "caption": "Teams pushing commits late into the night during the national hackathon sprint.",
+    "year": "2026",
+    "location": "Tech Hub Lab 4"
+  },
+  {
+    "id": "gal-53",
+    "title": "24-Hour Hackathon Development #7",
+    "category": "Technical",
+    "image": "/images/gallery/hackathon-main-13.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-main-13.jpg",
+    "caption": "Teams pushing commits late into the night during the national hackathon sprint.",
+    "year": "2026",
+    "location": "Tech Hub Lab 4"
+  },
+  {
+    "id": "gal-54",
+    "title": "Jury Evaluation & Architecture Review #1",
+    "category": "Workshops",
+    "image": "/images/gallery/hackathon-main-14.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-main-14.jpg",
+    "caption": "Judges and faculty reviewing live deployments, API endpoints, and database models.",
+    "year": "2026",
+    "location": "Exhibition Hall"
+  },
+  {
+    "id": "gal-55",
+    "title": "Jury Evaluation & Architecture Review #2",
+    "category": "Workshops",
+    "image": "/images/gallery/hackathon-main-15.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-main-15.jpg",
+    "caption": "Judges and faculty reviewing live deployments, API endpoints, and database models.",
+    "year": "2026",
+    "location": "Exhibition Hall"
+  },
+  {
+    "id": "gal-56",
+    "title": "Jury Evaluation & Architecture Review #3",
+    "category": "Workshops",
+    "image": "/images/gallery/hackathon-main-16.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-main-16.jpg",
+    "caption": "Judges and faculty reviewing live deployments, API endpoints, and database models.",
+    "year": "2026",
+    "location": "Exhibition Hall"
+  },
+  {
+    "id": "gal-57",
+    "title": "Jury Evaluation & Architecture Review #4",
+    "category": "Workshops",
+    "image": "/images/gallery/hackathon-main-17.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-main-17.jpg",
+    "caption": "Judges and faculty reviewing live deployments, API endpoints, and database models.",
+    "year": "2026",
+    "location": "Exhibition Hall"
+  },
+  {
+    "id": "gal-58",
+    "title": "Jury Evaluation & Architecture Review #5",
+    "category": "Workshops",
+    "image": "/images/gallery/hackathon-main-18.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-main-18.jpg",
+    "caption": "Judges and faculty reviewing live deployments, API endpoints, and database models.",
+    "year": "2026",
+    "location": "Exhibition Hall"
+  },
+  {
+    "id": "gal-59",
+    "title": "Jury Evaluation & Architecture Review #6",
+    "category": "Workshops",
+    "image": "/images/gallery/hackathon-main-19.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-main-19.jpg",
+    "caption": "Judges and faculty reviewing live deployments, API endpoints, and database models.",
+    "year": "2026",
+    "location": "Exhibition Hall"
+  },
+  {
+    "id": "gal-60",
+    "title": "Hackathon Grand Finale & Awards #1",
+    "category": "Hackathons",
+    "image": "/images/gallery/hackathon-main-20.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-main-20.jpg",
+    "caption": "Winners felicitated on stage with trophies, certificates, and cash prizes.",
+    "year": "2026",
+    "location": "Grand Auditorium"
+  },
+  {
+    "id": "gal-61",
+    "title": "Hackathon Grand Finale & Awards #2",
+    "category": "Hackathons",
+    "image": "/images/gallery/hackathon-main-21.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-main-21.jpg",
+    "caption": "Winners felicitated on stage with trophies, certificates, and cash prizes.",
+    "year": "2026",
+    "location": "Grand Auditorium"
+  },
+  {
+    "id": "gal-62",
+    "title": "Hackathon Grand Finale & Awards #3",
+    "category": "Hackathons",
+    "image": "/images/gallery/hackathon-main-22.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-main-22.jpg",
+    "caption": "Winners felicitated on stage with trophies, certificates, and cash prizes.",
+    "year": "2026",
+    "location": "Grand Auditorium"
+  },
+  {
+    "id": "gal-63",
+    "title": "Hackathon Grand Finale & Awards #4",
+    "category": "Hackathons",
+    "image": "/images/gallery/hackathon-main-23.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-main-23.jpg",
+    "caption": "Winners felicitated on stage with trophies, certificates, and cash prizes.",
+    "year": "2026",
+    "location": "Grand Auditorium"
+  },
+  {
+    "id": "gal-64",
+    "title": "Hackathon Grand Finale & Awards #5",
+    "category": "Hackathons",
+    "image": "/images/gallery/hackathon-main-24.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-main-24.jpg",
+    "caption": "Winners felicitated on stage with trophies, certificates, and cash prizes.",
+    "year": "2026",
+    "location": "Grand Auditorium"
+  },
+  {
+    "id": "gal-65",
+    "title": "Hackathon Grand Finale & Awards #6",
+    "category": "Hackathons",
+    "image": "/images/gallery/hackathon-main-25.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-main-25.jpg",
+    "caption": "Winners felicitated on stage with trophies, certificates, and cash prizes.",
+    "year": "2026",
+    "location": "Grand Auditorium"
+  },
+  {
+    "id": "gal-66",
+    "title": "ACES Organizing Crew & Operations #1",
+    "category": "Leadership",
+    "image": "/images/gallery/hackathon-bts-1.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-bts-1.jpg",
+    "caption": "Behind-the-scenes event logistics, stage management, live streaming, and volunteer coordination.",
+    "year": "2026",
+    "location": "Backstage & Control Room"
+  },
+  {
+    "id": "gal-67",
+    "title": "ACES Organizing Crew & Operations #2",
+    "category": "Leadership",
+    "image": "/images/gallery/hackathon-bts-2.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-bts-2.jpg",
+    "caption": "Behind-the-scenes event logistics, stage management, live streaming, and volunteer coordination.",
+    "year": "2026",
+    "location": "Backstage & Control Room"
+  },
+  {
+    "id": "gal-68",
+    "title": "ACES Organizing Crew & Operations #3",
+    "category": "Leadership",
+    "image": "/images/gallery/hackathon-bts-3.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-bts-3.jpg",
+    "caption": "Behind-the-scenes event logistics, stage management, live streaming, and volunteer coordination.",
+    "year": "2026",
+    "location": "Backstage & Control Room"
+  },
+  {
+    "id": "gal-69",
+    "title": "ACES Organizing Crew & Operations #4",
+    "category": "Leadership",
+    "image": "/images/gallery/hackathon-bts-4.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-bts-4.jpg",
+    "caption": "Behind-the-scenes event logistics, stage management, live streaming, and volunteer coordination.",
+    "year": "2026",
+    "location": "Backstage & Control Room"
+  },
+  {
+    "id": "gal-70",
+    "title": "ACES Organizing Crew & Operations #5",
+    "category": "Leadership",
+    "image": "/images/gallery/hackathon-bts-5.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-bts-5.jpg",
+    "caption": "Behind-the-scenes event logistics, stage management, live streaming, and volunteer coordination.",
+    "year": "2026",
+    "location": "Backstage & Control Room"
+  },
+  {
+    "id": "gal-71",
+    "title": "ACES Organizing Crew & Operations #6",
+    "category": "Leadership",
+    "image": "/images/gallery/hackathon-bts-6.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-bts-6.jpg",
+    "caption": "Behind-the-scenes event logistics, stage management, live streaming, and volunteer coordination.",
+    "year": "2026",
+    "location": "Backstage & Control Room"
+  },
+  {
+    "id": "gal-72",
+    "title": "ACES Organizing Crew & Operations #7",
+    "category": "Leadership",
+    "image": "/images/gallery/hackathon-bts-7.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-bts-7.jpg",
+    "caption": "Behind-the-scenes event logistics, stage management, live streaming, and volunteer coordination.",
+    "year": "2026",
+    "location": "Backstage & Control Room"
+  },
+  {
+    "id": "gal-73",
+    "title": "ACES Organizing Crew & Operations #8",
+    "category": "Leadership",
+    "image": "/images/gallery/hackathon-bts-8.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-bts-8.jpg",
+    "caption": "Behind-the-scenes event logistics, stage management, live streaming, and volunteer coordination.",
+    "year": "2026",
+    "location": "Backstage & Control Room"
+  },
+  {
+    "id": "gal-74",
+    "title": "ACES Organizing Crew & Operations #9",
+    "category": "Leadership",
+    "image": "/images/gallery/hackathon-bts-9.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-bts-9.jpg",
+    "caption": "Behind-the-scenes event logistics, stage management, live streaming, and volunteer coordination.",
+    "year": "2026",
+    "location": "Backstage & Control Room"
+  },
+  {
+    "id": "gal-75",
+    "title": "ACES Organizing Crew & Operations #10",
+    "category": "Leadership",
+    "image": "/images/gallery/hackathon-bts-10.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-bts-10.jpg",
+    "caption": "Behind-the-scenes event logistics, stage management, live streaming, and volunteer coordination.",
+    "year": "2026",
+    "location": "Backstage & Control Room"
+  },
+  {
+    "id": "gal-76",
+    "title": "ACES Organizing Crew & Operations #11",
+    "category": "Leadership",
+    "image": "/images/gallery/hackathon-bts-11.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-bts-11.jpg",
+    "caption": "Behind-the-scenes event logistics, stage management, live streaming, and volunteer coordination.",
+    "year": "2026",
+    "location": "Backstage & Control Room"
+  },
+  {
+    "id": "gal-77",
+    "title": "ACES Organizing Crew & Operations #12",
+    "category": "Leadership",
+    "image": "/images/gallery/hackathon-bts-12.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-bts-12.jpg",
+    "caption": "Behind-the-scenes event logistics, stage management, live streaming, and volunteer coordination.",
+    "year": "2026",
+    "location": "Backstage & Control Room"
+  },
+  {
+    "id": "gal-78",
+    "title": "ACES Organizing Crew & Operations #13",
+    "category": "Leadership",
+    "image": "/images/gallery/hackathon-bts-13.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-bts-13.jpg",
+    "caption": "Behind-the-scenes event logistics, stage management, live streaming, and volunteer coordination.",
+    "year": "2026",
+    "location": "Backstage & Control Room"
+  },
+  {
+    "id": "gal-79",
+    "title": "ACES Organizing Crew & Operations #14",
+    "category": "Leadership",
+    "image": "/images/gallery/hackathon-bts-14.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-bts-14.jpg",
+    "caption": "Behind-the-scenes event logistics, stage management, live streaming, and volunteer coordination.",
+    "year": "2026",
+    "location": "Backstage & Control Room"
+  },
+  {
+    "id": "gal-80",
+    "title": "ACES Organizing Crew & Operations #15",
+    "category": "Leadership",
+    "image": "/images/gallery/hackathon-bts-15.jpg",
+    "thumb": "/images/gallery/thumbs/hackathon-bts-15.jpg",
+    "caption": "Behind-the-scenes event logistics, stage management, live streaming, and volunteer coordination.",
+    "year": "2026",
+    "location": "Backstage & Control Room"
+  },
+  {
+    "id": "gal-81",
+    "title": "Indo-German Tech & Academic Exchange #1",
+    "category": "Workshops",
+    "image": "/images/gallery/german-event-1.jpg",
+    "thumb": "/images/gallery/thumbs/german-event-1.jpg",
+    "caption": "Guest delegation and visiting professors sharing global tech perspectives and research opportunities.",
+    "year": "2025",
+    "location": "International Conference Hall"
+  },
+  {
+    "id": "gal-82",
+    "title": "Indo-German Tech & Academic Exchange #2",
+    "category": "Workshops",
+    "image": "/images/gallery/german-event-2.jpg",
+    "thumb": "/images/gallery/thumbs/german-event-2.jpg",
+    "caption": "Guest delegation and visiting professors sharing global tech perspectives and research opportunities.",
+    "year": "2025",
+    "location": "International Conference Hall"
+  },
+  {
+    "id": "gal-83",
+    "title": "Indo-German Tech & Academic Exchange #3",
+    "category": "Workshops",
+    "image": "/images/gallery/german-event-3.jpg",
+    "thumb": "/images/gallery/thumbs/german-event-3.jpg",
+    "caption": "Guest delegation and visiting professors sharing global tech perspectives and research opportunities.",
+    "year": "2025",
+    "location": "International Conference Hall"
+  },
+  {
+    "id": "gal-84",
+    "title": "Indo-German Tech & Academic Exchange #4",
+    "category": "Workshops",
+    "image": "/images/gallery/german-event-4.jpg",
+    "thumb": "/images/gallery/thumbs/german-event-4.jpg",
+    "caption": "Guest delegation and visiting professors sharing global tech perspectives and research opportunities.",
+    "year": "2025",
+    "location": "International Conference Hall"
+  },
+  {
+    "id": "gal-85",
+    "title": "Global Education & Engineering Seminar #1",
+    "category": "Leadership",
+    "image": "/images/gallery/german-event-5.jpg",
+    "thumb": "/images/gallery/thumbs/german-event-5.jpg",
+    "caption": "Interactive Q&A on higher education, robotics research, and overseas engineering careers.",
+    "year": "2025",
+    "location": "Seminar Hall 2"
+  },
+  {
+    "id": "gal-86",
+    "title": "Global Education & Engineering Seminar #2",
+    "category": "Leadership",
+    "image": "/images/gallery/german-event-6.jpg",
+    "thumb": "/images/gallery/thumbs/german-event-6.jpg",
+    "caption": "Interactive Q&A on higher education, robotics research, and overseas engineering careers.",
+    "year": "2025",
+    "location": "Seminar Hall 2"
+  },
+  {
+    "id": "gal-87",
+    "title": "Global Education & Engineering Seminar #3",
+    "category": "Leadership",
+    "image": "/images/gallery/german-event-7.jpg",
+    "thumb": "/images/gallery/thumbs/german-event-7.jpg",
+    "caption": "Interactive Q&A on higher education, robotics research, and overseas engineering careers.",
+    "year": "2025",
+    "location": "Seminar Hall 2"
+  },
+  {
+    "id": "gal-88",
+    "title": "Cross-Cultural Student Interaction #1",
+    "category": "Cultural",
+    "image": "/images/gallery/german-event-8.jpg",
+    "thumb": "/images/gallery/thumbs/german-event-8.jpg",
+    "caption": "Students interacting with international guests, exchanging ideas, and celebrating academic synergy.",
+    "year": "2025",
+    "location": "ACES Tech Lounge"
+  },
+  {
+    "id": "gal-89",
+    "title": "Cross-Cultural Student Interaction #2",
+    "category": "Cultural",
+    "image": "/images/gallery/german-event-9.jpg",
+    "thumb": "/images/gallery/thumbs/german-event-9.jpg",
+    "caption": "Students interacting with international guests, exchanging ideas, and celebrating academic synergy.",
+    "year": "2025",
+    "location": "ACES Tech Lounge"
+  },
+  {
+    "id": "gal-90",
+    "title": "Cross-Cultural Student Interaction #3",
+    "category": "Cultural",
+    "image": "/images/gallery/german-event-10.jpg",
+    "thumb": "/images/gallery/thumbs/german-event-10.jpg",
+    "caption": "Students interacting with international guests, exchanging ideas, and celebrating academic synergy.",
+    "year": "2025",
+    "location": "ACES Tech Lounge"
+  },
+  {
+    "id": "gal-91",
+    "title": "HackSeries 0.1 Inception & Kickoff #91",
+    "category": "Hackathons",
+    "image": "/images/gallery/hackseries-01-1.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-01-1.jpg",
+    "caption": "Inaugural edition of the HackSeries franchise bringing early-year developers together.",
+    "year": "2025",
+    "location": "ACES Innovation Lab"
+  },
+  {
+    "id": "gal-92",
+    "title": "HackSeries 0.1 Inception & Kickoff #92",
+    "category": "Hackathons",
+    "image": "/images/gallery/hackseries-01-2.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-01-2.jpg",
+    "caption": "Inaugural edition of the HackSeries franchise bringing early-year developers together.",
+    "year": "2025",
+    "location": "ACES Innovation Lab"
+  },
+  {
+    "id": "gal-93",
+    "title": "HackSeries 0.1 Inception & Kickoff #93",
+    "category": "Hackathons",
+    "image": "/images/gallery/hackseries-01-3.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-01-3.jpg",
+    "caption": "Inaugural edition of the HackSeries franchise bringing early-year developers together.",
+    "year": "2025",
+    "location": "ACES Innovation Lab"
+  },
+  {
+    "id": "gal-94",
+    "title": "HackSeries 0.1 Inception & Kickoff #94",
+    "category": "Hackathons",
+    "image": "/images/gallery/hackseries-01-4.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-01-4.jpg",
+    "caption": "Inaugural edition of the HackSeries franchise bringing early-year developers together.",
+    "year": "2025",
+    "location": "ACES Innovation Lab"
+  },
+  {
+    "id": "gal-95",
+    "title": "HackSeries 0.1 Inception & Kickoff #95",
+    "category": "Hackathons",
+    "image": "/images/gallery/hackseries-01-5.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-01-5.jpg",
+    "caption": "Inaugural edition of the HackSeries franchise bringing early-year developers together.",
+    "year": "2025",
+    "location": "ACES Innovation Lab"
+  },
+  {
+    "id": "gal-96",
+    "title": "HackSeries 0.1 Inception & Kickoff #96",
+    "category": "Hackathons",
+    "image": "/images/gallery/hackseries-01-6.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-01-6.jpg",
+    "caption": "Inaugural edition of the HackSeries franchise bringing early-year developers together.",
+    "year": "2025",
+    "location": "ACES Innovation Lab"
+  },
+  {
+    "id": "gal-97",
+    "title": "HackSeries 0.1 Inception & Kickoff #97",
+    "category": "Hackathons",
+    "image": "/images/gallery/hackseries-alt-1.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-alt-1.jpg",
+    "caption": "Inaugural edition of the HackSeries franchise bringing early-year developers together.",
+    "year": "2025",
+    "location": "ACES Innovation Lab"
+  },
+  {
+    "id": "gal-98",
+    "title": "HackSeries 0.1 Inception & Kickoff #98",
+    "category": "Hackathons",
+    "image": "/images/gallery/hackseries-alt-2.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-alt-2.jpg",
+    "caption": "Inaugural edition of the HackSeries franchise bringing early-year developers together.",
+    "year": "2025",
+    "location": "ACES Innovation Lab"
+  },
+  {
+    "id": "gal-99",
+    "title": "HackSeries 0.1 Inception & Kickoff #99",
+    "category": "Hackathons",
+    "image": "/images/gallery/hackseries-alt-3.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-alt-3.jpg",
+    "caption": "Inaugural edition of the HackSeries franchise bringing early-year developers together.",
+    "year": "2025",
+    "location": "ACES Innovation Lab"
+  },
+  {
+    "id": "gal-100",
+    "title": "HackSeries 0.1 Inception & Kickoff #100",
+    "category": "Hackathons",
+    "image": "/images/gallery/hackseries-alt-4.jpg",
+    "thumb": "/images/gallery/thumbs/hackseries-alt-4.jpg",
+    "caption": "Inaugural edition of the HackSeries franchise bringing early-year developers together.",
+    "year": "2025",
+    "location": "ACES Innovation Lab"
   }
 ];
 
 export const marqueeImages = [
   {
-    id: "mq-1",
-    url: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500&auto=format&fit=crop&q=75",
-    alt: "Hackathon inaugural ceremony with participants and stage lighting"
+    "id": "mq-1",
+    "url": "/images/gallery/thumbs/hackseries-25-1.jpg",
+    "alt": "HackSeries 25th Flagship Keynote #1"
   },
   {
-    id: "mq-2",
-    url: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=500&auto=format&fit=crop&q=75",
-    alt: "Students actively attending a technical coding workshop"
+    "id": "mq-2",
+    "url": "/images/gallery/thumbs/hackseries-25-8.jpg",
+    "alt": "HackSeries 25th Coding Sprints #1"
   },
   {
-    id: "mq-3",
-    url: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=500&auto=format&fit=crop&q=75",
-    alt: "Developers collaborating around laptops during design sprint"
+    "id": "mq-3",
+    "url": "/images/gallery/thumbs/hackseries-25-16.jpg",
+    "alt": "Mentor Review & Code Diagnostics #1"
   },
   {
-    id: "mq-4",
-    url: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500&auto=format&fit=crop&q=75",
-    alt: "Live musical performance on stage at cultural festival"
+    "id": "mq-4",
+    "url": "/images/gallery/thumbs/hackseries-25-23.jpg",
+    "alt": "Student Collaboration Hub #1"
   },
   {
-    id: "mq-5",
-    url: "https://images.unsplash.com/photo-1473649035226-1175be587dfd?w=500&auto=format&fit=crop&q=75",
-    alt: "ACES committee members in strategic planning session"
+    "id": "mq-5",
+    "url": "/images/gallery/thumbs/hackseries-25-36.jpg",
+    "alt": "HackSeries 25th Showcase & Felicitation #6"
   },
   {
-    id: "mq-6",
-    url: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=500&auto=format&fit=crop&q=75",
-    alt: "Instructor demonstrating code on large monitor to class"
+    "id": "mq-6",
+    "url": "/images/gallery/thumbs/hackathon-main-1.jpg",
+    "alt": "National Hackathon Pitch Stage #1"
   },
   {
-    id: "mq-7",
-    url: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=500&auto=format&fit=crop&q=75",
-    alt: "Student team pitching innovative tech solution to judges"
+    "id": "mq-7",
+    "url": "/images/gallery/thumbs/hackathon-main-6.jpg",
+    "alt": "National Hackathon Pitch Stage #6"
   },
   {
-    id: "mq-8",
-    url: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=500&auto=format&fit=crop&q=75",
-    alt: "Robotic arm hardware kit during hands-on lab demonstration"
+    "id": "mq-8",
+    "url": "/images/gallery/thumbs/hackathon-main-14.jpg",
+    "alt": "Jury Evaluation & Architecture Review #1"
   },
   {
-    id: "mq-9",
-    url: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=500&auto=format&fit=crop&q=75",
-    alt: "Engineers working together at high-tech workstation"
+    "id": "mq-9",
+    "url": "/images/gallery/thumbs/hackathon-bts-1.jpg",
+    "alt": "ACES Organizing Crew & Operations #1"
   },
   {
-    id: "mq-10",
-    url: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500&auto=format&fit=crop&q=75",
-    alt: "Event crowd cheering under vibrant auditorium lights"
+    "id": "mq-10",
+    "url": "/images/gallery/thumbs/hackathon-bts-11.jpg",
+    "alt": "ACES Organizing Crew & Operations #11"
   },
   {
-    id: "mq-11",
-    url: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=500&auto=format&fit=crop&q=75",
-    alt: "Cybersecurity code matrix overlay on digital screen"
+    "id": "mq-11",
+    "url": "/images/gallery/thumbs/german-event-1.jpg",
+    "alt": "Indo-German Tech & Academic Exchange #1"
   },
   {
-    id: "mq-12",
-    url: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=500&auto=format&fit=crop&q=75",
-    alt: "Team members brainstorming ideas on whiteboard"
+    "id": "mq-12",
+    "url": "/images/gallery/thumbs/hackseries-01-1.jpg",
+    "alt": "HackSeries 0.1 Inception & Kickoff #91"
   }
 ];
