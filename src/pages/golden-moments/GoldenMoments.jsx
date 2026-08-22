@@ -53,12 +53,12 @@ export default function GoldenMoments({ embedded = false }) {
   const cardSpacing = getCardSpacing();
 
   return (
-    <div id="golden-moments" className={`w-full bg-white ${embedded ? 'pt-16 sm:pt-24 pb-14' : 'min-h-screen pt-28 sm:pt-36 pb-24'} px-0 flex flex-col justify-center items-center overflow-hidden relative select-none`}>
+    <div id="golden-moments" className={`w-full bg-[#FFF4F2] ${embedded ? 'pt-16 sm:pt-24 pb-14' : 'min-h-screen pt-28 sm:pt-36 pb-24'} px-0 flex flex-col justify-center items-center overflow-hidden relative select-none`}>
       
-      {/* Background ambient warm amber light tint */}
+      {/* Background ambient warm full-bleed glow (No hard circle boundaries) */}
       <div 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1100px] h-[1100px] pointer-events-none -z-10" 
-        style={{ background: 'radial-gradient(circle, rgba(209,165,80,0.16) 0%, rgba(178,43,47,0.08) 50%, transparent 75%)' }}
+        className="absolute inset-0 w-full h-full pointer-events-none -z-10" 
+        style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(209,165,80,0.20) 0%, rgba(178,43,47,0.08) 50%, transparent 80%)' }}
       />
 
       <div className="w-full z-10 space-y-8">
@@ -164,15 +164,14 @@ export default function GoldenMoments({ embedded = false }) {
                       </p>
                     </div>
 
-                    {/* Bottom Arched Window Cutout Image (Expanded) */}
-                    <div className="w-full flex-1 min-h-[280px] sm:min-h-[330px] lg:min-h-[380px] rounded-t-[180px] sm:rounded-t-[200px] overflow-hidden border-t-2 border-muted/30 shadow-lg relative mt-3 bg-light-tint group">
+                    {/* Bottom Arched Window Cutout Image (Full rounded corners & clean smooth display) */}
+                    <div className="w-full flex-1 min-h-[280px] sm:min-h-[330px] lg:min-h-[380px] rounded-t-[180px] sm:rounded-t-[200px] rounded-b-[20px] overflow-hidden border border-muted/30 shadow-md relative mt-3 bg-light-tint group">
                       <img
                         src={moment.image}
                         alt={moment.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         draggable={false}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-dark-overlay/40 via-transparent to-transparent pointer-events-none" />
                     </div>
                   </motion.div>
                 );

@@ -137,11 +137,11 @@ export default function Social({ embedded = false }) {
         embedded ? 'pt-16 sm:pt-24 pb-16' : 'min-h-screen pt-28 sm:pt-36 pb-24'
       } px-0 flex flex-col justify-center items-center overflow-hidden relative select-none`}
     >
-      {/* Background ambient warm glow */}
+      {/* Background ambient warm glow (Full bleed, no hard boundaries) */}
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1100px] h-[1100px] pointer-events-none -z-10"
+        className="absolute inset-0 w-full h-full pointer-events-none -z-10"
         style={{
-          background: 'radial-gradient(circle, rgba(209,165,80,0.16) 0%, rgba(178,43,47,0.08) 50%, transparent 75%)'
+          background: 'radial-gradient(ellipse at 50% 50%, rgba(209,165,80,0.20) 0%, rgba(178,43,47,0.08) 50%, transparent 80%)'
         }}
       />
 
