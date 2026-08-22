@@ -38,9 +38,9 @@ export default function Social({ embedded = false }) {
   useEffect(() => {
     if (activeTab !== 'reels') return;
     
-    videoRefs.current.forEach((videoEl) => {
+    videoRefs.current.forEach((videoEl, idx) => {
       if (!videoEl) return;
-      videoEl.muted = isMuted;
+      videoEl.muted = isMuted ? true : idx !== activeReelIndex;
       const playPromise = videoEl.play();
       if (playPromise !== undefined) {
         playPromise.catch(() => {
@@ -53,12 +53,12 @@ export default function Social({ embedded = false }) {
 
   // Synchronize muted state across all video elements
   useEffect(() => {
-    videoRefs.current.forEach((videoEl) => {
+    videoRefs.current.forEach((videoEl, idx) => {
       if (videoEl) {
-        videoEl.muted = isMuted;
+        videoEl.muted = isMuted ? true : idx !== activeReelIndex;
       }
     });
-  }, [isMuted]);
+  }, [isMuted, activeReelIndex]);
 
   const handleNext = () => {
     setActiveIndex((prev) => (prev + 1) % total);
@@ -279,7 +279,7 @@ export default function Social({ embedded = false }) {
                           poster={item.posterSrc}
                           playsInline
                           loop
-                          muted={isMuted}
+                          muted={isMuted ? true : idx !== activeReelIndex}
                           autoPlay
                           preload="auto"
                           className="w-full h-full object-cover select-none pointer-events-none"
