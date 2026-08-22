@@ -59,9 +59,35 @@ export default function Navbar() {
     };
   }, [isOpen]);
 
+  // Handle cross-page scrolling to sections
+  useEffect(() => {
+    if (location.pathname === '/' && location.state?.scrollTo) {
+      setTimeout(() => {
+        const el = document.getElementById(location.state.scrollTo);
+        if (el) {
+          const yOffset = -70;
+          const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: location.state.scrollTo === 'home' ? 0 : y, behavior: 'smooth' });
+          setActiveSection(location.state.scrollTo);
+        }
+      }, 150);
+      
+      // Clear the state so it doesn't trigger again on refresh
+      navigate('/', { replace: true, state: {} });
+    }
+  }, [location, navigate]);
+
   const handleNav = (item) => {
     setIsOpen(false);
-    if (location.pathname === '/') {
+    
+    const isHomePageSection = ['home', 'who-are-we', 'golden-moments', 'social'].includes(item.id);
+
+    if (isHomePageSection) {
+      if (location.pathname !== '/') {
+        navigate('/', { state: { scrollTo: item.id } });
+        return;
+      }
+      
       const el = document.getElementById(item.id);
       if (el) {
         const yOffset = -70;
@@ -71,6 +97,7 @@ export default function Navbar() {
         return;
       }
     }
+    
     navigate(item.path);
   };
 
