@@ -1,111 +1,64 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Play, Heart, MessageCircle, ExternalLink, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { 
+  ChevronLeft, 
+  ChevronRight, 
+  Volume2, 
+  VolumeX, 
+  Play, 
+  Pause,
+  ExternalLink
+} from 'lucide-react';
 import { InstagramIcon } from '../../components/SocialIcons';
-
-const REELS_DATA = [
-  {
-    id: 'reel-1',
-    title: 'ACES Club Launch & Hackathon 2026',
-    author: 'acunetix.dit',
-    videoSrc: '/videos/reel-hackathon-2026.mp4',
-    posterSrc: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&auto=format&fit=crop&q=80',
-    instagramUrl: 'https://www.instagram.com/reel/DWRMReaiLGT/',
-    likes: '1.4k',
-    comments: '86',
-    tag: 'Flagship Event'
-  },
-  {
-    id: 'reel-2',
-    title: 'Hands-on Web3 & AI Workshop Teaser',
-    author: 'aces.dit',
-    videoSrc: '/videos/reel-workshop-2026.mp4',
-    posterSrc: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format&fit=crop&q=80',
-    instagramUrl: 'https://www.instagram.com/acesdit/',
-    likes: '890',
-    comments: '42',
-    tag: 'Technical Bootcamp'
-  },
-  {
-    id: 'reel-3',
-    title: 'Behind the Scenes: Core Design Committee',
-    author: 'aces.dit',
-    videoSrc: '/videos/reel-bts-design.mp4',
-    posterSrc: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&auto=format&fit=crop&q=80',
-    instagramUrl: 'https://www.instagram.com/acesdit/',
-    likes: '2.1k',
-    comments: '134',
-    tag: 'Campus Life'
-  },
-  {
-    id: 'reel-4',
-    title: 'Smart India Hackathon Victory Journey 🏆',
-    author: 'aces.dit',
-    videoSrc: '/videos/reel-sih-victory.mp4',
-    posterSrc: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&auto=format&fit=crop&q=80',
-    instagramUrl: 'https://www.instagram.com/acesdit/',
-    likes: '3.4k',
-    comments: '210',
-    tag: 'National Award'
-  }
-];
-
-const POSTS_DATA = [
-  {
-    id: 'post-1',
-    title: 'National Coding Championship 2026 Winners!',
-    caption: 'Huge congratulations to our algorithm team for securing 1st place among 120+ colleges at the Inter-College Tech Cup.',
-    author: 'aces.dit',
-    image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&auto=format&fit=crop&q=80',
-    date: '2 Days Ago',
-    likes: '542',
-    comments: '38',
-    category: 'Achievement'
-  },
-  {
-    id: 'post-2',
-    title: 'Inaugural TechXpo 2026 Showcase Recap',
-    caption: '40+ student innovations on display ranging from embedded IoT devices to generative AI agents. Thank you all for attending!',
-    author: 'aces.dit',
-    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&auto=format&fit=crop&q=80',
-    date: '5 Days Ago',
-    likes: '680',
-    comments: '54',
-    category: 'Exhibition'
-  },
-  {
-    id: 'post-3',
-    title: 'Mastering Full-Stack & System Design Workshop',
-    caption: 'Interactive live coding session covering microservices, caching strategies, and frontend performance optimizations.',
-    author: 'aces.dit',
-    image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&auto=format&fit=crop&q=80',
-    date: '1 Week Ago',
-    likes: '419',
-    comments: '29',
-    category: 'Workshop'
-  },
-  {
-    id: 'post-4',
-    title: 'Alumni Mentorship & Career Guidance Meet',
-    caption: 'Welcoming back our distinguished alumni leaders from Google, Microsoft, and Uber for a special career Q&A panel.',
-    author: 'aces.dit',
-    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&auto=format&fit=crop&q=80',
-    date: '2 Weeks Ago',
-    likes: '890',
-    comments: '72',
-    category: 'Community'
-  }
-];
+import { REELS_DATA, POSTS_DATA, ACES_INSTAGRAM_URL } from '../../data/socialData';
 
 export default function Social({ embedded = false }) {
   const [activeTab, setActiveTab] = useState('reels');
   const [activeReelIndex, setActiveReelIndex] = useState(0);
   const [activePostIndex, setActivePostIndex] = useState(0);
+  const [isMuted, setIsMuted] = useState(true);
+  const [showPlayIcon, setShowPlayIcon] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
+  
+  const videoRefs = useRef([]);
 
   const activeList = activeTab === 'reels' ? REELS_DATA : POSTS_DATA;
   const activeIndex = activeTab === 'reels' ? activeReelIndex : activePostIndex;
   const setActiveIndex = activeTab === 'reels' ? setActiveReelIndex : setActivePostIndex;
   const total = activeList.length;
+
+  // Window resize handler for dynamic 3D spacing
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Ensure ALL video cards play automatically simultaneously in a loop
+  useEffect(() => {
+    if (activeTab !== 'reels') return;
+    
+    videoRefs.current.forEach((videoEl, idx) => {
+      if (!videoEl) return;
+      videoEl.muted = isMuted ? true : idx !== activeReelIndex;
+      const playPromise = videoEl.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          videoEl.muted = true;
+          videoEl.play().catch(() => {});
+        });
+      }
+    });
+  }, [activeTab, isMuted, activeReelIndex]);
+
+  // Synchronize muted state across all video elements
+  useEffect(() => {
+    videoRefs.current.forEach((videoEl, idx) => {
+      if (videoEl) {
+        videoEl.muted = isMuted ? true : idx !== activeReelIndex;
+      }
+    });
+  }, [isMuted, activeReelIndex]);
 
   const handleNext = () => {
     setActiveIndex((prev) => (prev + 1) % total);
@@ -113,6 +66,20 @@ export default function Social({ embedded = false }) {
 
   const handlePrev = () => {
     setActiveIndex((prev) => (prev - 1 + total) % total);
+  };
+
+  const handleCardClick = (idx, item) => {
+    if (idx !== activeIndex) {
+      setActiveIndex(idx);
+      return;
+    }
+    // Clicking the active center card redirects directly to ACES Instagram
+    window.open(item.instagramUrl || ACES_INSTAGRAM_URL, '_blank', 'noopener,noreferrer');
+  };
+
+  const toggleMute = (e) => {
+    e.stopPropagation();
+    setIsMuted((prev) => !prev);
   };
 
   const handleDragEnd = (_, info) => {
@@ -129,220 +96,308 @@ export default function Social({ embedded = false }) {
     const handleKeyDown = (e) => {
       if (e.key === 'ArrowLeft') handlePrev();
       if (e.key === 'ArrowRight') handleNext();
+      if (activeTab === 'reels' && e.key === 'm') {
+        setIsMuted((prev) => !prev);
+      }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [activeTab, activeReelIndex, activePostIndex]);
+  }, [activeTab, activeIndex, activeReelIndex, isMuted]);
 
+  // Card spacing tuned so 5 cards seamlessly span to the left and right screen edges on PC screens,
+  // while showing 3 cards (center + peeking sides) on mobile phones.
   const getCardSpacing = () => {
-    if (typeof window === 'undefined') return 330;
-    const w = window.innerWidth;
-    if (w < 640) return 270;
-    if (w < 1024) return 310;
-    if (w < 1440) return 330;
-    return 350;
+    if (windowWidth < 640) return 290;
+    if (windowWidth < 1024) return 350;
+    if (windowWidth < 1440) return 390;
+    return 430;
   };
 
   const cardSpacing = getCardSpacing();
 
   return (
-    <div id="social" className={`w-full bg-[#FFF4F2] ${embedded ? 'py-16 sm:py-24' : 'min-h-screen pt-28 sm:pt-36 pb-24'} px-2 sm:px-4 flex flex-col items-center font-sans relative overflow-hidden select-none`}>
-      {/* Subtle Background Glow */}
-      <div 
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[600px] pointer-events-none -z-10" 
-        style={{ background: 'radial-gradient(circle, rgba(209,165,80,0.12) 0%, rgba(178,43,47,0.06) 45%, transparent 70%)' }}
+    <div
+      id="social"
+      className={`w-full bg-[#FFF4F2] ${
+        embedded ? 'pt-16 sm:pt-24 pb-16' : 'min-h-screen pt-28 sm:pt-36 pb-24'
+      } px-0 flex flex-col justify-center items-center overflow-hidden relative select-none`}
+    >
+      {/* Background ambient warm glow */}
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1100px] h-[1100px] pointer-events-none -z-10"
+        style={{
+          background: 'radial-gradient(circle, rgba(209,165,80,0.16) 0%, rgba(178,43,47,0.08) 50%, transparent 75%)'
+        }}
       />
 
-      {/* Header */}
-      <div className="text-center space-y-2 mb-6 max-w-xl mx-auto reveal-heading">
-        <div className="inline-flex items-center gap-2 bg-primary text-white text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-[4px] shadow-brand-glow">
-          <InstagramIcon className="w-3.5 h-3.5" /> Official Social
+      <div className="w-full z-10 space-y-7">
+        
+        {/* Header Title */}
+        <div className="text-center space-y-2 px-4 reveal-heading max-w-3xl mx-auto">
+          <a
+            href={ACES_INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-4 py-1.5 rounded-[4px] text-xs font-bold tracking-widest uppercase shadow-brand-glow transition-all hover:scale-105"
+          >
+            <InstagramIcon className="w-3.5 h-3.5 text-white" /> @aces.dit Instagram
+          </a>
+          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black uppercase text-gradient-brand tracking-tight">
+            Social Highlights
+          </h1>
+          <p className="text-body text-xs sm:text-sm md:text-base max-w-lg mx-auto font-sans font-medium">
+            Swipe left or right or use arrow buttons to explore interactive reels and updates.
+          </p>
         </div>
-        <h1 className="font-display text-4xl sm:text-5xl font-black uppercase text-gradient-brand tracking-tight">
-          Social Highlights
-        </h1>
-        <p className="text-body text-xs sm:text-sm font-sans font-medium">
-          Swipe left or right or use arrow buttons to explore interactive reels and updates.
-        </p>
-      </div>
 
-      {/* Tab Switcher */}
-      <div className="bg-white/90 backdrop-blur-md border border-[#e8e6e1] rounded-full flex p-1 mb-8 w-72 relative shadow-md reveal-card">
-        <button 
-          className={`flex-1 text-center py-2 rounded-full font-bold text-xs uppercase tracking-wider cursor-pointer transition-all duration-200 ease-out ${
-            activeTab === 'reels' 
-              ? 'bg-primary text-white shadow-[0_2px_12px_rgba(178,43,47,0.3)]' 
-              : 'bg-transparent text-muted hover:text-primary hover:bg-light-tint'
-          }`}
-          onClick={() => setActiveTab('reels')}
-        >
-          Reels
-        </button>
-        <button 
-          className={`flex-1 text-center py-2 rounded-full font-bold text-xs uppercase tracking-wider cursor-pointer transition-all duration-200 ease-out ${
-            activeTab === 'posts' 
-              ? 'bg-primary text-white shadow-[0_2px_12px_rgba(178,43,47,0.3)]' 
-              : 'bg-transparent text-muted hover:text-primary hover:bg-light-tint'
-          }`}
-          onClick={() => setActiveTab('posts')}
-        >
-          Posts
-        </button>
-      </div>
-
-      {/* 3D Carousel Viewport */}
-      <div className="relative w-full max-w-6xl h-[560px] sm:h-[620px] flex items-center justify-center overflow-hidden [perspective:1200px] mb-6">
-        <motion.div
-          drag="x"
-          dragConstraints={{ left: 0, right: 0 }}
-          dragElastic={0.15}
-          onDragEnd={handleDragEnd}
-          className="relative w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing"
-          style={{ touchAction: 'pan-y' }}
-        >
-          <AnimatePresence mode="popLayout">
-            {activeList.map((item, idx) => {
-              let offset = idx - activeIndex;
-              if (offset > total / 2) offset -= total;
-              if (offset < -total / 2) offset += total;
-
-              const isCenter = offset === 0;
-              const isVisible = Math.abs(offset) <= 2;
-
-              return (
-                <motion.div
-                  key={`${activeTab}-${item.id}`}
-                  onClick={() => setActiveIndex(idx)}
-                  initial={false}
-                  animate={{
-                    scale: isCenter ? 1 : 0.85,
-                    opacity: isCenter ? 1 : isVisible ? 0.55 : 0,
-                    x: offset * cardSpacing,
-                    rotateY: offset * -10,
-                    zIndex: isCenter ? 30 : 20 - Math.abs(Math.round(offset)) * 5,
-                  }}
-                  transition={{
-                    type: 'spring',
-                    stiffness: 280,
-                    damping: 30,
-                    mass: 0.8,
-                  }}
-                  className={`absolute w-[80vw] max-w-[310px] sm:w-[330px] lg:w-[340px] h-[520px] sm:h-[570px] flex-shrink-0 cursor-pointer rounded-[24px] overflow-hidden border border-[#e8e6e1] bg-white transition-colors duration-200 flex flex-col justify-between shadow-sm ${
-                    isCenter 
-                      ? 'shadow-[0_16px_48px_rgba(178,43,47,0.16),0_2px_8px_rgba(0,0,0,0.04)] border-primary/40' 
-                      : 'shadow-md hover:border-primary/30'
-                  }`}
-                >
-                  {/* Card Header Strip */}
-                  <div className="p-4 bg-white/95 border-b border-muted/30 flex items-center justify-between z-10">
-                    <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white">
-                        <InstagramIcon className="w-3.5 h-3.5" />
-                      </div>
-                      <span className="font-bold text-xs text-near-black font-sans">{item.author}</span>
-                    </div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider bg-secondary/15 text-dark-overlay px-2 py-0.5 rounded-[4px]">
-                      {item.tag || item.category}
-                    </span>
-                  </div>
-
-                  {/* Card Main Media Area */}
-                  {activeTab === 'reels' ? (
-                    <div className="flex-1 w-full relative bg-black flex items-center justify-center overflow-hidden group/video">
-                      <video
-                        src={item.videoSrc}
-                        poster={item.posterSrc}
-                        controls
-                        playsInline
-                        preload="none"
-                        className="w-full h-full object-cover"
-                        onClick={(e) => e.stopPropagation()}
-                      />
-                      {/* Overlay fallback if video isn't loaded */}
-                      {!item.videoSrc && (
-                        <div className="absolute inset-0 bg-dark-overlay/80 flex flex-col items-center justify-center gap-3 pointer-events-none">
-                          <Play className="w-12 h-12 text-white opacity-60" />
-                          <span className="text-white/50 text-xs font-mono">Video coming soon</span>
-                        </div>
-                      )}
-                    </div>
-                  ) : (
-                    <div className="flex-1 w-full relative overflow-hidden bg-light-tint flex flex-col justify-between p-4 space-y-3">
-                      <div className="w-full h-48 rounded-[12px] overflow-hidden relative shadow-inner">
-                        <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
-                      </div>
-                      <div className="space-y-2">
-                        <h3 className="font-display font-extrabold text-sm sm:text-base text-near-black leading-snug line-clamp-2">
-                          {item.title}
-                        </h3>
-                        <p className="text-body text-xs leading-relaxed line-clamp-3 font-medium">
-                          {item.caption}
-                        </p>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Card Footer Strip with Instagram Link */}
-                  <div className="p-3.5 bg-white border-t border-muted/30 flex items-center justify-between text-xs font-mono text-muted">
-                    <div className="flex items-center gap-3">
-                      <span className="flex items-center gap-1 text-primary font-bold">
-                        <Heart className="w-3.5 h-3.5 fill-current" /> {item.likes}
-                      </span>
-                      <span className="flex items-center gap-1 text-body">
-                        <MessageCircle className="w-3.5 h-3.5" /> {item.comments}
-                      </span>
-                    </div>
-                    <a 
-                      href={item.instagramUrl || "https://www.instagram.com/acesdit/"}
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 bg-primary/10 hover:bg-primary text-primary hover:text-white text-[11px] font-bold px-3 py-1.5 rounded-[4px] transition-all cursor-pointer"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <span>Instagram</span>
-                      <ExternalLink className="w-3 h-3" />
-                    </a>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </AnimatePresence>
-        </motion.div>
-      </div>
-
-      {/* Navigation Buttons & Indicators */}
-      <div className="flex items-center justify-between w-full max-w-sm px-6">
-        <button
-          onClick={handlePrev}
-          className="p-3 bg-white hover:bg-light-tint border border-muted/50 text-muted hover:text-primary hover:border-primary rounded-full transition-all cursor-pointer shadow-md active:scale-95"
-          aria-label="Previous slide"
-        >
-          <ChevronLeft className="w-5 h-5" />
-        </button>
-
-        <div className="flex gap-2 items-center">
-          {activeList.map((_, idx) => (
+        {/* Tab Switcher: REELS / POSTS */}
+        <div className="flex justify-center items-center px-4">
+          <div className="inline-flex p-1 rounded-full bg-[#faece9] border border-[#edd7d1] shadow-inner">
             <button
-              key={idx}
-              onClick={() => setActiveIndex(idx)}
-              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                idx === activeIndex 
-                  ? 'w-7 bg-primary shadow-brand-glow' 
-                  : 'w-2 bg-muted/40 hover:bg-muted'
+              type="button"
+              onClick={() => setActiveTab('reels')}
+              className={`px-8 py-2 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-250 cursor-pointer ${
+                activeTab === 'reels'
+                  ? 'bg-primary text-white shadow-brand-glow'
+                  : 'text-muted hover:text-near-black hover:bg-white/40'
               }`}
-              aria-label={`Slide ${idx + 1}`}
-            />
-          ))}
+            >
+              Reels
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab('posts')}
+              className={`px-8 py-2 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-250 cursor-pointer ${
+                activeTab === 'posts'
+                  ? 'bg-primary text-white shadow-brand-glow'
+                  : 'text-muted hover:text-near-black hover:bg-white/40'
+              }`}
+            >
+              Posts
+            </button>
+          </div>
         </div>
 
-        <button
-          onClick={handleNext}
-          className="p-3 bg-white hover:bg-light-tint border border-muted/50 text-muted hover:text-primary hover:border-primary rounded-full transition-all cursor-pointer shadow-md active:scale-95"
-          aria-label="Next slide"
-        >
-          <ChevronRight className="w-5 h-5" />
-        </button>
+        {/* Carousel Viewport Container (Spans full viewport width with far-left and far-right desktop arrow buttons) */}
+        <div className="relative w-full flex flex-col items-center justify-center overflow-hidden py-2 px-0">
+          
+          {/* Left Arrow Button (Only on PCs / Laptops, vertically centered at far left edge) */}
+          <button
+            onClick={handlePrev}
+            className="hidden md:flex absolute left-4 lg:left-8 xl:left-12 top-1/2 -translate-y-1/2 z-40 w-12 h-12 lg:w-14 lg:h-14 bg-white/95 hover:bg-white text-near-black hover:text-primary rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-brand-glow border border-[#e8e6e1] hover:border-primary/50 transition-all duration-200 cursor-pointer items-center justify-center hover:scale-110 active:scale-95 backdrop-blur-md"
+            aria-label="Previous card"
+          >
+            <ChevronLeft className="w-6 h-6 lg:w-7 lg:h-7" />
+          </button>
+
+          {/* Right Arrow Button (Only on PCs / Laptops, vertically centered at far right edge) */}
+          <button
+            onClick={handleNext}
+            className="hidden md:flex absolute right-4 lg:right-8 xl:right-12 top-1/2 -translate-y-1/2 z-40 w-12 h-12 lg:w-14 lg:h-14 bg-white/95 hover:bg-white text-near-black hover:text-primary rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-brand-glow border border-[#e8e6e1] hover:border-primary/50 transition-all duration-200 cursor-pointer items-center justify-center hover:scale-110 active:scale-95 backdrop-blur-md"
+            aria-label="Next card"
+          >
+            <ChevronRight className="w-6 h-6 lg:w-7 lg:h-7" />
+          </button>
+
+          {/* Swiper Animated Track */}
+          <div className="relative w-full h-[600px] sm:h-[650px] lg:h-[700px] flex items-center justify-center [perspective:1400px]">
+            
+            <motion.div
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.15}
+              onDragEnd={handleDragEnd}
+              className="relative w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing"
+              style={{ touchAction: 'pan-y' }}
+            >
+              {activeList.map((item, idx) => {
+                // Shortest circular distance calculation
+                let offset = idx - activeIndex;
+                if (offset > total / 2) offset -= total;
+                if (offset < -total / 2) offset += total;
+
+                const isCenter = offset === 0;
+                const isVisible = Math.abs(offset) <= 2.5;
+
+                return (
+                  <motion.div
+                    key={`${activeTab}-${item.id}`}
+                    onClick={() => handleCardClick(idx, item)}
+                    initial={false}
+                    animate={{
+                      scale: isCenter ? 1 : Math.abs(offset) <= 1.2 ? 0.88 : 0.77,
+                      opacity: isCenter ? 1 : Math.abs(offset) <= 1.2 ? 0.82 : isVisible ? 0.52 : 0,
+                      x: offset * cardSpacing,
+                      rotateY: offset * -8,
+                      zIndex: isCenter ? 30 : 20 - Math.abs(Math.round(offset)) * 5,
+                    }}
+                    transition={{
+                      type: 'spring',
+                      stiffness: 280,
+                      damping: 30,
+                      mass: 0.8,
+                    }}
+                    className={`absolute w-[88vw] max-w-[340px] sm:w-[380px] md:w-[410px] lg:w-[440px] h-[550px] sm:h-[600px] lg:h-[650px] flex-shrink-0 cursor-pointer rounded-[32px] overflow-hidden border bg-white flex flex-col justify-between transition-all duration-300 p-4 sm:p-5 ${
+                      isCenter 
+                        ? 'shadow-[0_24px_70px_rgba(178,43,47,0.22),0_6px_20px_rgba(0,0,0,0.08)] border-primary/50 ring-2 ring-primary/20' 
+                        : 'shadow-[0_12px_36px_rgba(0,0,0,0.08)] border-[#e8e6e1]'
+                    }`}
+                  >
+                    {/* Card Top Header Strip */}
+                    <div className="flex items-center justify-between pb-3 border-b border-muted/20">
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 p-0.5 flex items-center justify-center shadow-sm">
+                          <div className="w-full h-full bg-white rounded-full flex items-center justify-center p-0.5">
+                            <InstagramIcon className="w-full h-full" />
+                          </div>
+                        </div>
+                        <span className="font-bold text-xs sm:text-sm text-near-black font-sans tracking-tight hover:text-primary transition-colors">
+                          {item.author}
+                        </span>
+                      </div>
+
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-[#F9EFE6] text-[#A67C2E] border border-[#ECD9C6] px-2.5 py-1 rounded-[4px]">
+                          {item.tag || item.category}
+                        </span>
+                        {isCenter && (
+                          <span className="text-primary/70 text-[10px] font-bold flex items-center gap-0.5">
+                            <ExternalLink className="w-3 h-3" />
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Card Main Media Area (Edge-to-edge seamless body) */}
+                    {activeTab === 'reels' ? (
+                      /* ─── REEL CARD BODY ─── */
+                      <div className="flex-1 w-full mt-3 relative rounded-[24px] overflow-hidden bg-black flex items-center justify-center group/video shadow-inner">
+                        <video
+                          ref={(el) => (videoRefs.current[idx] = el)}
+                          src={item.videoSrc}
+                          poster={item.posterSrc}
+                          playsInline
+                          loop
+                          muted={isMuted ? true : idx !== activeReelIndex}
+                          autoPlay
+                          preload="auto"
+                          className="w-full h-full object-cover select-none pointer-events-none"
+                        />
+
+                        {/* Top Right Floating Sound Toggle Button on Center Card */}
+                        {isCenter && (
+                          <button
+                            onClick={toggleMute}
+                            className="absolute top-3.5 right-3.5 z-20 p-2.5 rounded-full bg-black/60 hover:bg-black/80 text-white backdrop-blur-md border border-white/20 transition-all cursor-pointer shadow-md active:scale-95"
+                            aria-label={isMuted ? 'Unmute reel' : 'Mute reel'}
+                            title={isMuted ? 'Click to unmute' : 'Click to mute'}
+                          >
+                            {isMuted ? (
+                              <VolumeX className="w-4 h-4 text-white/90" />
+                            ) : (
+                              <Volume2 className="w-4 h-4 text-emerald-400" />
+                            )}
+                          </button>
+                        )}
+
+                        {/* Bottom Gradient with Reel Title */}
+                        <div className="absolute inset-x-0 bottom-0 z-10 p-4 sm:p-5 bg-gradient-to-t from-black/90 via-black/50 to-transparent pointer-events-none text-left">
+                          <h3 className="font-display text-sm sm:text-base font-bold text-white leading-snug drop-shadow-md">
+                            {item.title}
+                          </h3>
+                          {item.subtitle && (
+                            <p className="text-[11px] sm:text-xs text-white/80 font-sans line-clamp-1 mt-0.5 font-medium">
+                              {item.subtitle}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    ) : (
+                      /* ─── POST CARD BODY ─── */
+                      <div className="flex-1 w-full mt-2 flex flex-col justify-between overflow-hidden">
+                        <div className="w-full h-56 sm:h-64 lg:h-72 rounded-[24px] overflow-hidden relative shadow-sm mt-1 bg-light-tint flex-shrink-0 border border-[#e8e6e1]">
+                          <img
+                            src={item.image}
+                            alt={item.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            draggable={false}
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
+                        </div>
+
+                        <div className="space-y-2 py-3 px-1 text-left flex-1 flex flex-col justify-center">
+                          <h3 className="font-display font-extrabold text-base sm:text-lg lg:text-xl text-near-black leading-snug line-clamp-2">
+                            {item.title}
+                          </h3>
+                          <p className="text-body text-xs sm:text-sm leading-relaxed font-sans font-medium line-clamp-3">
+                            {item.caption}
+                          </p>
+                        </div>
+                      </div>
+                    )}
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Bottom Pagination Dots & Mobile Navigation */}
+        <div className="flex items-center justify-center gap-3 pt-2">
+          {/* Mobile Prev Arrow */}
+          <button
+            onClick={handlePrev}
+            className="md:hidden p-2 rounded-full bg-white border border-[#e8e6e1] text-near-black hover:text-primary shadow-sm active:scale-95"
+            aria-label="Previous card"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+
+          {/* Dots */}
+          <div className="flex items-center gap-2">
+            {activeList.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setActiveIndex(idx)}
+                className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                  idx === activeIndex
+                    ? 'w-9 bg-primary shadow-brand-glow'
+                    : 'w-2.5 bg-muted/40 hover:bg-muted'
+                }`}
+                aria-label={`Card ${idx + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* Mobile Next Arrow */}
+          <button
+            onClick={handleNext}
+            className="md:hidden p-2 rounded-full bg-white border border-[#e8e6e1] text-near-black hover:text-primary shadow-sm active:scale-95"
+            aria-label="Next card"
+          >
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
+
+        {/* Active Item Caption Text below Carousel */}
+        <div className="text-center space-y-1 pt-1 px-4 max-w-2xl mx-auto">
+          <a
+            href={ACES_INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-display text-base sm:text-lg font-bold text-near-black hover:text-primary transition-colors inline-flex items-center gap-1.5"
+          >
+            <span>{activeList[activeIndex]?.title}</span>
+            <ExternalLink className="w-4 h-4 text-primary" />
+          </a>
+          <p className="text-body text-xs sm:text-sm leading-relaxed font-sans font-medium max-w-xl mx-auto line-clamp-2">
+            {activeTab === 'reels' 
+              ? activeList[activeIndex]?.subtitle 
+              : activeList[activeIndex]?.caption}
+          </p>
+        </div>
+
       </div>
     </div>
   );

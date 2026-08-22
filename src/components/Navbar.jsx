@@ -47,6 +47,18 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [location.pathname]);
 
+  // Prevent background scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
   const handleNav = (item) => {
     setIsOpen(false);
     if (location.pathname === '/') {
@@ -149,7 +161,7 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 28, stiffness: 260 }}
-              className="fixed top-0 right-0 bottom-0 z-50 w-80 max-w-[85vw] bg-white border-l border-muted/50 shadow-2xl flex flex-col justify-between"
+              className="fixed top-0 right-0 bottom-0 h-[100dvh] z-50 w-80 max-w-[85vw] bg-white border-l border-muted/50 shadow-2xl flex flex-col justify-between overscroll-none"
             >
               {/* Drawer Header */}
               <div className="p-5 border-b border-muted/30 bg-light-tint/60">
@@ -183,7 +195,7 @@ export default function Navbar() {
               </div>
 
               {/* Drawer Navigation Links */}
-              <div className="flex-1 overflow-y-auto px-6 py-6">
+              <div className="flex-1 overflow-y-auto overscroll-none px-6 py-6">
                 <nav className="flex flex-col space-y-4" role="menu">
                   {MENU_ITEMS.map((item) => {
                     const active = isItemActive(item);
