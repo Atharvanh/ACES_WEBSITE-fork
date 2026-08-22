@@ -10,7 +10,7 @@ export const BASE_REELS_DATA = [
     subtitle: 'High-energy coding sprints, mentorship & final pitches',
     author: 'aces.dit',
     videoSrc: '/videos/reel-1.mp4',
-    posterSrc: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&auto=format&fit=crop&q=80',
+    posterSrc: '/images/gallery/hackseries-25-1.jpg',
     instagramUrl: ACES_INSTAGRAM_URL,
     tag: 'Flagship Event'
   },
@@ -20,7 +20,7 @@ export const BASE_REELS_DATA = [
     subtitle: 'Neural networks, smart contracts, and real-time demos',
     author: 'aces.dit',
     videoSrc: '/videos/reel-2.mp4',
-    posterSrc: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format&fit=crop&q=80',
+    posterSrc: '/images/gallery/hackseries-25-8.jpg',
     instagramUrl: ACES_INSTAGRAM_URL,
     tag: 'Bootcamp'
   },
@@ -30,29 +30,29 @@ export const BASE_REELS_DATA = [
     subtitle: 'Autonomous rovers, IoT sensors, and embedded builds',
     author: 'aces.dit',
     videoSrc: '/videos/reel-3.mp4',
-    posterSrc: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&auto=format&fit=crop&q=80',
+    posterSrc: '/images/gallery/hackathon-main-1.jpg',
     instagramUrl: ACES_INSTAGRAM_URL,
     tag: 'Hardware Hub'
   },
   {
     id: 'reel-4',
-    title: 'Smart India Hackathon Victory 🏆',
-    subtitle: 'Celebrating 1st place among top national engineering colleges',
+    title: 'National Hackathon Pitch Finals 🏆',
+    subtitle: 'Celebrating top prototype pitches before our distinguished jury panel',
     author: 'aces.dit',
     videoSrc: '/videos/reel-4.mp4',
-    posterSrc: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&auto=format&fit=crop&q=80',
+    posterSrc: '/images/gallery/hackathon-main-20.jpg',
     instagramUrl: ACES_INSTAGRAM_URL,
     tag: 'National Award'
   },
   {
     id: 'reel-5',
-    title: 'Phoenix Annual Cultural Night',
-    subtitle: 'Acoustic performances, student talent, and awards ceremony',
+    title: 'Indo-German Tech & Academic Colloquium',
+    subtitle: 'Global perspectives, higher education, and research exchange',
     author: 'aces.dit',
     videoSrc: '/videos/reel-5.mp4',
-    posterSrc: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&auto=format&fit=crop&q=80',
+    posterSrc: '/images/gallery/german-event-1.jpg',
     instagramUrl: ACES_INSTAGRAM_URL,
-    tag: 'Campus Life'
+    tag: 'Global Exchange'
   },
   {
     id: 'reel-6',
@@ -60,17 +60,17 @@ export const BASE_REELS_DATA = [
     subtitle: '40+ student innovations, live interactive project demos',
     author: 'aces.dit',
     videoSrc: '/videos/reel-6.mp4',
-    posterSrc: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&auto=format&fit=crop&q=80',
+    posterSrc: '/images/gallery/hackseries-25-16.jpg',
     instagramUrl: ACES_INSTAGRAM_URL,
     tag: 'Exhibition'
   },
   {
     id: 'reel-7',
     title: 'Core Committee Behind-The-Scenes',
-    subtitle: 'Late night brainstorming, video editing, and stage prep',
+    subtitle: 'Late night brainstorming, stage management, and event execution',
     author: 'aces.dit',
     videoSrc: '/videos/reel-7.mp4',
-    posterSrc: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop&q=80',
+    posterSrc: '/images/gallery/hackathon-bts-1.jpg',
     instagramUrl: ACES_INSTAGRAM_URL,
     tag: 'Behind The Scenes'
   },
@@ -80,7 +80,7 @@ export const BASE_REELS_DATA = [
     subtitle: 'First pull requests, Git mastery, and contributor onboarding',
     author: 'aces.dit',
     videoSrc: '/videos/reel-8.mp4',
-    posterSrc: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&auto=format&fit=crop&q=80',
+    posterSrc: '/images/gallery/hackseries-01-1.jpg',
     instagramUrl: ACES_INSTAGRAM_URL,
     tag: 'Open Source'
   },
@@ -90,19 +90,19 @@ export const BASE_REELS_DATA = [
     subtitle: 'Speed coding battles, algorithmic rounds & leaderboards',
     author: 'aces.dit',
     videoSrc: '/videos/reel-9.mp4',
-    posterSrc: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&auto=format&fit=crop&q=80',
+    posterSrc: '/images/gallery/hackseries-25-25.jpg',
     instagramUrl: ACES_INSTAGRAM_URL,
     tag: 'Coding Battle'
   },
   {
     id: 'reel-10',
-    title: 'Technical Paper Presentation Summit',
-    subtitle: 'Publishing research, neural architecture designs & keynotes',
+    title: 'Technical Mentorship & Code Review',
+    subtitle: 'System architecture reviews, API debugging & live insights',
     author: 'aces.dit',
     videoSrc: '/videos/reel-10.mp4',
-    posterSrc: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&auto=format&fit=crop&q=80',
+    posterSrc: '/images/gallery/hackathon-main-14.jpg',
     instagramUrl: ACES_INSTAGRAM_URL,
-    tag: 'Research'
+    tag: 'Mentorship'
   },
   {
     id: 'reel-11',
@@ -110,19 +110,19 @@ export const BASE_REELS_DATA = [
     subtitle: 'Kubernetes orchestration, CI/CD pipelines & cloud native',
     author: 'aces.dit',
     videoSrc: '/videos/reel-11.mp4',
-    posterSrc: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&q=80',
+    posterSrc: '/images/gallery/hackseries-25-35.jpg',
     instagramUrl: ACES_INSTAGRAM_URL,
     tag: 'Cloud & DevOps'
   },
   {
     id: 'reel-12',
-    title: 'ACES Alumni Meet & Industry Insights',
-    subtitle: 'Panel discussions with senior engineers from top tech firms',
+    title: 'Student Leadership & Induction Gala',
+    subtitle: 'Welcoming the new domain leads and organizing officers',
     author: 'aces.dit',
     videoSrc: '/videos/reel-12.mp4',
-    posterSrc: 'https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&auto=format&fit=crop&q=80',
+    posterSrc: '/images/gallery/hackathon-bts-5.jpg',
     instagramUrl: ACES_INSTAGRAM_URL,
-    tag: 'Alumni Network'
+    tag: 'Leadership'
   }
 ];
 
@@ -177,7 +177,7 @@ function buildReelsData() {
         subtitle: 'Latest video reel from ACES DIT',
         author: 'aces.dit',
         videoSrc: videoSrc,
-        posterSrc: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&auto=format&fit=crop&q=80',
+        posterSrc: '/images/gallery/hackseries-25-1.jpg',
         instagramUrl: ACES_INSTAGRAM_URL,
         tag: 'Instagram Reel'
       });
@@ -192,62 +192,123 @@ export const REELS_DATA = buildReelsData();
 export const POSTS_DATA = [
   {
     id: 'post-1',
-    title: 'National Coding Championship 2026 Winners!',
-    caption: 'Huge congratulations to our algorithm team for securing 1st place among 120+ colleges at the Inter-College Tech Cup.',
+    title: 'HackSeries 25th Edition: Flagship Kickoff! ⚡',
+    caption: 'Over 500+ passionate engineers assembled at the DIT Main Auditorium for the 25th edition of HackSeries. 36 hours of non-stop code, innovation, and teamwork begin!',
     author: 'aces.dit',
-    image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&auto=format&fit=crop&q=80',
+    image: '/images/gallery/hackseries-25-1.jpg',
     date: '2 Days Ago',
-    category: 'Achievement',
+    category: 'Hackathon',
     instagramUrl: ACES_INSTAGRAM_URL
   },
   {
     id: 'post-2',
-    title: 'Inaugural TechXpo 2026 Showcase Recap',
-    caption: '40+ student innovations on display ranging from embedded IoT devices to generative AI agents. Thank you all for attending!',
+    title: 'Midnight Coding Sprints in Full Swing 🌙',
+    caption: 'Laptops glowing, coffee flowing, and terminals alive! Participants pushing live commits and refining system architecture into the early morning hours.',
     author: 'aces.dit',
-    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&auto=format&fit=crop&q=80',
-    date: '5 Days Ago',
-    category: 'Exhibition',
+    image: '/images/gallery/hackseries-25-8.jpg',
+    date: '3 Days Ago',
+    category: 'Technical',
     instagramUrl: ACES_INSTAGRAM_URL
   },
   {
     id: 'post-3',
-    title: 'Mastering Full-Stack & System Design Workshop',
-    caption: 'Interactive live coding session covering microservices, caching strategies, and frontend performance optimizations.',
+    title: 'National Hackathon Pitch Stage Finals 🚀',
+    caption: 'Top finalist teams presenting working prototypes across AI, Web3, and HealthTech live to our esteemed panel of jury members and industry evaluators.',
     author: 'aces.dit',
-    image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&auto=format&fit=crop&q=80',
-    date: '1 Week Ago',
-    category: 'Workshop',
+    image: '/images/gallery/hackathon-main-1.jpg',
+    date: '5 Days Ago',
+    category: 'Hackathon',
     instagramUrl: ACES_INSTAGRAM_URL
   },
   {
     id: 'post-4',
-    title: 'Alumni Mentorship & Career Guidance Meet',
-    caption: 'Welcoming back our distinguished alumni leaders from Google, Microsoft, and Uber for a special career Q&A panel.',
+    title: 'Grand Awards Ceremony & Winner Felicitation 🏆',
+    caption: 'Celebrating outstanding brilliance! Heartiest congratulations to all winning squads and participants for setting new benchmarks in problem solving.',
     author: 'aces.dit',
-    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&auto=format&fit=crop&q=80',
-    date: '2 Weeks Ago',
-    category: 'Community',
+    image: '/images/gallery/hackathon-main-20.jpg',
+    date: '1 Week Ago',
+    category: 'Achievement',
     instagramUrl: ACES_INSTAGRAM_URL
   },
   {
     id: 'post-5',
-    title: 'Open Source Genesis: Git & GitHub Bootcamp',
-    caption: 'Empowering 200+ first and second year engineers to make their first open source contributions and pull requests.',
+    title: 'Indo-German Technical Colloquium 🌍',
+    caption: 'Honored to host distinguished international guest faculty for an insightful session on global engineering careers, autonomous robotics, and higher education research.',
     author: 'aces.dit',
-    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop&q=80',
+    image: '/images/gallery/german-event-1.jpg',
+    date: '1 Week Ago',
+    category: 'International',
+    instagramUrl: ACES_INSTAGRAM_URL
+  },
+  {
+    id: 'post-6',
+    title: 'The Backstage Heroes: ACES Organizing Crew 🤝',
+    caption: 'From stage logistics and technical infrastructure to participant support and live coverage—huge shoutout to our event managers and volunteers!',
+    author: 'aces.dit',
+    image: '/images/gallery/hackathon-bts-1.jpg',
+    date: '2 Weeks Ago',
+    category: 'Behind The Scenes',
+    instagramUrl: ACES_INSTAGRAM_URL
+  },
+  {
+    id: 'post-7',
+    title: '1-on-1 Mentor Review & Architecture Diagnostics 💻',
+    caption: 'Industry mentors providing actionable technical feedback, cloud architecture guidance, and git review directly to team workstations.',
+    author: 'aces.dit',
+    image: '/images/gallery/hackseries-25-16.jpg',
+    date: '2 Weeks Ago',
+    category: 'Mentorship',
+    instagramUrl: ACES_INSTAGRAM_URL
+  },
+  {
+    id: 'post-8',
+    title: 'Global Education & Academic Synergy 🎓',
+    caption: 'Students engaging in interactive Q&A discussions exploring higher studies, research fellowships, and overseas industry collaborations.',
+    author: 'aces.dit',
+    image: '/images/gallery/german-event-5.jpg',
+    date: '3 Weeks Ago',
+    category: 'Workshops',
+    instagramUrl: ACES_INSTAGRAM_URL
+  },
+  {
+    id: 'post-9',
+    title: 'HackSeries 0.1: Empowering Fresh Builders 🌱',
+    caption: 'First-year engineers getting their hands dirty with Git, modern web frameworks, and algorithmic problem solving at the freshman sprint.',
+    author: 'aces.dit',
+    image: '/images/gallery/hackseries-01-1.jpg',
     date: '3 Weeks Ago',
     category: 'Bootcamp',
     instagramUrl: ACES_INSTAGRAM_URL
   },
   {
-    id: 'post-6',
-    title: 'Annual Phoenix Cultural Night Celebrations',
-    caption: 'An unforgettable evening of live band performances, cultural dance, and student felicitation ceremonies.',
+    id: 'post-10',
+    title: 'Collaborative Dev Hub in Full Energy 🔥',
+    caption: 'Cross-functional engineering squads collaborating seamlessly—designers, backend engineers, and AI modelers building together under one roof.',
     author: 'aces.dit',
-    image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&auto=format&fit=crop&q=80',
+    image: '/images/gallery/hackseries-25-25.jpg',
     date: '1 Month Ago',
-    category: 'Cultural',
+    category: 'Technical',
+    instagramUrl: ACES_INSTAGRAM_URL
+  },
+  {
+    id: 'post-11',
+    title: 'Jury Evaluation & Code Inspection 🔍',
+    caption: 'Evaluating deployment scalability, database schemas, and UX polish as teams demonstrate their completed projects.',
+    author: 'aces.dit',
+    image: '/images/gallery/hackathon-main-14.jpg',
+    date: '1 Month Ago',
+    category: 'Workshops',
+    instagramUrl: ACES_INSTAGRAM_URL
+  },
+  {
+    id: 'post-12',
+    title: 'ACES Leadership & Strategy Induction ✨',
+    caption: 'Welcoming the new student officers and domain leads dedicated to driving technical excellence and community growth for the upcoming year.',
+    author: 'aces.dit',
+    image: '/images/gallery/hackseries-25-35.jpg',
+    date: '1 Month Ago',
+    category: 'Leadership',
     instagramUrl: ACES_INSTAGRAM_URL
   }
 ];
+
