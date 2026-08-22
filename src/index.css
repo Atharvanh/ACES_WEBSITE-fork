@@ -120,19 +120,17 @@ html {
 
 /* ─── Member Card Styles & Hover Lift/3D Animation ─── */
 .member-card-front {
-  border: 2px solid transparent !important;
-  background: linear-gradient(#ffffff, #ffffff) padding-box,
-              linear-gradient(to top right, #f59e0b, #f43f5e, #9333ea) border-box !important;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08) !important;
-  transition: box-shadow 350ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+  background-color: #ffffff !important;
+  border: 1px solid rgba(178, 43, 47, 0.35) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(209, 165, 80, 0.12) !important;
+  transition: border-color 350ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 350ms cubic-bezier(0.22, 1, 0.36, 1) !important;
 }
 
 .member-card-back {
-  border: 2px solid transparent !important;
-  background: linear-gradient(#ffffff, #ffffff) padding-box,
-              linear-gradient(to top right, #f59e0b, #f43f5e, #9333ea) border-box !important;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08) !important;
-  transition: box-shadow 350ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+  background-color: #ffffff !important;
+  border: 1px solid rgba(178, 43, 47, 0.25) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(209, 165, 80, 0.08) !important;
+  transition: border-color 350ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 350ms cubic-bezier(0.22, 1, 0.36, 1) !important;
 }
 
 /* Social links styling for premium ivory theme */
@@ -169,9 +167,9 @@ html {
 
   .member-card-container:hover .member-card-front,
   .member-card-container:hover .member-card-back {
+    border-color: #b22b2f !important;
     box-shadow: 
-      0 24px 70px rgba(244, 63, 94, 0.22),
-      0 6px 20px rgba(0, 0, 0, 0.08),
-      0 0 0 2px rgba(244, 63, 94, 0.2) !important;
+      0 24px 48px -8px rgba(178, 43, 47, 0.35), 
+      0 8px 20px rgba(0, 0, 0, 0.15) !important;
   }
 }
