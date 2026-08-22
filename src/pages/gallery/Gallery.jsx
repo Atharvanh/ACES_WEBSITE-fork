@@ -167,7 +167,7 @@ export default function Gallery({ embedded = false }) {
       {/* SECTION 1: HERO SHOWCASE (Compact Marquee Background + Glassmorphism Center Card) */}
       <section 
         ref={heroRef}
-        className={`relative ${embedded ? 'h-screen' : 'h-screen mt-4'} overflow-hidden flex items-center justify-center`}
+        className={`relative ${embedded ? 'h-screen' : 'h-[340px] sm:h-[400px] mt-4'} overflow-hidden flex items-center justify-center`}
       >
         {/* Ambient Glow */}
         <div 
