@@ -80,14 +80,8 @@ export default function Navbar() {
   const handleNav = (item) => {
     setIsOpen(false);
     
-    const isHomePageSection = ['home', 'who-are-we', 'golden-moments', 'social'].includes(item.id);
-
-    if (isHomePageSection) {
-      if (location.pathname !== '/') {
-        navigate('/', { state: { scrollTo: item.id } });
-        return;
-      }
-      
+    // When on Home page, all navbar items scroll to their respective sections on the Home page
+    if (location.pathname === '/') {
       const el = document.getElementById(item.id);
       if (el) {
         const yOffset = -70;
@@ -97,8 +91,19 @@ export default function Navbar() {
         return;
       }
     }
-    
-    navigate(item.path);
+
+    // When on dedicated pages (/members or /gallery):
+    if (item.id === 'gallery' || item.id === 'members') {
+      if (location.pathname === item.path) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        navigate(item.path);
+      }
+      return;
+    }
+
+    // For all other items, redirect to Home page and scroll to that section
+    navigate('/', { state: { scrollTo: item.id } });
   };
 
   const isItemActive = (item) => {
