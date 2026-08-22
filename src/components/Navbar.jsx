@@ -5,13 +5,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { InstagramIcon, LinkedinIcon, GithubIcon } from './SocialIcons';
 
 const MENU_ITEMS = [
-  { id: 'home',           label: 'Home',            path: '/' },
-  { id: 'who-are-we',     label: 'Who Are We',       path: '/who-are-we' },
-  { id: 'golden-moments', label: 'Golden Moments',   path: '/golden-moments' },
-  { id: 'feed',           label: 'Blogs & Feed',     path: '/feed' },
-  { id: 'gallery',        label: 'Gallery',          path: '/gallery' },
-  { id: 'social',         label: 'Social',           path: '/social' },
-  { id: 'members',        label: 'Members',          path: '/members' },
+  { id: 'home', label: 'Home', path: '/' },
+  { id: 'who-are-we', label: 'Who Are We', path: '/who-are-we' },
+  { id: 'golden-moments', label: 'Golden Moments', path: '/golden-moments' },
+  { id: 'feed', label: 'Blogs & Feed', path: '/feed' },
+  { id: 'gallery', label: 'Gallery', path: '/gallery' },
+  { id: 'social', label: 'Social', path: '/social' },
+  { id: 'members', label: 'Members', path: '/members' },
 ];
 
 export default function Navbar() {
@@ -73,12 +73,11 @@ export default function Navbar() {
   return (
     <>
       {/* ─── Desktop Floating Pill Navigation Bar (Windows / Large Screens Only) ─── */}
-      <nav 
-        className={`fixed top-5 left-1/2 -translate-x-1/2 z-40 hidden md:flex items-center gap-1.5 px-3 py-1.5 bg-white/92 backdrop-blur-md border border-[#e8e6e1] rounded-full transition-all duration-300 ${
-          scrolled 
-            ? 'shadow-[0_8px_32px_rgba(0,0,0,0.12)] border-primary/25' 
+      <nav
+        className={`fixed top-5 left-1/2 -translate-x-1/2 z-40 hidden md:flex items-center gap-1.5 px-3 py-1.5 bg-white/92 backdrop-blur-md border border-[#e8e6e1] rounded-full transition-all duration-300 ${scrolled
+            ? 'shadow-[0_8px_32px_rgba(0,0,0,0.12)] border-primary/25'
             : 'shadow-[0_4px_16px_rgba(0,0,0,0.06)]'
-        }`}
+          }`}
         aria-label="Main Navigation"
       >
         {/* ACES Logo Pill with Phoenix */}
@@ -87,12 +86,12 @@ export default function Navbar() {
           className="flex items-center gap-2 pl-1.5 pr-3 py-1 text-left group focus:outline-none cursor-pointer border-r border-muted/30 mr-1"
           title="ACES Home"
         >
-          <div className="w-7 h-7 rounded-full bg-primary flex items-center justify-center text-white shadow-brand-glow group-hover:scale-105 transition-transform overflow-hidden p-1">
-            <img src="/phoenix.png" alt="ACES" className="w-full h-full object-contain" />
+          <div className="w-8 h-8 flex items-center justify-center group-hover:scale-105 transition-transform">
+            <img src="/mascot.svg" alt="ACES Mascot" className="w-full h-full object-contain" />
           </div>
-          <span className="font-display font-black tracking-wider text-primary text-sm">
+          {/* <span className="font-display font-black tracking-wider text-primary text-sm">
             ACES
-          </span>
+          </span> */}
         </button>
 
         {/* Nav Links */}
@@ -103,11 +102,10 @@ export default function Navbar() {
               <button
                 key={item.id}
                 onClick={() => handleNav(item)}
-                className={`relative px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-200 cursor-pointer ${
-                  active
+                className={`relative px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-200 cursor-pointer ${active
                     ? 'text-white bg-primary shadow-[0_2px_12px_rgba(178,43,47,0.3)]'
                     : 'text-muted hover:text-primary hover:bg-light-tint'
-                }`}
+                  }`}
               >
                 {item.label}
               </button>
@@ -194,15 +192,13 @@ export default function Navbar() {
                       <div
                         key={item.id}
                         onClick={() => handleNav(item)}
-                        className={`group cursor-pointer py-2 border-r-2 pr-3 transition-all duration-150 ${
-                          active ? 'border-primary' : 'border-transparent hover:border-primary'
-                        }`}
+                        className={`group cursor-pointer py-2 border-r-2 pr-3 transition-all duration-150 ${active ? 'border-primary' : 'border-transparent hover:border-primary'
+                          }`}
                         role="menuitem"
                       >
                         <div className="flex items-center justify-between">
-                          <span className={`text-base font-medium group-hover:text-primary group-hover:translate-x-1 transition-all duration-150 inline-block ${
-                            active ? 'text-primary font-semibold' : 'text-muted'
-                          }`}>
+                          <span className={`text-base font-medium group-hover:text-primary group-hover:translate-x-1 transition-all duration-150 inline-block ${active ? 'text-primary font-semibold' : 'text-muted'
+                            }`}>
                             {item.label}
                           </span>
                           <ArrowRight className="w-4 h-4 text-primary opacity-0 group-hover:opacity-100 transition-opacity" />
