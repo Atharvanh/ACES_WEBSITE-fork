@@ -129,7 +129,7 @@ export default function Gallery({ embedded = false }) {
   const currentActiveItem = filteredItems[activeSlideIndex] || filteredItems[0];
 
   return (
-    <div id="gallery" className="w-full bg-white text-dark-overlay">
+    <div id="gallery" className="w-full text-dark-overlay">
       {/* Embedded CSS for keyframes & responsive marquee styling */}
       <style>{`
         @keyframes galleryMarqueeUp {
@@ -167,12 +167,12 @@ export default function Gallery({ embedded = false }) {
       {/* SECTION 1: HERO SHOWCASE (Full-Screen Marquee Background + Glassmorphism Center Card) */}
       <section 
         ref={heroRef}
-        className={`relative ${embedded ? 'h-screen' : 'h-screen mt-4'} overflow-hidden flex items-center justify-center bg-[#FFF4F2]`}
+        className={`relative ${embedded ? 'h-screen' : 'h-screen mt-4'} overflow-hidden flex items-center justify-center`}
       >
-        {/* Ambient Glow */}
+        {/* Ambient Glow (handled by parent page) */}
         <div 
           className="absolute inset-0 pointer-events-none -z-10" 
-          style={{ background: 'radial-gradient(circle at 50% 50%, rgba(209,165,80,0.18) 0%, rgba(178,43,47,0.08) 50%, transparent 80%)' }}
+          style={{ background: 'transparent' }}
         />
 
         {/* Marquee Background Container */}

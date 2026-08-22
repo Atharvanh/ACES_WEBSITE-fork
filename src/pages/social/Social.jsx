@@ -133,17 +133,10 @@ export default function Social({ embedded = false }) {
   return (
     <div
       id="social"
-      className={`w-full bg-[#FFF4F2] ${
+      className={`w-full ${
         embedded ? 'pt-16 sm:pt-24 pb-16' : 'min-h-screen pt-28 sm:pt-36 pb-24'
-      } px-0 flex flex-col justify-center items-center overflow-hidden relative select-none`}
+      } px-0 flex flex-col justify-center items-center overflow-visible relative select-none`}
     >
-      {/* Background ambient warm glow (Full bleed, no hard boundaries) */}
-      <div
-        className="absolute inset-0 w-full h-full pointer-events-none -z-10"
-        style={{
-          background: 'radial-gradient(ellipse at 50% 50%, rgba(209,165,80,0.20) 0%, rgba(178,43,47,0.08) 50%, transparent 80%)'
-        }}
-      />
 
       <div className="w-full z-10 space-y-7">
         
