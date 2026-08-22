@@ -3,7 +3,7 @@
 
 export const ACES_INSTAGRAM_URL = 'https://www.instagram.com/aces.dit/';
 
-export const REELS_DATA = [
+export const BASE_REELS_DATA = [
   {
     id: 'reel-1',
     title: 'Flagship HackACES 36-Hour Hackathon',
@@ -125,6 +125,69 @@ export const REELS_DATA = [
     tag: 'Alumni Network'
   }
 ];
+
+// 🚀 Automatic Video Detection: Scans ALL .mp4 / .webm files in public/videos/
+const videoModules = import.meta.glob('/public/videos/*.{mp4,webm,mov,MP4,WEBM,MOV}', { eager: true });
+
+function formatTitleFromFilename(filename) {
+  const cleanName = filename
+    .replace(/\.[^/.]+$/, '') // remove extension
+    .replace(/[-_]+/g, ' ')   // replace dashes & underscores with space
+    .trim();
+
+  // Capitalize words
+  return cleanName
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
+
+// Build dynamic reels list from all detected video files
+function buildReelsData() {
+  const detectedKeys = Object.keys(videoModules);
+  
+  if (detectedKeys.length === 0) {
+    return BASE_REELS_DATA;
+  }
+
+  // Deduplicate and map each unique video file
+  const seenPaths = new Set();
+  const result = [];
+
+  detectedKeys.forEach((path, idx) => {
+    const filename = path.split('/').pop();
+    const videoSrc = `/videos/${filename}`;
+    
+    if (seenPaths.has(videoSrc)) return;
+    seenPaths.add(videoSrc);
+
+    // Check if we have pre-configured metadata matching this exact video path or name
+    const existing = BASE_REELS_DATA.find(r => r.videoSrc === videoSrc);
+
+    if (existing) {
+      result.push({
+        ...existing,
+        id: `reel-${filename.replace(/\.[^/.]+$/, '')}`,
+        videoSrc
+      });
+    } else {
+      result.push({
+        id: `auto-reel-${filename.replace(/\.[^/.]+$/, '')}-${idx}`,
+        title: formatTitleFromFilename(filename),
+        subtitle: 'Latest video reel from ACES DIT',
+        author: 'aces.dit',
+        videoSrc: videoSrc,
+        posterSrc: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&auto=format&fit=crop&q=80',
+        instagramUrl: ACES_INSTAGRAM_URL,
+        tag: 'Instagram Reel'
+      });
+    }
+  });
+
+  return result.length > 0 ? result : BASE_REELS_DATA;
+}
+
+export const REELS_DATA = buildReelsData();
 
 export const POSTS_DATA = [
   {
