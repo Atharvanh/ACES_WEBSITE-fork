@@ -164,10 +164,10 @@ export default function Gallery({ embedded = false }) {
         }
       `}</style>
 
-      {/* SECTION 1: HERO SHOWCASE (Expanded Full-Screen Marquee Background + Glassmorphism Center Card) */}
+      {/* SECTION 1: HERO SHOWCASE (Full-Screen Marquee Background + Glassmorphism Center Card) */}
       <section 
         ref={heroRef}
-        className={`relative ${embedded ? 'h-[85vh] min-h-[580px] sm:min-h-[680px]' : 'h-[85vh] min-h-[600px] sm:min-h-[700px] mt-4'} overflow-hidden flex items-center justify-center my-6 sm:my-10`}
+        className={`relative ${embedded ? 'h-screen' : 'h-screen mt-4'} overflow-hidden flex items-center justify-center`}
       >
         {/* Ambient Glow */}
         <div 

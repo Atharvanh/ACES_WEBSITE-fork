@@ -135,10 +135,10 @@ export default function GoldenMoments({ embedded = false }) {
                       damping: 30,
                       mass: 0.8,
                     }}
-                    className={`absolute w-[88vw] max-w-[360px] sm:w-[420px] md:w-[450px] lg:w-[480px] h-[600px] sm:h-[660px] lg:h-[720px] flex-shrink-0 cursor-pointer rounded-[32px] overflow-hidden border bg-white hover:border-primary/50 p-7 sm:p-8 flex flex-col justify-between transition-colors duration-200 ${
+                    className={`absolute w-[88vw] max-w-[360px] sm:w-[420px] md:w-[450px] lg:w-[480px] h-[600px] sm:h-[660px] lg:h-[720px] flex-shrink-0 cursor-pointer rounded-[32px] overflow-hidden border bg-white p-7 sm:p-8 flex flex-col justify-between transition-all duration-300 ${
                       isCenter 
-                        ? 'shadow-[0_24px_70px_rgba(178,43,47,0.22),0_6px_20px_rgba(0,0,0,0.08)] border-primary/50' 
-                        : 'shadow-[0_12px_36px_rgba(0,0,0,0.08)] border-[#e8e6e1]'
+                        ? 'shadow-[0_20px_50px_rgba(0,0,0,0.12),0_4px_12px_rgba(0,0,0,0.05)] border-primary/30' 
+                        : 'shadow-[0_8px_24px_rgba(0,0,0,0.06)] border-[#e8e6e1]'
                     }`}
                   >
                     {/* Brand / Event Tagline & Year (Clean Flex Row - Zero Overlap) */}
