@@ -167,6 +167,7 @@ export default function Navbar() {
           aria-label="Open menu"
         >
           <Menu className="w-5 h-5 text-current transition-transform group-hover:scale-110" />
+
         </button>
       </div>
 
@@ -197,8 +198,8 @@ export default function Navbar() {
               <div className="p-5 border-b border-muted/30 bg-light-tint/60">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 flex items-center justify-center">
-                      <img src="/mascot.svg" alt="ACES Mascot" className="w-full h-full object-contain" />
+                    <div className="w-12 h-12 flex items-center justify-center">
+                      <img src="/aces-logo-gold.png" alt="ACES Gold Logo" className="w-full h-full object-contain" />
                     </div>
                     <div>
                       <div className="flex items-center space-x-2">
