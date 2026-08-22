@@ -1,52 +1,58 @@
 export const goldenMoments = [
   {
     id: "gm-1",
-    title: "HackSeries 25th Grand Opening",
-    year: "2025",
-    description: "Inaugural address and briefing 500+ participants on national problem statements at the flagship 36-hour sprint.",
-    image: "/images/gallery/hackseries-25-1.jpg"
+    eventName: "Hackathon",
+    title: "National Hackathon Flagship",
+    year: "2026",
+    description: "36 hours of non-stop innovation, live mentor evaluations, and finalist stage prototype pitches.",
+    image: "/images/golden-moments/gm-hackathon.jpg"
   },
   {
     id: "gm-2",
-    title: "National Hackathon Finalist Stage",
-    year: "2026",
-    description: "Top engineering teams demonstrating working full-stack and AI prototypes to industry jury members.",
-    image: "/images/gallery/hackathon-main-1.jpg"
+    eventName: "HackSeries 00",
+    title: "HackSeries 00 Inaugural Edition",
+    year: "2025",
+    description: "The foundational flagship hackathon uniting 500+ builders to create impactful open-source tools.",
+    image: "/images/golden-moments/gm-hackseries-00.jpg"
   },
   {
     id: "gm-3",
-    title: "Indo-German Tech & Academic Delegation",
+    eventName: "Acunetix",
+    title: "Acunetix National Tech Symposium",
     year: "2026",
-    description: "International faculty and tech leaders hosting bilateral talks on future robotics and computing research.",
-    image: "/images/gallery/german-event-1.jpg"
+    description: "Annual technical extravaganza featuring coding olympiads, project expos, and robotics showcases.",
+    image: "/images/golden-moments/gm-acunetix.jpg"
   },
   {
     id: "gm-4",
-    title: "Overnight Collaborative Coding Sprint",
+    eventName: "Hacktoberfest",
+    title: "Hacktoberfest Open Source Sprint",
     year: "2025",
-    description: "Over 400 developers actively pushing code and deploying microservices throughout the 24-hour hackathon floor.",
-    image: "/images/gallery/hackseries-25-8.jpg"
+    description: "Empowering students to master Git workflows and make verified open-source contributions.",
+    image: "/images/golden-moments/gm-hacktoberfest.jpg"
   },
   {
     id: "gm-5",
-    title: "ACES Operations & Organizing Core",
-    year: "2026",
-    description: "The hardworking event managers, logistics team, and crew behind the seamless execution of our flagship events.",
-    image: "/images/gallery/hackathon-bts-1.jpg"
+    eventName: "HackSeries 0.1",
+    title: "HackSeries 0.1 Freshman Edition",
+    year: "2025",
+    description: "Hands-on rapid prototyping and coding mentorship designed for first-year engineers.",
+    image: "/images/golden-moments/gm-hackseries-01.jpg"
   },
   {
     id: "gm-6",
-    title: "Industry Mentorship & Architecture Review",
-    year: "2025",
-    description: "Technical mentors providing live git and architecture feedback to budding student innovators.",
-    image: "/images/gallery/hackseries-25-16.jpg"
+    eventName: "Indo-German Exchange",
+    title: "Indo-German Academic & Tech Colloquium",
+    year: "2026",
+    description: "Distinguished international faculty sharing insights on robotics research and global education.",
+    image: "/images/golden-moments/gm-indo-german.jpg"
   },
   {
     id: "gm-7",
-    title: "Grand Felicitation & Awards Gala",
+    eventName: "ACES Organizing Crew",
+    title: "ACES Operations & Leadership Core",
     year: "2026",
-    description: "Honoring top hackathon innovators, outstanding contributors, and student leaders on the main auditorium stage.",
-    image: "/images/gallery/hackathon-main-20.jpg"
+    description: "The dedicated committee organizing flawless logistics, stage setups, and live coverage.",
+    image: "/images/golden-moments/gm-aces-crew.jpg"
   }
 ];
-

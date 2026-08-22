@@ -141,10 +141,10 @@ export default function GoldenMoments({ embedded = false }) {
                         : 'shadow-[0_12px_36px_rgba(0,0,0,0.08)] border-[#e8e6e1]'
                     }`}
                   >
-                    {/* Brand Tagline */}
+                    {/* Brand / Event Tagline */}
                     <div className="text-center space-y-1 pt-1">
-                      <span className="text-xs sm:text-sm font-sans tracking-[0.25em] uppercase font-black text-secondary">
-                        ACES DIT PUNE
+                      <span className="text-xs sm:text-sm font-sans tracking-[0.2em] uppercase font-black text-secondary">
+                        {moment.eventName ? `EVENT • ${moment.eventName}` : 'ACES DIT PUNE'}
                       </span>
                     </div>
 
@@ -199,7 +199,7 @@ export default function GoldenMoments({ embedded = false }) {
         {/* Event / Photo Detail caption below card */}
         <div className="text-center space-y-2 pt-2 px-4 max-w-2xl mx-auto">
           <p className="font-display text-base sm:text-xl font-bold text-near-black tracking-wide">
-            {goldenMoments[activeIndex].title} — <span className="text-secondary font-bold">{goldenMoments[activeIndex].year}</span>
+            <span className="text-primary font-black uppercase">{goldenMoments[activeIndex].eventName}</span> — {goldenMoments[activeIndex].title} (<span className="text-secondary font-bold">{goldenMoments[activeIndex].year}</span>)
           </p>
           <p className="text-body text-xs sm:text-sm lg:text-base leading-relaxed font-sans font-medium max-w-xl mx-auto">
             {goldenMoments[activeIndex].description}

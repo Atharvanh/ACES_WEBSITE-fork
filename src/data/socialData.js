@@ -192,112 +192,112 @@ export const REELS_DATA = buildReelsData();
 export const POSTS_DATA = [
   {
     id: 'post-1',
-    title: 'HackSeries 25th Edition: Flagship Kickoff! ⚡',
-    caption: 'Over 500+ passionate engineers assembled at the DIT Main Auditorium for the 25th edition of HackSeries. 36 hours of non-stop code, innovation, and teamwork begin!',
+    title: 'Acunetix National Tech Symposium 🔥',
+    caption: 'The flagship annual technical symposium uniting top coders, robotics enthusiasts, and creators across the state for competitive engineering showdowns!',
     author: 'aces.dit',
-    image: '/images/gallery/hackseries-25-1.jpg',
-    date: '2 Days Ago',
-    category: 'Hackathon',
+    image: '/images/golden-moments/gm-acunetix.jpg',
+    date: '1 Day Ago',
+    category: 'Symposium',
     instagramUrl: ACES_INSTAGRAM_URL
   },
   {
     id: 'post-2',
-    title: 'Midnight Coding Sprints in Full Swing 🌙',
-    caption: 'Laptops glowing, coffee flowing, and terminals alive! Participants pushing live commits and refining system architecture into the early morning hours.',
-    author: 'aces.dit',
-    image: '/images/gallery/hackseries-25-8.jpg',
-    date: '3 Days Ago',
-    category: 'Technical',
-    instagramUrl: ACES_INSTAGRAM_URL
-  },
-  {
-    id: 'post-3',
     title: 'National Hackathon Pitch Stage Finals 🚀',
     caption: 'Top finalist teams presenting working prototypes across AI, Web3, and HealthTech live to our esteemed panel of jury members and industry evaluators.',
     author: 'aces.dit',
-    image: '/images/gallery/hackathon-main-1.jpg',
-    date: '5 Days Ago',
+    image: '/images/golden-moments/gm-hackathon.jpg',
+    date: '3 Days Ago',
     category: 'Hackathon',
     instagramUrl: ACES_INSTAGRAM_URL
   },
   {
-    id: 'post-4',
-    title: 'Grand Awards Ceremony & Winner Felicitation 🏆',
-    caption: 'Celebrating outstanding brilliance! Heartiest congratulations to all winning squads and participants for setting new benchmarks in problem solving.',
+    id: 'post-3',
+    title: 'HackSeries 00: Inaugural Foundation ⚡',
+    caption: 'Where the legacy started! 500+ builders assembling to build high-impact real-world solutions during our foundational flagship hackathon.',
     author: 'aces.dit',
-    image: '/images/gallery/hackathon-main-20.jpg',
+    image: '/images/golden-moments/gm-hackseries-00.jpg',
+    date: '5 Days Ago',
+    category: 'HackSeries',
+    instagramUrl: ACES_INSTAGRAM_URL
+  },
+  {
+    id: 'post-4',
+    title: 'Hacktoberfest Open Source Sprint 💻',
+    caption: 'Empowering student developers to master Git workflows, create verified pull requests, and contribute to production open-source ecosystems.',
+    author: 'aces.dit',
+    image: '/images/golden-moments/gm-hacktoberfest.jpg',
     date: '1 Week Ago',
-    category: 'Achievement',
+    category: 'Open Source',
     instagramUrl: ACES_INSTAGRAM_URL
   },
   {
     id: 'post-5',
-    title: 'Indo-German Technical Colloquium 🌍',
-    caption: 'Honored to host distinguished international guest faculty for an insightful session on global engineering careers, autonomous robotics, and higher education research.',
+    title: 'HackSeries 0.1: Freshman Development Lab 🌱',
+    caption: 'First-year engineers getting their hands dirty with Git, modern web frameworks, and algorithmic problem solving at the freshman inception sprint.',
     author: 'aces.dit',
-    image: '/images/gallery/german-event-1.jpg',
+    image: '/images/golden-moments/gm-hackseries-01.jpg',
     date: '1 Week Ago',
-    category: 'International',
+    category: 'Bootcamp',
     instagramUrl: ACES_INSTAGRAM_URL
   },
   {
     id: 'post-6',
+    title: 'Indo-German Technical Colloquium 🌍',
+    caption: 'Honored to host distinguished international guest faculty for an insightful session on global engineering careers, autonomous robotics, and higher education research.',
+    author: 'aces.dit',
+    image: '/images/golden-moments/gm-indo-german.jpg',
+    date: '2 Weeks Ago',
+    category: 'International',
+    instagramUrl: ACES_INSTAGRAM_URL
+  },
+  {
+    id: 'post-7',
     title: 'The Backstage Heroes: ACES Organizing Crew 🤝',
     caption: 'From stage logistics and technical infrastructure to participant support and live coverage—huge shoutout to our event managers and volunteers!',
     author: 'aces.dit',
-    image: '/images/gallery/hackathon-bts-1.jpg',
+    image: '/images/golden-moments/gm-aces-crew.jpg',
     date: '2 Weeks Ago',
     category: 'Behind The Scenes',
     instagramUrl: ACES_INSTAGRAM_URL
   },
   {
-    id: 'post-7',
-    title: '1-on-1 Mentor Review & Architecture Diagnostics 💻',
-    caption: 'Industry mentors providing actionable technical feedback, cloud architecture guidance, and git review directly to team workstations.',
-    author: 'aces.dit',
-    image: '/images/gallery/hackseries-25-16.jpg',
-    date: '2 Weeks Ago',
-    category: 'Mentorship',
-    instagramUrl: ACES_INSTAGRAM_URL
-  },
-  {
     id: 'post-8',
-    title: 'Global Education & Academic Synergy 🎓',
-    caption: 'Students engaging in interactive Q&A discussions exploring higher studies, research fellowships, and overseas industry collaborations.',
+    title: 'Grand Awards Ceremony & Winner Felicitation 🏆',
+    caption: 'Celebrating outstanding brilliance! Heartiest congratulations to all winning squads and participants for setting new benchmarks in problem solving.',
     author: 'aces.dit',
-    image: '/images/gallery/german-event-5.jpg',
+    image: '/images/gallery/hackathon-main-20.jpg',
     date: '3 Weeks Ago',
-    category: 'Workshops',
+    category: 'Achievement',
     instagramUrl: ACES_INSTAGRAM_URL
   },
   {
     id: 'post-9',
-    title: 'HackSeries 0.1: Empowering Fresh Builders 🌱',
-    caption: 'First-year engineers getting their hands dirty with Git, modern web frameworks, and algorithmic problem solving at the freshman sprint.',
+    title: 'Midnight Coding Sprints in Full Swing 🌙',
+    caption: 'Laptops glowing, coffee flowing, and terminals alive! Participants pushing live commits and refining system architecture into the early morning hours.',
     author: 'aces.dit',
-    image: '/images/gallery/hackseries-01-1.jpg',
+    image: '/images/gallery/hackseries-25-8.jpg',
     date: '3 Weeks Ago',
-    category: 'Bootcamp',
+    category: 'Technical',
     instagramUrl: ACES_INSTAGRAM_URL
   },
   {
     id: 'post-10',
+    title: '1-on-1 Mentor Review & Architecture Diagnostics 💡',
+    caption: 'Industry mentors providing actionable technical feedback, cloud architecture guidance, and git review directly to team workstations.',
+    author: 'aces.dit',
+    image: '/images/gallery/hackseries-25-16.jpg',
+    date: '1 Month Ago',
+    category: 'Mentorship',
+    instagramUrl: ACES_INSTAGRAM_URL
+  },
+  {
+    id: 'post-11',
     title: 'Collaborative Dev Hub in Full Energy 🔥',
     caption: 'Cross-functional engineering squads collaborating seamlessly—designers, backend engineers, and AI modelers building together under one roof.',
     author: 'aces.dit',
     image: '/images/gallery/hackseries-25-25.jpg',
     date: '1 Month Ago',
     category: 'Technical',
-    instagramUrl: ACES_INSTAGRAM_URL
-  },
-  {
-    id: 'post-11',
-    title: 'Jury Evaluation & Code Inspection 🔍',
-    caption: 'Evaluating deployment scalability, database schemas, and UX polish as teams demonstrate their completed projects.',
-    author: 'aces.dit',
-    image: '/images/gallery/hackathon-main-14.jpg',
-    date: '1 Month Ago',
-    category: 'Workshops',
     instagramUrl: ACES_INSTAGRAM_URL
   },
   {
@@ -311,4 +311,5 @@ export const POSTS_DATA = [
     instagramUrl: ACES_INSTAGRAM_URL
   }
 ];
+
 
