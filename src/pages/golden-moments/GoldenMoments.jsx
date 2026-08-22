@@ -74,11 +74,25 @@ export default function GoldenMoments({ embedded = false }) {
 
         {/* Carousel Viewport Container (Spans full viewport with middle desktop arrow buttons) */}
         <div className="relative w-full flex flex-col items-center justify-center overflow-hidden py-2">
+
+          {/* Left fade-out gradient — dissolves left side card into page background */}
+          <div
+            aria-hidden="true"
+            className="absolute left-0 top-0 h-full w-[22%] sm:w-[18%] lg:w-[15%] pointer-events-none z-50"
+            style={{ background: 'linear-gradient(to right, #FFF4F2 0%, rgba(255,244,242,0.85) 40%, transparent 100%)' }}
+          />
+
+          {/* Right fade-out gradient — dissolves right side card into page background */}
+          <div
+            aria-hidden="true"
+            className="absolute right-0 top-0 h-full w-[22%] sm:w-[18%] lg:w-[15%] pointer-events-none z-50"
+            style={{ background: 'linear-gradient(to left, #FFF4F2 0%, rgba(255,244,242,0.85) 40%, transparent 100%)' }}
+          />
           
           {/* Left Arrow Button (Only on PCs / Laptops, vertically centered at far left edge) */}
           <button
             onClick={handlePrev}
-            className="hidden md:flex absolute left-4 lg:left-10 xl:left-14 top-1/2 -translate-y-1/2 z-40 w-14 h-14 bg-white/95 hover:bg-white text-near-black hover:text-primary rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-brand-glow border border-[#e8e6e1] hover:border-primary/50 transition-all duration-200 cursor-pointer items-center justify-center hover:scale-110 active:scale-95 backdrop-blur-md"
+            className="hidden md:flex absolute left-4 lg:left-10 xl:left-14 top-1/2 -translate-y-1/2 z-[60] w-14 h-14 bg-white/95 hover:bg-white text-near-black hover:text-primary rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-brand-glow border border-[#e8e6e1] hover:border-primary/50 transition-all duration-200 cursor-pointer items-center justify-center hover:scale-110 active:scale-95 backdrop-blur-md"
             aria-label="Previous milestone"
           >
             <ChevronLeft className="w-7 h-7" />
@@ -87,7 +101,7 @@ export default function GoldenMoments({ embedded = false }) {
           {/* Right Arrow Button (Only on PCs / Laptops, vertically centered at far right edge) */}
           <button
             onClick={handleNext}
-            className="hidden md:flex absolute right-4 lg:right-10 xl:right-14 top-1/2 -translate-y-1/2 z-40 w-14 h-14 bg-white/95 hover:bg-white text-near-black hover:text-primary rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-brand-glow border border-[#e8e6e1] hover:border-primary/50 transition-all duration-200 cursor-pointer items-center justify-center hover:scale-110 active:scale-95 backdrop-blur-md"
+            className="hidden md:flex absolute right-4 lg:right-10 xl:right-14 top-1/2 -translate-y-1/2 z-[60] w-14 h-14 bg-white/95 hover:bg-white text-near-black hover:text-primary rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-brand-glow border border-[#e8e6e1] hover:border-primary/50 transition-all duration-200 cursor-pointer items-center justify-center hover:scale-110 active:scale-95 backdrop-blur-md"
             aria-label="Next milestone"
           >
             <ChevronRight className="w-7 h-7" />
