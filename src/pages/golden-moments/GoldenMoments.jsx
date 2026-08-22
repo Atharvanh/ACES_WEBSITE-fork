@@ -53,13 +53,7 @@ export default function GoldenMoments({ embedded = false }) {
   const cardSpacing = getCardSpacing();
 
   return (
-    <div id="golden-moments" className={`w-full bg-white ${embedded ? 'pt-16 sm:pt-24 pb-14' : 'min-h-screen pt-28 sm:pt-36 pb-24'} px-0 flex flex-col justify-center items-center overflow-hidden relative select-none`}>
-      
-      {/* Background ambient warm amber light tint */}
-      <div 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1100px] h-[1100px] pointer-events-none -z-10" 
-        style={{ background: 'radial-gradient(circle, rgba(209,165,80,0.16) 0%, rgba(178,43,47,0.08) 50%, transparent 75%)' }}
-      />
+    <div id="golden-moments" className={`w-full ${embedded ? 'pt-16 sm:pt-24 pb-14' : 'min-h-screen pt-28 sm:pt-36 pb-24'} px-0 flex flex-col justify-center items-center overflow-visible relative select-none`}>
 
       <div className="w-full z-10 space-y-8">
         
@@ -137,21 +131,27 @@ export default function GoldenMoments({ embedded = false }) {
                       damping: 30,
                       mass: 0.8,
                     }}
-                    className={`absolute w-[88vw] max-w-[360px] sm:w-[420px] md:w-[450px] lg:w-[480px] h-[600px] sm:h-[660px] lg:h-[720px] flex-shrink-0 cursor-pointer rounded-[32px] overflow-hidden border bg-white hover:border-primary/50 p-7 sm:p-8 flex flex-col justify-between transition-colors duration-200 ${
+                    className={`absolute w-[88vw] max-w-[360px] sm:w-[420px] md:w-[450px] lg:w-[480px] h-[600px] sm:h-[660px] lg:h-[720px] flex-shrink-0 cursor-pointer rounded-[32px] overflow-hidden border bg-white p-7 sm:p-8 flex flex-col justify-between transition-all duration-300 ${
                       isCenter 
-                        ? 'shadow-[0_24px_70px_rgba(178,43,47,0.22),0_6px_20px_rgba(0,0,0,0.08)] border-primary/50' 
+                        ? 'shadow-[0_24px_70px_rgba(178,43,47,0.24),0_6px_20px_rgba(0,0,0,0.08)] border-primary/50' 
                         : 'shadow-[0_12px_36px_rgba(0,0,0,0.08)] border-[#e8e6e1]'
                     }`}
                   >
-                    {/* Brand Tagline */}
-                    <div className="text-center space-y-1 pt-1">
-                      <span className="text-xs sm:text-sm font-sans tracking-[0.25em] uppercase font-black text-secondary">
-                        ACES DIT PUNE
-                      </span>
+                    {/* Brand / Event Tagline & Year (Clean Flex Row - Zero Overlap) */}
+                    <div className="flex items-center justify-between gap-2 px-1 pt-1 pb-1">
+                      <div className="flex items-center gap-1.5 min-w-0">
+                        <span className="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                        <span className="text-[11px] sm:text-xs font-sans tracking-[0.15em] uppercase font-black text-secondary truncate">
+                          {moment.eventName ? `EVENT • ${moment.eventName}` : 'ACES DIT PUNE'}
+                        </span>
+                      </div>
+                      <div className="bg-secondary text-dark-overlay font-bold font-mono text-[11px] sm:text-xs tracking-wider px-3 py-1 rounded-[4px] shadow-sm flex-shrink-0">
+                        {moment.year}
+                      </div>
                     </div>
 
                     {/* Middle Heading & Description */}
-                    <div className="text-center space-y-2 sm:space-y-3 px-2 pt-2">
+                    <div className="text-center space-y-2 sm:space-y-3 px-2 pt-1">
                       <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-primary leading-tight">
                         {moment.title}
                       </h2>
@@ -160,20 +160,14 @@ export default function GoldenMoments({ embedded = false }) {
                       </p>
                     </div>
 
-                    {/* Bottom Arched Window Cutout Image (Expanded) */}
-                    <div className="w-full flex-1 min-h-[280px] sm:min-h-[330px] lg:min-h-[380px] rounded-t-[180px] sm:rounded-t-[200px] overflow-hidden border-t-2 border-muted/30 shadow-lg relative mt-4 bg-light-tint group">
+                    {/* Bottom Arched Window Cutout Image (Full rounded corners & clean smooth display) */}
+                    <div className="w-full flex-1 min-h-[280px] sm:min-h-[330px] lg:min-h-[380px] rounded-t-[180px] sm:rounded-t-[200px] rounded-b-[20px] overflow-hidden border border-muted/30 shadow-md relative mt-3 bg-light-tint group">
                       <img
                         src={moment.image}
                         alt={moment.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         draggable={false}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-dark-overlay/40 via-transparent to-transparent pointer-events-none" />
-                    </div>
-
-                    {/* Year Stamp Badge */}
-                    <div className="absolute top-5 right-5 bg-secondary text-dark-overlay font-bold font-mono text-xs sm:text-sm tracking-widest px-4 py-1.5 rounded-[4px] shadow-sm">
-                      {moment.year}
                     </div>
                   </motion.div>
                 );
@@ -183,7 +177,7 @@ export default function GoldenMoments({ embedded = false }) {
         </div>
 
         {/* Bottom Pagination Dots */}
-        <div className="flex items-center justify-center gap-2.5 pt-2">
+        <div className="flex items-center justify-center gap-2.5 pt-2 pb-2">
           {goldenMoments.map((_, idx) => (
             <button
               key={idx}
@@ -196,16 +190,6 @@ export default function GoldenMoments({ embedded = false }) {
               aria-label={`Milestone ${idx + 1}`}
             />
           ))}
-        </div>
-
-        {/* Event / Photo Detail caption below card */}
-        <div className="text-center space-y-2 pt-2 px-4 max-w-2xl mx-auto">
-          <p className="font-display text-base sm:text-xl font-bold text-near-black tracking-wide">
-            {goldenMoments[activeIndex].title} — <span className="text-secondary font-bold">{goldenMoments[activeIndex].year}</span>
-          </p>
-          <p className="text-body text-xs sm:text-sm lg:text-base leading-relaxed font-sans font-medium max-w-xl mx-auto">
-            {goldenMoments[activeIndex].description}
-          </p>
         </div>
 
       </div>

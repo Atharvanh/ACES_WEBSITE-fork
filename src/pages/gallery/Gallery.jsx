@@ -129,7 +129,7 @@ export default function Gallery({ embedded = false }) {
   const currentActiveItem = filteredItems[activeSlideIndex] || filteredItems[0];
 
   return (
-    <div id="gallery" className="w-full bg-white text-dark-overlay">
+    <div id="gallery" className="w-full text-dark-overlay">
       {/* Embedded CSS for keyframes & responsive marquee styling */}
       <style>{`
         @keyframes galleryMarqueeUp {
@@ -164,35 +164,35 @@ export default function Gallery({ embedded = false }) {
         }
       `}</style>
 
-      {/* SECTION 1: HERO SHOWCASE (Compact Marquee Background + Glassmorphism Center Card) */}
+      {/* SECTION 1: HERO SHOWCASE (Full-Screen Marquee Background + Glassmorphism Center Card) */}
       <section 
         ref={heroRef}
         className={`relative ${embedded ? 'h-screen' : 'h-[340px] sm:h-[400px] mt-4'} overflow-hidden flex items-center justify-center`}
       >
-        {/* Ambient Glow */}
+        {/* Ambient Glow (handled by parent page) */}
         <div 
           className="absolute inset-0 pointer-events-none -z-10" 
-          style={{ background: 'radial-gradient(circle at 50% 50%, rgba(209,165,80,0.14) 0%, rgba(178,43,47,0.06) 50%, transparent 80%)' }}
+          style={{ background: 'transparent' }}
         />
 
         {/* Marquee Background Container */}
         <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none opacity-80 select-none">
           {/* Mobile / Tablet: 2 Synchronized Columns */}
-          <div className="flex xl:hidden gap-3 sm:gap-4 h-[200%] w-full">
+          <div className="flex xl:hidden gap-4 sm:gap-6 h-[200%] w-full">
             <div className="flex-1 overflow-hidden">
-              <div className="marquee-container animate-marquee-sync flex flex-col gap-3 sm:gap-4">
+              <div className="marquee-container animate-marquee-sync flex flex-col gap-4 sm:gap-6">
                 {[...col1, ...col2].map((img, idx) => (
-                  <div key={`sync1-${idx}`} className="w-full aspect-[4/3] rounded-[4px] overflow-hidden bg-light-tint shadow-sm">
-                    <img src={img.url} alt={img.alt} className="w-full h-full object-cover grayscale-[20%] opacity-95" />
+                  <div key={`sync1-${idx}`} className="w-full aspect-[4/3] rounded-[8px] overflow-hidden bg-light-tint shadow-sm">
+                    <img src={img.url} alt={img.alt} className="w-full h-full object-cover grayscale opacity-90" />
                   </div>
                 ))}
               </div>
             </div>
             <div className="flex-1 overflow-hidden">
-              <div className="marquee-container animate-marquee-sync flex flex-col gap-3 sm:gap-4" style={{ animationDirection: 'reverse' }}>
+              <div className="marquee-container animate-marquee-sync flex flex-col gap-4 sm:gap-6" style={{ animationDirection: 'reverse' }}>
                 {[...col3, ...col4].map((img, idx) => (
-                  <div key={`sync2-${idx}`} className="w-full aspect-[4/3] rounded-[4px] overflow-hidden bg-light-tint shadow-sm">
-                    <img src={img.url} alt={img.alt} className="w-full h-full object-cover grayscale-[20%] opacity-95" />
+                  <div key={`sync2-${idx}`} className="w-full aspect-[4/3] rounded-[8px] overflow-hidden bg-light-tint shadow-sm">
+                    <img src={img.url} alt={img.alt} className="w-full h-full object-cover grayscale opacity-90" />
                   </div>
                 ))}
               </div>
@@ -200,13 +200,13 @@ export default function Gallery({ embedded = false }) {
           </div>
 
           {/* Desktop (xl+): 4 Independent Floating Columns */}
-          <div className="hidden xl:flex gap-4 h-[200%] w-full">
+          <div className="hidden xl:flex gap-6 h-[200%] w-full">
             {/* Column 1 - Moving Up */}
             <div className="flex-1 overflow-hidden">
-              <div className="marquee-container animate-marquee-col1 flex flex-col gap-4">
+              <div className="marquee-container animate-marquee-col1 flex flex-col gap-6">
                 {col1.map((img, idx) => (
-                  <div key={`col1-${idx}`} className="w-full aspect-[4/3] rounded-[4px] overflow-hidden bg-light-tint shadow-sm">
-                    <img src={img.url} alt={img.alt} className="w-full h-full object-cover grayscale-[15%] hover:grayscale-0 transition-all duration-300 opacity-90" />
+                  <div key={`col1-${idx}`} className="w-full aspect-[4/3] rounded-[8px] overflow-hidden bg-light-tint shadow-sm">
+                    <img src={img.url} alt={img.alt} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300 opacity-90" />
                   </div>
                 ))}
               </div>
@@ -214,10 +214,10 @@ export default function Gallery({ embedded = false }) {
 
             {/* Column 2 - Moving Down */}
             <div className="flex-1 overflow-hidden">
-              <div className="marquee-container animate-marquee-col2 flex flex-col gap-4">
+              <div className="marquee-container animate-marquee-col2 flex flex-col gap-6">
                 {col2.map((img, idx) => (
-                  <div key={`col2-${idx}`} className="w-full aspect-[4/3] rounded-[4px] overflow-hidden bg-light-tint shadow-sm">
-                    <img src={img.url} alt={img.alt} className="w-full h-full object-cover grayscale-[15%] hover:grayscale-0 transition-all duration-300 opacity-90" />
+                  <div key={`col2-${idx}`} className="w-full aspect-[4/3] rounded-[8px] overflow-hidden bg-light-tint shadow-sm">
+                    <img src={img.url} alt={img.alt} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300 opacity-90" />
                   </div>
                 ))}
               </div>
@@ -225,10 +225,10 @@ export default function Gallery({ embedded = false }) {
 
             {/* Column 3 - Moving Up */}
             <div className="flex-1 overflow-hidden">
-              <div className="marquee-container animate-marquee-col3 flex flex-col gap-4">
+              <div className="marquee-container animate-marquee-col3 flex flex-col gap-6">
                 {col3.map((img, idx) => (
-                  <div key={`col3-${idx}`} className="w-full aspect-[4/3] rounded-[4px] overflow-hidden bg-light-tint shadow-sm">
-                    <img src={img.url} alt={img.alt} className="w-full h-full object-cover grayscale-[15%] hover:grayscale-0 transition-all duration-300 opacity-90" />
+                  <div key={`col3-${idx}`} className="w-full aspect-[4/3] rounded-[8px] overflow-hidden bg-light-tint shadow-sm">
+                    <img src={img.url} alt={img.alt} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300 opacity-90" />
                   </div>
                 ))}
               </div>
@@ -236,10 +236,10 @@ export default function Gallery({ embedded = false }) {
 
             {/* Column 4 - Moving Down */}
             <div className="flex-1 overflow-hidden">
-              <div className="marquee-container animate-marquee-col4 flex flex-col gap-4">
+              <div className="marquee-container animate-marquee-col4 flex flex-col gap-6">
                 {col4.map((img, idx) => (
-                  <div key={`col4-${idx}`} className="w-full aspect-[4/3] rounded-[4px] overflow-hidden bg-light-tint shadow-sm">
-                    <img src={img.url} alt={img.alt} className="w-full h-full object-cover grayscale-[15%] hover:grayscale-0 transition-all duration-300 opacity-90" />
+                  <div key={`col4-${idx}`} className="w-full aspect-[4/3] rounded-[8px] overflow-hidden bg-light-tint shadow-sm">
+                    <img src={img.url} alt={img.alt} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300 opacity-90" />
                   </div>
                 ))}
               </div>
@@ -247,42 +247,42 @@ export default function Gallery({ embedded = false }) {
           </div>
         </div>
 
-        {/* Overlay Darkening Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/30 to-white/75 pointer-events-none" />
+        {/* Overlay Darkening Gradient with seamless #FFF4F2 flow */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#FFF4F2]/80 via-[#FFF4F2]/30 to-[#FFF4F2]/80 pointer-events-none" />
 
-        {/* Compact Glassmorphism Hero Card */}
-        <div className="absolute inset-0 flex items-center justify-center p-4 z-10">
-          <div className="w-full max-w-lg bg-white border border-muted/50 rounded-[8px] p-5 sm:p-6 text-center space-y-3 shadow-xl">
+        {/* Expanded Glassmorphism Hero Card */}
+        <div className="absolute inset-0 flex items-center justify-center p-4 sm:p-6 z-10">
+          <div className="w-full max-w-2xl bg-white/95 border border-muted/50 rounded-[16px] p-7 sm:p-10 md:p-12 text-center space-y-4 sm:space-y-6 shadow-2xl backdrop-blur-md">
             {/* Secondary Accent Badge */}
             {!embedded && (
-              <div className="inline-flex items-center gap-1.5 bg-secondary/15 border border-secondary/40 text-secondary px-3 py-1 rounded-[4px] text-[11px] font-bold tracking-widest uppercase shadow-sm">
-                <Sparkles className="w-3 h-3 text-secondary" />
-                <span>ACES Archives</span>
+              <div className="inline-flex items-center gap-2 bg-secondary/15 border border-secondary/40 text-secondary px-4 py-1.5 rounded-[4px] text-xs font-bold tracking-widest uppercase shadow-sm">
+                <Sparkles className="w-3.5 h-3.5 text-secondary" />
+                <span>ACES Archives & Memories</span>
               </div>
             )}
 
             {/* Main Headline */}
-            <h1 className="font-display text-xl sm:text-2xl font-black uppercase text-primary tracking-tight leading-snug">
-              Capturing Moments, <span className="text-secondary">Coding History</span>
+            <h1 className="font-display text-2xl sm:text-4xl lg:text-5xl font-black uppercase text-primary tracking-tight leading-tight">
+              Capturing Moments, <br className="hidden sm:inline" /><span className="text-secondary">Coding History</span>
             </h1>
 
             {/* Subtitle */}
-            <p className="text-body text-xs leading-relaxed max-w-md mx-auto font-medium">
+            <p className="text-body text-xs sm:text-sm md:text-base leading-relaxed max-w-lg mx-auto font-medium">
               Explore the rich history of technical workshops, national hackathons, cultural festivals, and student leadership at DIT Pune.
             </p>
 
             {/* Action CTA */}
-            <div className="pt-1">
+            <div className="pt-2">
               <button
                 type="button"
                 onClick={handleCtaClick}
-                className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white font-bold text-xs tracking-wider uppercase px-6 py-2.5 rounded-[4px] transition-all cursor-pointer shadow-brand-glow group"
+                className="inline-flex items-center gap-2.5 bg-primary hover:bg-primary/90 text-white font-bold text-xs sm:text-sm tracking-wider uppercase px-8 py-3.5 rounded-[6px] transition-all cursor-pointer shadow-brand-glow group"
               >
-                <span>Explore Gallery</span>
+                <span>Explore Full Gallery</span>
                 {embedded ? (
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 ) : (
-                  <ChevronDown className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
+                  <ChevronDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
                 )}
               </button>
             </div>
@@ -294,7 +294,7 @@ export default function Gallery({ embedded = false }) {
       {!embedded && (
         <section 
           id="gallery-grid" 
-          className="w-full bg-gallery-atmosphere py-8 sm:py-14 relative overflow-hidden scroll-mt-24"
+          className="w-full bg-gallery-atmosphere py-14 sm:py-24 relative overflow-hidden scroll-mt-24"
         >
           {/* Faint Background Watermark Text */}
           <div 
@@ -357,44 +357,33 @@ export default function Gallery({ embedded = false }) {
               </div>
             ) : (
               /* 3D Horizontal Drift Wall Container - Full Bleed Edge to Edge */
-              <div className="space-y-3">
-                <div className="w-screen relative left-1/2 -translate-x-1/2 overflow-hidden bg-transparent my-1">
-                  <div className="w-full h-[520px] sm:h-[580px] relative overflow-hidden">
-                    <DriftWall
-                      items={filteredItems}
-                      rows={3}
-                      tileWidth={340}
-                      tileHeight={190}
-                      gap={20}
-                      radius={14}
-                      tilt={6}
-                      turn={-3}
-                      roll={0}
-                      perspective={1200}
-                      depth={50}
-                      speed={40}
-                      direction="right"
-                      variance={0.3}
-                      parallax={0.3}
-                      lift={44}
-                      dim={1}
-                      pauseOnHover={true}
-                      grayscale={false}
-                      onItemClick={(item, idx) => {
-                        const origIdx = filteredItems.findIndex(i => i.id === item.id);
-                        setActiveItemIndex(origIdx !== -1 ? origIdx : idx);
-                      }}
-                    />
-                  </div>
-                </div>
-
-                {/* Subtitle / Interaction Helper Bar */}
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-muted">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span>Live Drifting Mosaic • Moving left to right • Hover to focus or click to expand</span>
-                  </div>
-                  <span className="font-mono text-dark-overlay/70 font-semibold">{filteredItems.length} moments in view</span>
+              <div className="w-screen relative left-1/2 -translate-x-1/2 overflow-hidden bg-transparent my-1">
+                <div className="w-full h-[740px] sm:h-[800px] lg:h-[840px] relative overflow-hidden flex items-center justify-center">
+                  <DriftWall
+                    items={filteredItems}
+                    rows={3}
+                    tileWidth={360}
+                    tileHeight={220}
+                    gap={24}
+                    radius={16}
+                    tilt={4}
+                    turn={-2}
+                    roll={0}
+                    perspective={1200}
+                    depth={40}
+                    speed={38}
+                    direction="right"
+                    variance={0.3}
+                    parallax={0.25}
+                    lift={40}
+                    dim={1}
+                    pauseOnHover={true}
+                    grayscale={false}
+                    onItemClick={(item, idx) => {
+                      const origIdx = filteredItems.findIndex(i => i.id === item.id);
+                      setActiveItemIndex(origIdx !== -1 ? origIdx : idx);
+                    }}
+                  />
                 </div>
               </div>
             )}

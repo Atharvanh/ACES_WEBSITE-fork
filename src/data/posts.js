@@ -1,23 +1,33 @@
 export const posts = [
   {
     id: "post-1",
-    title: "Vite 8 & Tailwind v4 Redesign Journey",
-    summary: "How the ACES Web team redesigned their portal using the latest frontend stack.",
-    author: "Tejas Nalawade",
-    date: "August 19, 2026",
-    likes: 42,
-    image: "https://images.unsplash.com/photo-1618401471353-b98aedd07871?w=600&auto=format&fit=crop&q=80"
+    title: "Acunetix National Tech Symposium Live! 🔥",
+    summary: "Hundreds of enthusiastic engineers competing in algorithmic coding, hardware expos, and robotics showdowns at Acunetix.",
+    author: "ACES Technical Core",
+    date: "August 20, 2026",
+    likes: 198,
+    image: "/images/posts/post-acunetix-1.jpg"
   },
   {
     id: "post-2",
-    title: "AI Agent Workflows on Google Cloud",
-    summary: "Key takeaways from our expert seminar covering Vertex AI and Agentic RAG architecture.",
-    author: "Raj Singe",
+    title: "National Hackathon Final Stage Pitches 🚀",
+    summary: "Top finalist teams presenting working prototypes across AI, Web3, and HealthTech live to our industry jury panel.",
+    author: "ACES Event Management",
     date: "July 12, 2026",
-    likes: 58,
-    image: "https://images.unsplash.com/photo-1677442136019-21780efad99a?w=600&auto=format&fit=crop&q=80"
+    likes: 188,
+    image: "/images/posts/post-hackathon-1.jpg"
+  },
+  {
+    id: "post-3",
+    title: "HackSeries 00 Inaugural Flagship ⚡",
+    summary: "Reliving the founding energy of HackSeries 00 where builders assembled for 36 hours of high-impact open-source problem solving.",
+    author: "ACES Flagship Cell",
+    date: "June 25, 2026",
+    likes: 215,
+    image: "/images/posts/post-hackseries00-1.jpg"
   }
 ];
+
 
 export const reels = [
   {
