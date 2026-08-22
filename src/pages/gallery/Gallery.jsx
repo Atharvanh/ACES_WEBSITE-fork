@@ -254,10 +254,12 @@ export default function Gallery({ embedded = false }) {
         <div className="absolute inset-0 flex items-center justify-center p-4 z-10">
           <div className="w-full max-w-lg bg-white border border-muted/50 rounded-[8px] p-5 sm:p-6 text-center space-y-3 shadow-xl">
             {/* Secondary Accent Badge */}
-            <div className="inline-flex items-center gap-1.5 bg-secondary/15 border border-secondary/40 text-secondary px-3 py-1 rounded-[4px] text-[11px] font-bold tracking-widest uppercase shadow-sm">
-              <Sparkles className="w-3 h-3 text-secondary" />
-              <span>ACES Archives</span>
-            </div>
+            {!embedded && (
+              <div className="inline-flex items-center gap-1.5 bg-secondary/15 border border-secondary/40 text-secondary px-3 py-1 rounded-[4px] text-[11px] font-bold tracking-widest uppercase shadow-sm">
+                <Sparkles className="w-3 h-3 text-secondary" />
+                <span>ACES Archives</span>
+              </div>
+            )}
 
             {/* Main Headline */}
             <h1 className="font-display text-xl sm:text-2xl font-black uppercase text-primary tracking-tight leading-snug">
