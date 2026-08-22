@@ -149,28 +149,21 @@ export default function GoldenMoments({ embedded = false }) {
                     </div>
 
                     {/* Middle Heading & Description */}
-                    <div className="text-center space-y-3 sm:space-y-4 my-auto px-2">
+                    <div className="text-center space-y-2 sm:space-y-3 px-2 pt-2">
                       <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-primary leading-tight">
                         {moment.title}
                       </h2>
                       <p className={`text-body text-xs sm:text-sm lg:text-base font-sans font-medium leading-relaxed max-w-sm mx-auto ${isCenter ? '' : 'line-clamp-3'}`}>
                         {moment.description}
                       </p>
-
-                      {/* Pill Action Button */}
-                      <div className="pt-2">
-                        <button className="border-2 border-primary text-primary bg-transparent font-sans font-bold text-xs sm:text-sm py-3 px-8 rounded-[4px] transition-all hover:bg-primary hover:text-white hover:shadow-brand-glow tracking-wider uppercase cursor-pointer">
-                          Read Story
-                        </button>
-                      </div>
                     </div>
 
-                    {/* Bottom Arched Window Cutout Image */}
-                    <div className="w-full h-56 sm:h-64 lg:h-72 rounded-t-[160px] overflow-hidden border-t-2 border-muted/30 shadow-md relative mt-4 flex-shrink-0 bg-light-tint">
+                    {/* Bottom Arched Window Cutout Image (Expanded) */}
+                    <div className="w-full flex-1 min-h-[280px] sm:min-h-[330px] lg:min-h-[380px] rounded-t-[180px] sm:rounded-t-[200px] overflow-hidden border-t-2 border-muted/30 shadow-lg relative mt-4 bg-light-tint group">
                       <img
                         src={moment.image}
                         alt={moment.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         draggable={false}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-dark-overlay/40 via-transparent to-transparent pointer-events-none" />

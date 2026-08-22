@@ -5,33 +5,39 @@ import { RotateCcw } from 'lucide-react';
 
 const MemberCardFront = ({ member }) => {
   return (
-    <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] rounded-[16px] flex flex-col items-center justify-center p-6 text-center transition-all duration-300 member-card-front">
+    <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] rounded-[16px] flex flex-col items-center justify-between p-6 text-center transition-all duration-300 member-card-front overflow-hidden">
       
-      {/* Profile Image with subtle glow & hover ring */}
-      <div className="relative mb-5">
-        <div className="absolute inset-0 bg-primary/10 rounded-full blur-md"></div>
-        <img 
-          src={member.image} 
-          alt={member.name} 
-          className="w-28 h-28 md:w-32 md:h-32 rounded-full object-cover border-2 border-muted/30 group-hover:ring-3 group-hover:ring-secondary relative z-10 transition-all duration-300"
-        />
+      {/* Top Details Section */}
+      <div className="flex flex-col items-center w-full">
+        {/* Profile Image with subtle glow & hover ring */}
+        <div className="relative mb-4 mt-1">
+          <div className="absolute inset-0 bg-primary/10 rounded-full blur-md"></div>
+          <img 
+            src={member.image} 
+            alt={member.name} 
+            className="w-28 h-28 md:w-32 md:h-32 rounded-full object-cover border-2 border-muted/30 group-hover:ring-3 group-hover:ring-secondary relative z-10 transition-all duration-300"
+          />
+        </div>
+
+        <h3 className="font-display text-xl sm:text-2xl font-bold text-[#1A1A1A] mb-1 line-clamp-1">{member.name}</h3>
+        <p className="text-sm sm:text-md text-[#B22B2F] font-semibold tracking-[0.04em] mb-2">{member.role}</p>
+        
+        <div className="text-xs sm:text-sm text-[#6B6D71]">
+          <p>{member.branch}</p>
+          <p>{member.year} {member.rollNo ? `• ${member.rollNo}` : ''}</p>
+        </div>
       </div>
 
-      <h3 className="font-display text-xl sm:text-2xl font-bold text-[#1A1A1A] mb-1">{member.name}</h3>
-      <p className="text-sm sm:text-md text-[#B22B2F] font-semibold tracking-[0.04em] mb-4">{member.role}</p>
-      
-      <div className="text-xs sm:text-sm text-[#6B6D71] mb-6">
-        <p>{member.branch}</p>
-        <p>{member.year}</p>
-      </div>
+      {/* Bottom Actions Section */}
+      <div className="w-full flex flex-col items-center">
+        <div className="mb-4 social-links-wrapper" onClick={(e) => e.stopPropagation()}>
+          <SocialLinks social={member.social} />
+        </div>
 
-      <div className="mt-auto mb-4 social-links-wrapper" onClick={(e) => e.stopPropagation()}>
-        <SocialLinks social={member.social} />
-      </div>
-
-      <div className="pt-2 border-t border-gray-300/60 w-full text-center text-[#6B6D71] text-xs flex items-center justify-center gap-1.5 opacity-80 group-hover:opacity-100 transition-opacity">
-        <RotateCcw className="w-3.5 h-3.5" />
-        <span>Click to flip</span>
+        <div className="pt-2 border-t border-gray-300/60 w-full text-center text-[#6B6D71] text-xs flex items-center justify-center gap-1.5 opacity-80 group-hover:opacity-100 transition-opacity">
+          <RotateCcw className="w-3.5 h-3.5" />
+          <span>Click to flip</span>
+        </div>
       </div>
     </div>
   );
@@ -61,7 +67,7 @@ const MemberCardBack = ({ member }) => {
             ACES
           </h2>
           {/* Name */}
-          <h3 className="text-xl sm:text-2xl font-black text-[#1A1A1A] uppercase tracking-wide font-display mb-1">
+          <h3 className="text-xl sm:text-2xl font-black text-[#1A1A1A] uppercase tracking-wide font-display mb-1 line-clamp-1">
             {member.name}
           </h3>
           {/* Role / Designation */}
@@ -87,8 +93,10 @@ const MemberCardBack = ({ member }) => {
           )}
         </div>
 
-        {/* Empty Footer Section to maintain layout spacing if needed, or just removed */}
-        <div className="z-10 mt-auto">
+        {/* Footer Flip indicator */}
+        <div className="pt-2 border-t border-gray-300/40 w-full text-center text-[#6B6D71] text-xs flex items-center justify-center gap-1.5 opacity-80 z-10">
+          <RotateCcw className="w-3.5 h-3.5" />
+          <span>Click to flip</span>
         </div>
 
       </div>
@@ -101,7 +109,7 @@ const MemberCard = ({ member }) => {
 
   return (
     <div 
-      className="w-full aspect-[3/4] max-h-[460px] min-h-[380px] group cursor-pointer member-card-container"
+      className="w-full h-[460px] max-w-[320px] group cursor-pointer member-card-container mx-auto"
       style={{ perspective: '1000px' }}
       onClick={() => setIsFlipped(!isFlipped)}
     >

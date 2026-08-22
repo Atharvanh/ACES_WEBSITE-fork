@@ -1,12 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { 
   ChevronLeft, 
   ChevronRight, 
   Volume2, 
   VolumeX, 
-  Play, 
-  Pause,
   ExternalLink
 } from 'lucide-react';
 import { InstagramIcon } from '../../components/SocialIcons';
@@ -17,7 +15,6 @@ export default function Social({ embedded = false }) {
   const [activeReelIndex, setActiveReelIndex] = useState(0);
   const [activePostIndex, setActivePostIndex] = useState(0);
   const [isMuted, setIsMuted] = useState(true);
-  const [showPlayIcon, setShowPlayIcon] = useState(false);
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
   
   const videoRefs = useRef([]);
@@ -27,46 +24,66 @@ export default function Social({ embedded = false }) {
   const setActiveIndex = activeTab === 'reels' ? setActiveReelIndex : setActivePostIndex;
   const total = activeList.length;
 
-  // Window resize handler for dynamic 3D spacing
+  // Window resize handler with debounce for performance
   useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    let timeoutId = null;
+    const handleResize = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        setWindowWidth(window.innerWidth);
+      }, 100);
+    };
+    window.addEventListener('resize', handleResize, { passive: true });
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
-  // Ensure ALL video cards play automatically simultaneously in a loop
+  // Play visible reel cards, pause far-off cards to preserve performance
   useEffect(() => {
     if (activeTab !== 'reels') return;
     
     videoRefs.current.forEach((videoEl, idx) => {
       if (!videoEl) return;
-      videoEl.muted = isMuted ? true : idx !== activeReelIndex;
-      const playPromise = videoEl.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          videoEl.muted = true;
-          videoEl.play().catch(() => {});
-        });
-      }
-    });
-  }, [activeTab, isMuted, activeReelIndex]);
+      
+      let offset = idx - activeReelIndex;
+      if (offset > total / 2) offset -= total;
+      if (offset < -total / 2) offset += total;
 
-  // Synchronize muted state across all video elements
-  useEffect(() => {
-    videoRefs.current.forEach((videoEl, idx) => {
-      if (videoEl) {
-        videoEl.muted = isMuted ? true : idx !== activeReelIndex;
+      const isCenter = offset === 0;
+      const isNearby = Math.abs(offset) <= 2;
+
+      if (isNearby) {
+        videoEl.muted = isCenter ? isMuted : true;
+        if (videoEl.paused) {
+          const playPromise = videoEl.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(() => {
+              videoEl.muted = true;
+              videoEl.play().catch(() => {});
+            });
+          }
+        }
+      } else {
+        if (!videoEl.paused) videoEl.pause();
       }
     });
+  }, [activeTab, isMuted, activeReelIndex, total]);
+
+  // Sync muted state of center video
+  useEffect(() => {
+    const activeVideo = videoRefs.current[activeReelIndex];
+    if (activeVideo) activeVideo.muted = isMuted;
   }, [isMuted, activeReelIndex]);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     setActiveIndex((prev) => (prev + 1) % total);
-  };
+  }, [setActiveIndex, total]);
 
-  const handlePrev = () => {
+  const handlePrev = useCallback(() => {
     setActiveIndex((prev) => (prev - 1 + total) % total);
-  };
+  }, [setActiveIndex, total]);
 
   const handleCardClick = (idx, item) => {
     if (idx !== activeIndex) {
@@ -83,7 +100,7 @@ export default function Social({ embedded = false }) {
   };
 
   const handleDragEnd = (_, info) => {
-    const swipeThreshold = 40;
+    const swipeThreshold = 35;
     if (info.offset.x < -swipeThreshold) {
       handleNext();
     } else if (info.offset.x > swipeThreshold) {
@@ -103,18 +120,15 @@ export default function Social({ embedded = false }) {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [activeTab, activeIndex, activeReelIndex, isMuted]);
+  }, [activeTab, handleNext, handlePrev]);
 
-  // Card spacing tuned so 5 cards seamlessly span to the left and right screen edges on PC screens,
-  // while showing 3 cards (center + peeking sides) on mobile phones.
-  const getCardSpacing = () => {
+  // Optimized card spacing
+  const cardSpacing = useMemo(() => {
     if (windowWidth < 640) return 290;
     if (windowWidth < 1024) return 350;
     if (windowWidth < 1440) return 390;
     return 430;
-  };
-
-  const cardSpacing = getCardSpacing();
+  }, [windowWidth]);
 
   return (
     <div
@@ -157,7 +171,7 @@ export default function Social({ embedded = false }) {
             <button
               type="button"
               onClick={() => setActiveTab('reels')}
-              className={`px-8 py-2 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-250 cursor-pointer ${
+              className={`px-8 py-2 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer ${
                 activeTab === 'reels'
                   ? 'bg-primary text-white shadow-brand-glow'
                   : 'text-muted hover:text-near-black hover:bg-white/40'
@@ -168,7 +182,7 @@ export default function Social({ embedded = false }) {
             <button
               type="button"
               onClick={() => setActiveTab('posts')}
-              className={`px-8 py-2 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-250 cursor-pointer ${
+              className={`px-8 py-2 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer ${
                 activeTab === 'posts'
                   ? 'bg-primary text-white shadow-brand-glow'
                   : 'text-muted hover:text-near-black hover:bg-white/40'
@@ -179,10 +193,10 @@ export default function Social({ embedded = false }) {
           </div>
         </div>
 
-        {/* Carousel Viewport Container (Spans full viewport width with far-left and far-right desktop arrow buttons) */}
+        {/* Carousel Viewport Container */}
         <div className="relative w-full flex flex-col items-center justify-center overflow-hidden py-2 px-0">
           
-          {/* Left Arrow Button (Only on PCs / Laptops, vertically centered at far left edge) */}
+          {/* Left Arrow Button (Only on PCs / Laptops) */}
           <button
             onClick={handlePrev}
             className="hidden md:flex absolute left-4 lg:left-8 xl:left-12 top-1/2 -translate-y-1/2 z-40 w-12 h-12 lg:w-14 lg:h-14 bg-white/95 hover:bg-white text-near-black hover:text-primary rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-brand-glow border border-[#e8e6e1] hover:border-primary/50 transition-all duration-200 cursor-pointer items-center justify-center hover:scale-110 active:scale-95 backdrop-blur-md"
@@ -191,7 +205,7 @@ export default function Social({ embedded = false }) {
             <ChevronLeft className="w-6 h-6 lg:w-7 lg:h-7" />
           </button>
 
-          {/* Right Arrow Button (Only on PCs / Laptops, vertically centered at far right edge) */}
+          {/* Right Arrow Button (Only on PCs / Laptops) */}
           <button
             onClick={handleNext}
             className="hidden md:flex absolute right-4 lg:right-8 xl:right-12 top-1/2 -translate-y-1/2 z-40 w-12 h-12 lg:w-14 lg:h-14 bg-white/95 hover:bg-white text-near-black hover:text-primary rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-brand-glow border border-[#e8e6e1] hover:border-primary/50 transition-all duration-200 cursor-pointer items-center justify-center hover:scale-110 active:scale-95 backdrop-blur-md"
@@ -206,9 +220,9 @@ export default function Social({ embedded = false }) {
             <motion.div
               drag="x"
               dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={0.15}
+              dragElastic={0.12}
               onDragEnd={handleDragEnd}
-              className="relative w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing"
+              className="relative w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing transform-gpu"
               style={{ touchAction: 'pan-y' }}
             >
               {activeList.map((item, idx) => {
@@ -218,30 +232,36 @@ export default function Social({ embedded = false }) {
                 if (offset < -total / 2) offset += total;
 
                 const isCenter = offset === 0;
-                const isVisible = Math.abs(offset) <= 2.5;
+                // Keep ALL cards in the DOM — just hide far ones with opacity 0
+                // This prevents unmount/remount stutter on edge cards
+                const isFarHidden = Math.abs(offset) > 2.5;
 
                 return (
                   <motion.div
                     key={`${activeTab}-${item.id}`}
-                    onClick={() => handleCardClick(idx, item)}
+                    onClick={() => !isFarHidden && handleCardClick(idx, item)}
                     initial={false}
                     animate={{
-                      scale: isCenter ? 1 : Math.abs(offset) <= 1.2 ? 0.88 : 0.77,
-                      opacity: isCenter ? 1 : Math.abs(offset) <= 1.2 ? 0.82 : isVisible ? 0.52 : 0,
+                      scale: isCenter ? 1 : Math.abs(offset) <= 1.2 ? 0.88 : 0.76,
+                      opacity: isFarHidden ? 0 : isCenter ? 1 : Math.abs(offset) <= 1.2 ? 0.82 : 0.45,
                       x: offset * cardSpacing,
-                      rotateY: offset * -8,
-                      zIndex: isCenter ? 30 : 20 - Math.abs(Math.round(offset)) * 5,
+                      rotateY: offset * -7,
+                      zIndex: isFarHidden ? 0 : isCenter ? 30 : 20 - Math.abs(Math.round(offset)) * 5,
+                      pointerEvents: isFarHidden ? 'none' : 'auto',
                     }}
                     transition={{
                       type: 'spring',
-                      stiffness: 280,
-                      damping: 30,
-                      mass: 0.8,
+                      stiffness: 340,
+                      damping: 32,
+                      mass: 0.6,
                     }}
-                    className={`absolute w-[88vw] max-w-[340px] sm:w-[380px] md:w-[410px] lg:w-[440px] h-[550px] sm:h-[600px] lg:h-[650px] flex-shrink-0 cursor-pointer rounded-[32px] overflow-hidden border bg-white flex flex-col justify-between transition-all duration-300 p-4 sm:p-5 ${
+                    style={{
+                      willChange: 'transform, opacity',
+                    }}
+                    className={`absolute w-[88vw] max-w-[340px] sm:w-[380px] md:w-[410px] lg:w-[440px] h-[550px] sm:h-[600px] lg:h-[650px] flex-shrink-0 cursor-pointer rounded-[32px] overflow-hidden border bg-white flex flex-col justify-between p-4 sm:p-5 transform-gpu ${
                       isCenter 
-                        ? 'shadow-[0_24px_70px_rgba(178,43,47,0.22),0_6px_20px_rgba(0,0,0,0.08)] border-primary/50 ring-2 ring-primary/20' 
-                        : 'shadow-[0_12px_36px_rgba(0,0,0,0.08)] border-[#e8e6e1]'
+                        ? 'shadow-[0_24px_60px_rgba(178,43,47,0.20),0_6px_20px_rgba(0,0,0,0.06)] border-primary/50 ring-2 ring-primary/20' 
+                        : 'shadow-[0_8px_24px_rgba(0,0,0,0.06)] border-[#e8e6e1]'
                     }`}
                   >
                     {/* Card Top Header Strip */}
@@ -269,7 +289,7 @@ export default function Social({ embedded = false }) {
                       </div>
                     </div>
 
-                    {/* Card Main Media Area (Edge-to-edge seamless body) */}
+                    {/* Card Main Media Area */}
                     {activeTab === 'reels' ? (
                       /* ─── REEL CARD BODY ─── */
                       <div className="flex-1 w-full mt-3 relative rounded-[24px] overflow-hidden bg-black flex items-center justify-center group/video shadow-inner">
@@ -279,13 +299,12 @@ export default function Social({ embedded = false }) {
                           poster={item.posterSrc}
                           playsInline
                           loop
-                          muted={isMuted ? true : idx !== activeReelIndex}
-                          autoPlay
-                          preload="auto"
+                          muted={isCenter ? isMuted : true}
+                          preload="metadata"
                           className="w-full h-full object-cover select-none pointer-events-none"
                         />
 
-                        {/* Top Right Floating Sound Toggle Button on Center Card */}
+                        {/* Sound Toggle Button on Center Card */}
                         {isCenter && (
                           <button
                             onClick={toggleMute}
@@ -320,7 +339,8 @@ export default function Social({ embedded = false }) {
                           <img
                             src={item.image}
                             alt={item.title}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            loading="lazy"
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                             draggable={false}
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
@@ -345,57 +365,34 @@ export default function Social({ embedded = false }) {
 
         {/* Bottom Pagination Dots & Mobile Navigation */}
         <div className="flex items-center justify-center gap-3 pt-2">
-          {/* Mobile Prev Arrow */}
           <button
             onClick={handlePrev}
-            className="md:hidden p-2 rounded-full bg-white border border-[#e8e6e1] text-near-black hover:text-primary shadow-sm active:scale-95"
-            aria-label="Previous card"
+            className="md:hidden p-2.5 rounded-full bg-white text-near-black hover:text-primary border border-muted/30 shadow-sm transition-all active:scale-95"
+            aria-label="Previous"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
 
-          {/* Dots */}
-          <div className="flex items-center gap-2">
-            {activeList.map((_, idx) => (
+          <div className="flex items-center gap-1.5 px-3 py-1.5 bg-[#faece9] rounded-full border border-[#edd7d1]">
+            {activeList.map((_, i) => (
               <button
-                key={idx}
-                onClick={() => setActiveIndex(idx)}
-                className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-                  idx === activeIndex
-                    ? 'w-9 bg-primary shadow-brand-glow'
-                    : 'w-2.5 bg-muted/40 hover:bg-muted'
+                key={i}
+                onClick={() => setActiveIndex(i)}
+                className={`h-2 rounded-full transition-all duration-250 cursor-pointer ${
+                  activeIndex === i ? 'w-6 bg-primary' : 'w-2 bg-muted/40 hover:bg-muted/70'
                 }`}
-                aria-label={`Card ${idx + 1}`}
+                aria-label={`Go to slide ${i + 1}`}
               />
             ))}
           </div>
 
-          {/* Mobile Next Arrow */}
           <button
             onClick={handleNext}
-            className="md:hidden p-2 rounded-full bg-white border border-[#e8e6e1] text-near-black hover:text-primary shadow-sm active:scale-95"
-            aria-label="Next card"
+            className="md:hidden p-2.5 rounded-full bg-white text-near-black hover:text-primary border border-muted/30 shadow-sm transition-all active:scale-95"
+            aria-label="Next"
           >
             <ChevronRight className="w-4 h-4" />
           </button>
-        </div>
-
-        {/* Active Item Caption Text below Carousel */}
-        <div className="text-center space-y-1 pt-1 px-4 max-w-2xl mx-auto">
-          <a
-            href={ACES_INSTAGRAM_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-display text-base sm:text-lg font-bold text-near-black hover:text-primary transition-colors inline-flex items-center gap-1.5"
-          >
-            <span>{activeList[activeIndex]?.title}</span>
-            <ExternalLink className="w-4 h-4 text-primary" />
-          </a>
-          <p className="text-body text-xs sm:text-sm leading-relaxed font-sans font-medium max-w-xl mx-auto line-clamp-2">
-            {activeTab === 'reels' 
-              ? activeList[activeIndex]?.subtitle 
-              : activeList[activeIndex]?.caption}
-          </p>
         </div>
 
       </div>
