@@ -167,7 +167,7 @@ export default function Gallery({ embedded = false }) {
       {/* SECTION 1: HERO SHOWCASE (Full-Screen Marquee Background + Glassmorphism Center Card) */}
       <section 
         ref={heroRef}
-        className={`relative ${embedded ? 'h-screen' : 'h-screen mt-4'} overflow-hidden flex items-center justify-center`}
+        className={`relative ${embedded ? 'h-screen' : 'h-screen mt-4'} overflow-hidden flex items-center justify-center bg-[#FFF4F2]`}
       >
         {/* Ambient Glow */}
         <div 
@@ -183,7 +183,7 @@ export default function Gallery({ embedded = false }) {
               <div className="marquee-container animate-marquee-sync flex flex-col gap-4 sm:gap-6">
                 {[...col1, ...col2].map((img, idx) => (
                   <div key={`sync1-${idx}`} className="w-full aspect-[4/3] rounded-[8px] overflow-hidden bg-light-tint shadow-sm">
-                    <img src={img.url} alt={img.alt} className="w-full h-full object-cover grayscale-[15%] opacity-90" />
+                    <img src={img.url} alt={img.alt} className="w-full h-full object-cover grayscale opacity-90" />
                   </div>
                 ))}
               </div>
@@ -192,7 +192,7 @@ export default function Gallery({ embedded = false }) {
               <div className="marquee-container animate-marquee-sync flex flex-col gap-4 sm:gap-6" style={{ animationDirection: 'reverse' }}>
                 {[...col3, ...col4].map((img, idx) => (
                   <div key={`sync2-${idx}`} className="w-full aspect-[4/3] rounded-[8px] overflow-hidden bg-light-tint shadow-sm">
-                    <img src={img.url} alt={img.alt} className="w-full h-full object-cover grayscale-[15%] opacity-90" />
+                    <img src={img.url} alt={img.alt} className="w-full h-full object-cover grayscale opacity-90" />
                   </div>
                 ))}
               </div>
@@ -206,7 +206,7 @@ export default function Gallery({ embedded = false }) {
               <div className="marquee-container animate-marquee-col1 flex flex-col gap-6">
                 {col1.map((img, idx) => (
                   <div key={`col1-${idx}`} className="w-full aspect-[4/3] rounded-[8px] overflow-hidden bg-light-tint shadow-sm">
-                    <img src={img.url} alt={img.alt} className="w-full h-full object-cover grayscale-[15%] hover:grayscale-0 transition-all duration-300 opacity-90" />
+                    <img src={img.url} alt={img.alt} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300 opacity-90" />
                   </div>
                 ))}
               </div>
@@ -217,7 +217,7 @@ export default function Gallery({ embedded = false }) {
               <div className="marquee-container animate-marquee-col2 flex flex-col gap-6">
                 {col2.map((img, idx) => (
                   <div key={`col2-${idx}`} className="w-full aspect-[4/3] rounded-[8px] overflow-hidden bg-light-tint shadow-sm">
-                    <img src={img.url} alt={img.alt} className="w-full h-full object-cover grayscale-[15%] hover:grayscale-0 transition-all duration-300 opacity-90" />
+                    <img src={img.url} alt={img.alt} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300 opacity-90" />
                   </div>
                 ))}
               </div>
@@ -228,7 +228,7 @@ export default function Gallery({ embedded = false }) {
               <div className="marquee-container animate-marquee-col3 flex flex-col gap-6">
                 {col3.map((img, idx) => (
                   <div key={`col3-${idx}`} className="w-full aspect-[4/3] rounded-[8px] overflow-hidden bg-light-tint shadow-sm">
-                    <img src={img.url} alt={img.alt} className="w-full h-full object-cover grayscale-[15%] hover:grayscale-0 transition-all duration-300 opacity-90" />
+                    <img src={img.url} alt={img.alt} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300 opacity-90" />
                   </div>
                 ))}
               </div>
@@ -239,7 +239,7 @@ export default function Gallery({ embedded = false }) {
               <div className="marquee-container animate-marquee-col4 flex flex-col gap-6">
                 {col4.map((img, idx) => (
                   <div key={`col4-${idx}`} className="w-full aspect-[4/3] rounded-[8px] overflow-hidden bg-light-tint shadow-sm">
-                    <img src={img.url} alt={img.alt} className="w-full h-full object-cover grayscale-[15%] hover:grayscale-0 transition-all duration-300 opacity-90" />
+                    <img src={img.url} alt={img.alt} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300 opacity-90" />
                   </div>
                 ))}
               </div>
@@ -247,8 +247,8 @@ export default function Gallery({ embedded = false }) {
           </div>
         </div>
 
-        {/* Overlay Darkening Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/30 to-white/75 pointer-events-none" />
+        {/* Overlay Darkening Gradient with seamless #FFF4F2 flow */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#FFF4F2]/80 via-[#FFF4F2]/30 to-[#FFF4F2]/80 pointer-events-none" />
 
         {/* Expanded Glassmorphism Hero Card */}
         <div className="absolute inset-0 flex items-center justify-center p-4 sm:p-6 z-10">
