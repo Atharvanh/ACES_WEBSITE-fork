@@ -1,33 +1,66 @@
 export const categories = [
   {
-    id: "faculty-coordinator",
-    title: "Faculty Coordinator",
-    description: "Faculty advisor and mentor guiding ACES activities.",
-    roles: ["Faculty Coordinator"],
-  },
-  {
     id: "core-team",
     title: "Core Team",
     description: "The primary leadership of ACES.",
-    roles: ["President", "Vice President", "Secretary", "Treasurer"],
+    roles: ["Faculty Coordinator", "President", "Vice President", "Secretary", "Treasurer"],
+    hasViewMore: true,
   },
   {
     id: "technical-team",
     title: "Technical Team",
     description: "Leading tech initiatives and projects.",
     roles: ["Tech Head", "Jr. Tech Head", "Technical Team"],
+    hasViewMore: true,
   },
   {
-    id: "creative-team",
-    title: "Creative Team",
-    description: "Designing the visual identity of ACES.",
-    roles: ["Creative Head", "Design Team", "Content Team"],
+    id: "public-relation-officers",
+    title: "Public Relation Officers",
+    description: "Managing public relations and communications.",
+    roles: ["Public Relation Officer"],
+    hasViewMore: false,
   },
   {
-    id: "events-operations",
-    title: "Events & Operations",
-    description: "Managing and executing all ACES events.",
-    roles: ["Event Head", "Management Team", "PR & Outreach"],
+    id: "external-affairs-officers",
+    title: "External Affairs Officers",
+    description: "Handling external affairs and outreach.",
+    roles: ["External Affairs Officer"],
+    hasViewMore: true,
+  },
+  {
+    id: "aces-representative",
+    title: "ACES Representative",
+    description: "Representatives of ACES.",
+    roles: ["Representative"],
+    hasViewMore: true,
+  },
+  {
+    id: "content-creators",
+    title: "Content Creators",
+    description: "Creating engaging content for ACES.",
+    roles: ["Content Creator"],
+    hasViewMore: true,
+  },
+  {
+    id: "event-managers",
+    title: "Event Managers",
+    description: "Managing and organizing ACES events.",
+    roles: ["Event Manager"],
+    hasViewMore: true,
+  },
+  {
+    id: "data-managers",
+    title: "Data Managers",
+    description: "Managing data and analytics.",
+    roles: ["Data Manager"],
+    hasViewMore: false,
+  },
+  {
+    id: "designers-team",
+    title: "Designers Team",
+    description: "Designing visuals and graphics.",
+    roles: ["Designer"],
+    hasViewMore: true,
   },
 ];
 
@@ -36,7 +69,7 @@ export const members = [
     id: "sharad-sir",
     name: "Sharad Sir",
     role: "Faculty Coordinator",
-    category: "faculty-coordinator",
+    category: "core-team",
     branch: "Computer Engineering",
     year: "DIT Pune",
     image: "https://i.pravatar.cc/300?img=68",
@@ -222,9 +255,160 @@ export const members = [
       github: "https://github.com",
       linkedin: "https://linkedin.com"
     }
+  },
+  {
+    id: "ext-affairs-1",
+    name: "External Affairs 1",
+    role: "External Affairs Officer",
+    category: "external-affairs-officers",
+    branch: "Computer Engineering",
+    year: "TE",
+    image: "https://i.pravatar.cc/300?img=20",
+    bio: "Handling external communications and sponsorships.",
+    responsibilities: ["Outreach", "Sponsorship"],
+    skills: ["Communication", "Negotiation"],
+    social: {}
+  },
+  {
+    id: "ext-affairs-2",
+    name: "External Affairs 2",
+    role: "External Affairs Officer",
+    category: "external-affairs-officers",
+    branch: "Computer Engineering",
+    year: "SE",
+    image: "https://i.pravatar.cc/300?img=21",
+    bio: "Connecting with other organizations and tech clubs.",
+    responsibilities: ["Networking", "Partnerships"],
+    skills: ["Public Speaking", "Management"],
+    social: {}
+  },
+  {
+    id: "ext-affairs-3",
+    name: "External Affairs 3",
+    role: "External Affairs Officer",
+    category: "external-affairs-officers",
+    branch: "Computer Engineering",
+    year: "SE",
+    image: "https://i.pravatar.cc/300?img=22",
+    bio: "Organizing collaborative events.",
+    responsibilities: ["Event Collaboration"],
+    skills: ["Planning", "Coordination"],
+    social: {}
+  },
+  {
+    id: "ext-affairs-4",
+    name: "External Affairs 4",
+    role: "External Affairs Officer",
+    category: "external-affairs-officers",
+    branch: "Computer Engineering",
+    year: "FE",
+    image: "https://i.pravatar.cc/300?img=23",
+    bio: "Assisting in outreach programs.",
+    responsibilities: ["Outreach Assistance"],
+    skills: ["Communication"],
+    social: {}
+  },
+  {
+    id: "pro-1", name: "PRO Name 1", role: "Public Relation Officer", category: "public-relation-officers",
+    branch: "Computer Engineering", year: "SE", image: "https://i.pravatar.cc/300?img=30",
+    bio: "Bio goes here.", responsibilities: ["Resp 1"], skills: ["Skill 1"], social: {}
+  },
+  {
+    id: "pro-2", name: "PRO Name 2", role: "Public Relation Officer", category: "public-relation-officers",
+    branch: "Computer Engineering", year: "SE", image: "https://i.pravatar.cc/300?img=31",
+    bio: "Bio goes here.", responsibilities: ["Resp 1"], skills: ["Skill 1"], social: {}
+  },
+  {
+    id: "rep-1", name: "Rep Name 1", role: "Representative", category: "aces-representative",
+    branch: "Computer Engineering", year: "SE", image: "https://i.pravatar.cc/300?img=32",
+    bio: "Bio goes here.", responsibilities: ["Resp 1"], skills: ["Skill 1"], social: {}
+  },
+  {
+    id: "rep-2", name: "Rep Name 2", role: "Representative", category: "aces-representative",
+    branch: "Computer Engineering", year: "SE", image: "https://i.pravatar.cc/300?img=33",
+    bio: "Bio goes here.", responsibilities: ["Resp 1"], skills: ["Skill 1"], social: {}
+  },
+  {
+    id: "rep-3", name: "Rep Name 3", role: "Representative", category: "aces-representative",
+    branch: "Computer Engineering", year: "SE", image: "https://i.pravatar.cc/300?img=34",
+    bio: "Bio goes here.", responsibilities: ["Resp 1"], skills: ["Skill 1"], social: {}
+  },
+  {
+    id: "rep-4", name: "Rep Name 4", role: "Representative", category: "aces-representative",
+    branch: "Computer Engineering", year: "SE", image: "https://i.pravatar.cc/300?img=35",
+    bio: "Bio goes here.", responsibilities: ["Resp 1"], skills: ["Skill 1"], social: {}
+  },
+  {
+    id: "content-1", name: "Content Creator 1", role: "Content Creator", category: "content-creators",
+    branch: "Computer Engineering", year: "SE", image: "https://i.pravatar.cc/300?img=36",
+    bio: "Bio goes here.", responsibilities: ["Resp 1"], skills: ["Skill 1"], social: {}
+  },
+  {
+    id: "content-2", name: "Content Creator 2", role: "Content Creator", category: "content-creators",
+    branch: "Computer Engineering", year: "SE", image: "https://i.pravatar.cc/300?img=37",
+    bio: "Bio goes here.", responsibilities: ["Resp 1"], skills: ["Skill 1"], social: {}
+  },
+  {
+    id: "content-3", name: "Content Creator 3", role: "Content Creator", category: "content-creators",
+    branch: "Computer Engineering", year: "SE", image: "https://i.pravatar.cc/300?img=38",
+    bio: "Bio goes here.", responsibilities: ["Resp 1"], skills: ["Skill 1"], social: {}
+  },
+  {
+    id: "content-4", name: "Content Creator 4", role: "Content Creator", category: "content-creators",
+    branch: "Computer Engineering", year: "SE", image: "https://i.pravatar.cc/300?img=39",
+    bio: "Bio goes here.", responsibilities: ["Resp 1"], skills: ["Skill 1"], social: {}
+  },
+  {
+    id: "event-1", name: "Event Manager 1", role: "Event Manager", category: "event-managers",
+    branch: "Computer Engineering", year: "SE", image: "https://i.pravatar.cc/300?img=40",
+    bio: "Bio goes here.", responsibilities: ["Resp 1"], skills: ["Skill 1"], social: {}
+  },
+  {
+    id: "event-2", name: "Event Manager 2", role: "Event Manager", category: "event-managers",
+    branch: "Computer Engineering", year: "SE", image: "https://i.pravatar.cc/300?img=41",
+    bio: "Bio goes here.", responsibilities: ["Resp 1"], skills: ["Skill 1"], social: {}
+  },
+  {
+    id: "event-3", name: "Event Manager 3", role: "Event Manager", category: "event-managers",
+    branch: "Computer Engineering", year: "SE", image: "https://i.pravatar.cc/300?img=42",
+    bio: "Bio goes here.", responsibilities: ["Resp 1"], skills: ["Skill 1"], social: {}
+  },
+  {
+    id: "event-4", name: "Event Manager 4", role: "Event Manager", category: "event-managers",
+    branch: "Computer Engineering", year: "SE", image: "https://i.pravatar.cc/300?img=43",
+    bio: "Bio goes here.", responsibilities: ["Resp 1"], skills: ["Skill 1"], social: {}
+  },
+  {
+    id: "data-1", name: "Data Manager 1", role: "Data Manager", category: "data-managers",
+    branch: "Computer Engineering", year: "SE", image: "https://i.pravatar.cc/300?img=44",
+    bio: "Bio goes here.", responsibilities: ["Resp 1"], skills: ["Skill 1"], social: {}
+  },
+  {
+    id: "data-2", name: "Data Manager 2", role: "Data Manager", category: "data-managers",
+    branch: "Computer Engineering", year: "SE", image: "https://i.pravatar.cc/300?img=45",
+    bio: "Bio goes here.", responsibilities: ["Resp 1"], skills: ["Skill 1"], social: {}
+  },
+  {
+    id: "designer-1", name: "Designer 1", role: "Designer", category: "designers-team",
+    branch: "Computer Engineering", year: "SE", image: "https://i.pravatar.cc/300?img=46",
+    bio: "Bio goes here.", responsibilities: ["Resp 1"], skills: ["Skill 1"], social: {}
+  },
+  {
+    id: "designer-2", name: "Designer 2", role: "Designer", category: "designers-team",
+    branch: "Computer Engineering", year: "SE", image: "https://i.pravatar.cc/300?img=47",
+    bio: "Bio goes here.", responsibilities: ["Resp 1"], skills: ["Skill 1"], social: {}
+  },
+  {
+    id: "designer-3", name: "Designer 3", role: "Designer", category: "designers-team",
+    branch: "Computer Engineering", year: "SE", image: "https://i.pravatar.cc/300?img=48",
+    bio: "Bio goes here.", responsibilities: ["Resp 1"], skills: ["Skill 1"], social: {}
+  },
+  {
+    id: "designer-4", name: "Designer 4", role: "Designer", category: "designers-team",
+    branch: "Computer Engineering", year: "SE", image: "https://i.pravatar.cc/300?img=49",
+    bio: "Bio goes here.", responsibilities: ["Resp 1"], skills: ["Skill 1"], social: {}
   }
 ];
-
 export const getMembersByCategory = (categoryId) => {
   return members.filter(member => member.category === categoryId);
 };
