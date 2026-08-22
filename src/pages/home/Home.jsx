@@ -144,9 +144,6 @@ export default function Home() {
       {/* ─── Golden Moments Section (Manual navigation) ─── */}
       <GoldenMoments embedded={true} />
 
-      {/* ─── Blogs & Tech Feed Section (Infinite Marquee) ─── */}
-      <Feed embedded={true} />
-
       {/* ─── Gallery Showcase Section (Hero with Explore CTA) ─── */}
       <Gallery embedded={true} />
 
