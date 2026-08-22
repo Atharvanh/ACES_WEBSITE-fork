@@ -8,7 +8,6 @@ const MENU_ITEMS = [
   { id: 'home', label: 'Home', path: '/' },
   { id: 'who-are-we', label: 'Who Are We', path: '/who-are-we' },
   { id: 'golden-moments', label: 'Golden Moments', path: '/golden-moments' },
-  { id: 'feed', label: 'Blogs & Feed', path: '/feed' },
   { id: 'gallery', label: 'Gallery', path: '/gallery' },
   { id: 'social', label: 'Social', path: '/social' },
   { id: 'members', label: 'Members', path: '/members' },
@@ -87,8 +86,8 @@ export default function Navbar() {
       {/* ─── Desktop Floating Pill Navigation Bar (Windows / Large Screens Only) ─── */}
       <nav
         className={`fixed top-5 left-1/2 -translate-x-1/2 z-40 hidden md:flex items-center gap-1.5 px-3 py-1.5 bg-white/92 backdrop-blur-md border border-[#e8e6e1] rounded-full transition-all duration-300 ${scrolled
-            ? 'shadow-[0_8px_32px_rgba(0,0,0,0.12)] border-primary/25'
-            : 'shadow-[0_4px_16px_rgba(0,0,0,0.06)]'
+          ? 'shadow-[0_8px_32px_rgba(0,0,0,0.12)] border-primary/25'
+          : 'shadow-[0_4px_16px_rgba(0,0,0,0.06)]'
           }`}
         aria-label="Main Navigation"
       >
@@ -115,8 +114,8 @@ export default function Navbar() {
                 key={item.id}
                 onClick={() => handleNav(item)}
                 className={`relative px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-200 cursor-pointer ${active
-                    ? 'text-white bg-primary shadow-[0_2px_12px_rgba(178,43,47,0.3)]'
-                    : 'text-muted hover:text-primary hover:bg-light-tint'
+                  ? 'text-white bg-primary shadow-[0_2px_12px_rgba(178,43,47,0.3)]'
+                  : 'text-muted hover:text-primary hover:bg-light-tint'
                   }`}
               >
                 {item.label}
