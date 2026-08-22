@@ -59,9 +59,35 @@ export default function Navbar() {
     };
   }, [isOpen]);
 
+  // Handle cross-page scrolling to sections
+  useEffect(() => {
+    if (location.pathname === '/' && location.state?.scrollTo) {
+      setTimeout(() => {
+        const el = document.getElementById(location.state.scrollTo);
+        if (el) {
+          const yOffset = -70;
+          const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: location.state.scrollTo === 'home' ? 0 : y, behavior: 'smooth' });
+          setActiveSection(location.state.scrollTo);
+        }
+      }, 150);
+      
+      // Clear the state so it doesn't trigger again on refresh
+      navigate('/', { replace: true, state: {} });
+    }
+  }, [location, navigate]);
+
   const handleNav = (item) => {
     setIsOpen(false);
-    if (location.pathname === '/') {
+    
+    const isHomePageSection = ['home', 'who-are-we', 'golden-moments', 'social'].includes(item.id);
+
+    if (isHomePageSection) {
+      if (location.pathname !== '/') {
+        navigate('/', { state: { scrollTo: item.id } });
+        return;
+      }
+      
       const el = document.getElementById(item.id);
       if (el) {
         const yOffset = -70;
@@ -71,6 +97,7 @@ export default function Navbar() {
         return;
       }
     }
+    
     navigate(item.path);
   };
 
@@ -167,16 +194,13 @@ export default function Navbar() {
               <div className="p-5 border-b border-muted/30 bg-light-tint/60">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">
-                    <div className="w-9 h-9 rounded-[4px] bg-primary flex items-center justify-center text-white font-bold shadow-sm">
-                      <Zap className="w-5 h-5 fill-current" />
+                    <div className="w-10 h-10 flex items-center justify-center">
+                      <img src="/mascot.svg" alt="ACES Mascot" className="w-full h-full object-contain" />
                     </div>
                     <div>
                       <div className="flex items-center space-x-2">
-                        <span className="font-display font-extrabold tracking-wider text-primary text-lg">
+                        <span className="font-serif font-black tracking-[0.15em] text-primary text-xl">
                           ACES
-                        </span>
-                        <span className="px-1.5 py-0.5 text-[10px] font-semibold bg-primary/10 text-primary border border-primary/30 rounded-[4px]">
-                          CLUB
                         </span>
                       </div>
                     </div>
