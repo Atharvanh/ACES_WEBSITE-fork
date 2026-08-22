@@ -141,15 +141,21 @@ export default function GoldenMoments({ embedded = false }) {
                         : 'shadow-[0_12px_36px_rgba(0,0,0,0.08)] border-[#e8e6e1]'
                     }`}
                   >
-                    {/* Brand / Event Tagline */}
-                    <div className="text-center space-y-1 pt-1">
-                      <span className="text-xs sm:text-sm font-sans tracking-[0.2em] uppercase font-black text-secondary">
-                        {moment.eventName ? `EVENT • ${moment.eventName}` : 'ACES DIT PUNE'}
-                      </span>
+                    {/* Brand / Event Tagline & Year (Clean Flex Row - Zero Overlap) */}
+                    <div className="flex items-center justify-between gap-2 px-1 pt-1 pb-1">
+                      <div className="flex items-center gap-1.5 min-w-0">
+                        <span className="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                        <span className="text-[11px] sm:text-xs font-sans tracking-[0.15em] uppercase font-black text-secondary truncate">
+                          {moment.eventName ? `EVENT • ${moment.eventName}` : 'ACES DIT PUNE'}
+                        </span>
+                      </div>
+                      <div className="bg-secondary text-dark-overlay font-bold font-mono text-[11px] sm:text-xs tracking-wider px-3 py-1 rounded-[4px] shadow-sm flex-shrink-0">
+                        {moment.year}
+                      </div>
                     </div>
 
                     {/* Middle Heading & Description */}
-                    <div className="text-center space-y-2 sm:space-y-3 px-2 pt-2">
+                    <div className="text-center space-y-2 sm:space-y-3 px-2 pt-1">
                       <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-primary leading-tight">
                         {moment.title}
                       </h2>
@@ -159,7 +165,7 @@ export default function GoldenMoments({ embedded = false }) {
                     </div>
 
                     {/* Bottom Arched Window Cutout Image (Expanded) */}
-                    <div className="w-full flex-1 min-h-[280px] sm:min-h-[330px] lg:min-h-[380px] rounded-t-[180px] sm:rounded-t-[200px] overflow-hidden border-t-2 border-muted/30 shadow-lg relative mt-4 bg-light-tint group">
+                    <div className="w-full flex-1 min-h-[280px] sm:min-h-[330px] lg:min-h-[380px] rounded-t-[180px] sm:rounded-t-[200px] overflow-hidden border-t-2 border-muted/30 shadow-lg relative mt-3 bg-light-tint group">
                       <img
                         src={moment.image}
                         alt={moment.title}
@@ -167,11 +173,6 @@ export default function GoldenMoments({ embedded = false }) {
                         draggable={false}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-dark-overlay/40 via-transparent to-transparent pointer-events-none" />
-                    </div>
-
-                    {/* Year Stamp Badge */}
-                    <div className="absolute top-5 right-5 bg-secondary text-dark-overlay font-bold font-mono text-xs sm:text-sm tracking-widest px-4 py-1.5 rounded-[4px] shadow-sm">
-                      {moment.year}
                     </div>
                   </motion.div>
                 );

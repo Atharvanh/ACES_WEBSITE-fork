@@ -1,12 +1,12 @@
 export const posts = [
   {
     id: "post-1",
-    title: "HackSeries 25th Edition: Flagship Kickoff! ⚡",
-    summary: "Over 500+ passionate student engineers assembled for 36 hours of non-stop coding, innovation, and teamwork.",
+    title: "Acunetix National Tech Symposium Live! 🔥",
+    summary: "Hundreds of enthusiastic engineers competing in algorithmic coding, hardware expos, and robotics showdowns at Acunetix.",
     author: "ACES Technical Core",
-    date: "August 19, 2026",
-    likes: 142,
-    image: "/images/gallery/hackseries-25-1.jpg"
+    date: "August 20, 2026",
+    likes: 198,
+    image: "/images/posts/post-acunetix-1.jpg"
   },
   {
     id: "post-2",
@@ -15,16 +15,16 @@ export const posts = [
     author: "ACES Event Management",
     date: "July 12, 2026",
     likes: 188,
-    image: "/images/gallery/hackathon-main-1.jpg"
+    image: "/images/posts/post-hackathon-1.jpg"
   },
   {
     id: "post-3",
-    title: "Indo-German Technical Colloquium 🌍",
-    summary: "International guest delegation sharing global tech perspectives, robotics research, and overseas engineering opportunities.",
-    author: "ACES International Cell",
+    title: "HackSeries 00 Inaugural Flagship ⚡",
+    summary: "Reliving the founding energy of HackSeries 00 where builders assembled for 36 hours of high-impact open-source problem solving.",
+    author: "ACES Flagship Cell",
     date: "June 25, 2026",
-    likes: 165,
-    image: "/images/gallery/german-event-1.jpg"
+    likes: 215,
+    image: "/images/posts/post-hackseries00-1.jpg"
   }
 ];
 
