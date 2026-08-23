@@ -1,5 +1,10 @@
 .aces-footer {
-  background-color: #FFF4F2;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(255, 244, 242, 0.85) 15%,
+    #FFF4F2 40%
+  );
   padding: 3rem 2rem 0;
   font-family: 'Metropolis', 'Inter', sans-serif;
 }

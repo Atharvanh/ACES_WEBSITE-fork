@@ -129,7 +129,7 @@ export default function Gallery({ embedded = false }) {
   const currentActiveItem = filteredItems[activeSlideIndex] || filteredItems[0];
 
   return (
-    <div id="gallery" className="w-full text-dark-overlay">
+    <div id="gallery" className="w-full bg-[#FFF4F2] text-dark-overlay">
       {/* Embedded CSS for keyframes & responsive marquee styling */}
       <style>{`
         @keyframes galleryMarqueeUp {

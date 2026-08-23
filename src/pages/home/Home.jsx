@@ -19,7 +19,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#FFF4F2]">
+    <div className="min-h-screen overflow-x-hidden bg-transparent">
       {/* ─── 1. Home / Hero Section: Cyber Mesh & Technical Architecture (Screenshot 2 Design) ─── */}
       <section id="home" className="relative min-h-screen w-full overflow-hidden scroll-mt-20">
         <CyberHeroAnimation onExploreClick={() => scrollToSection('who-are-we')} />
