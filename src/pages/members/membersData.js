@@ -402,32 +402,6 @@ export const members = [
 
   // ─── PUBLIC RELATIONS OFFICERS ───
   {
-    id: "spandan-hattikar",
-    name: "Spandan Hattikar",
-    role: "Public Relations Officer",
-    category: "public-relations",
-    rollNo: "SCOB46",
-    branch: "Computer Engineering",
-    year: "SE",
-    image: "https://ui-avatars.com/api/?name=Spandan+Hattikar&background=b22b2f&color=fff&size=400&bold=true",
-    bio: "Curious, slightly chaotic, and always trying to learn something new. Pretty easygoing, enjoy meeting new people, and always up for trying something different.",
-    responsibilities: [
-      "Campus PR",
-      "Student Engagement",
-      "Media Relations"
-    ],
-    skills: [
-      "Public Relations",
-      "Networking",
-      "Communication"
-    ],
-    social: {
-      linkedin: "https://www.linkedin.com/in/spandan-hattikar",
-      github: "https://github.com/Spandan-Hattikar",
-      instagram: "https://instagram.com/spandan_hattikar"
-    }
-  },
-  {
     id: "srushti-veer",
     name: "Srushti Mangesh Veer",
     role: "Public Relations Officer",
@@ -451,6 +425,32 @@ export const members = [
       linkedin: "https://linkedin.com/in/srushti-veer-9a225122b",
       github: "https://github.com/veersrushti60",
       instagram: "https://www.instagram.com/veer.srushtii/"
+    }
+  },
+  {
+    id: "spandan-hattikar",
+    name: "Spandan Hattikar",
+    role: "Public Relations Officer",
+    category: "public-relations",
+    rollNo: "SCOB46",
+    branch: "Computer Engineering",
+    year: "SE",
+    image: "https://ui-avatars.com/api/?name=Spandan+Hattikar&background=b22b2f&color=fff&size=400&bold=true",
+    bio: "Curious, slightly chaotic, and always trying to learn something new. Pretty easygoing, enjoy meeting new people, and always up for trying something different.",
+    responsibilities: [
+      "Campus PR",
+      "Student Engagement",
+      "Media Relations"
+    ],
+    skills: [
+      "Public Relations",
+      "Networking",
+      "Communication"
+    ],
+    social: {
+      linkedin: "https://www.linkedin.com/in/spandan-hattikar",
+      github: "https://github.com/Spandan-Hattikar",
+      instagram: "https://instagram.com/spandan_hattikar"
     }
   },
   {
@@ -481,6 +481,31 @@ export const members = [
   },
 
   // ─── EXTERNAL AFFAIRS OFFICERS ───
+  {
+    id: "gauri-marke",
+    name: "Gauri Prakash Marke",
+    role: "External Affairs Officer",
+    category: "external-affairs",
+    rollNo: "TCOC16",
+    branch: "Computer Engineering",
+    year: "TE",
+    image: "https://ui-avatars.com/api/?name=Gauri+Marke&background=b22b2f&color=fff&size=400&bold=true",
+    bio: "A people person who enjoys communication, collaboration, and turning conversations into opportunities. At ACES, I work towards building strong external connections and creating meaningful collaborations.",
+    responsibilities: [
+      "External Relations",
+      "Strategic Collaborations",
+      "Outreach Campaigns"
+    ],
+    skills: [
+      "Communication",
+      "Collaboration",
+      "Strategic Networking"
+    ],
+    social: {
+      linkedin: "https://www.linkedin.com/in/gauri-m-1a5519378",
+      github: "https://github.com/GauriMarke10"
+    }
+  },
   {
     id: "rajeshwari-kokate",
     name: "Rajeshwari Kokate",
@@ -560,31 +585,6 @@ export const members = [
     }
   },
   {
-    id: "gauri-marke",
-    name: "Gauri Prakash Marke",
-    role: "External Affairs Officer",
-    category: "external-affairs",
-    rollNo: "TCOC16",
-    branch: "Computer Engineering",
-    year: "TE",
-    image: "https://ui-avatars.com/api/?name=Gauri+Marke&background=b22b2f&color=fff&size=400&bold=true",
-    bio: "A people person who enjoys communication, collaboration, and turning conversations into opportunities. At ACES, I work towards building strong external connections and creating meaningful collaborations.",
-    responsibilities: [
-      "External Relations",
-      "Strategic Collaborations",
-      "Outreach Campaigns"
-    ],
-    skills: [
-      "Communication",
-      "Collaboration",
-      "Strategic Networking"
-    ],
-    social: {
-      linkedin: "https://www.linkedin.com/in/gauri-m-1a5519378",
-      github: "https://github.com/GauriMarke10"
-    }
-  },
-  {
     id: "yash-jain",
     name: "Yash Jain",
     role: "External Affairs Officer",
@@ -612,6 +612,57 @@ export const members = [
   },
 
   // ─── ACES REPRESENTATIVES ───
+  {
+    id: "anjali-shanbhag",
+    name: "Anjali Shanbhag",
+    role: "ACES Representative",
+    category: "representatives",
+    rollNo: "TCOC22",
+    branch: "Computer Engineering",
+    year: "TE",
+    image: "https://ui-avatars.com/api/?name=Anjali+Shanbhag&background=b22b2f&color=fff&size=400&bold=true",
+    bio: "Contributing to the planning and execution of ACES initiatives, coordinating with faculty and student teams, and mentoring junior representatives to foster student engagement within the Computer Engineering department.",
+    responsibilities: [
+      "Department Coordination",
+      "Mentorship",
+      "Student Advocacy"
+    ],
+    skills: [
+      "Leadership",
+      "Team Coordination",
+      "Department Liaison"
+    ],
+    social: {
+      linkedin: "https://www.linkedin.com/in/anjali-s-68b843329",
+      github: "https://github.com/anjaliishanbhag",
+      instagram: "https://instagram.com/anjaliiii_sh"
+    }
+  },
+  {
+    id: "shivam-kurlekar",
+    name: "Shivam Kurlekar",
+    role: "ACES Representative",
+    category: "representatives",
+    rollNo: "TCOD55",
+    branch: "Computer Engineering",
+    year: "TE",
+    image: "https://ui-avatars.com/api/?name=Shivam+Kurlekar&background=b22b2f&color=fff&size=400&bold=true",
+    bio: "Connecting people, creating memories, handling the chaos, and pretending I had everything under control the entire time.",
+    responsibilities: [
+      "Student Relations",
+      "Logistics Coordination",
+      "Engagement"
+    ],
+    skills: [
+      "People Management",
+      "Problem Solving",
+      "Team Building"
+    ],
+    social: {
+      linkedin: "https://www.linkedin.com/in/shivam-kurlekar",
+      github: "https://github.com/bemo-codes"
+    }
+  },
   {
     id: "yasha-chhajed",
     name: "Yasha Anilkumar Chhajed",
@@ -665,32 +716,6 @@ export const members = [
     }
   },
   {
-    id: "anjali-shanbhag",
-    name: "Anjali Shanbhag",
-    role: "ACES Representative",
-    category: "representatives",
-    rollNo: "TCOC22",
-    branch: "Computer Engineering",
-    year: "TE",
-    image: "https://ui-avatars.com/api/?name=Anjali+Shanbhag&background=b22b2f&color=fff&size=400&bold=true",
-    bio: "Contributing to the planning and execution of ACES initiatives, coordinating with faculty and student teams, and mentoring junior representatives to foster student engagement within the Computer Engineering department.",
-    responsibilities: [
-      "Department Coordination",
-      "Mentorship",
-      "Student Advocacy"
-    ],
-    skills: [
-      "Leadership",
-      "Team Coordination",
-      "Department Liaison"
-    ],
-    social: {
-      linkedin: "https://www.linkedin.com/in/anjali-s-68b843329",
-      github: "https://github.com/anjaliishanbhag",
-      instagram: "https://instagram.com/anjaliiii_sh"
-    }
-  },
-  {
     id: "shreya-ashtekar",
     name: "Shreya Ashtekar",
     role: "ACES Representative",
@@ -714,31 +739,6 @@ export const members = [
       linkedin: "https://www.linkedin.com/in/shreya-ashtekar",
       github: "https://github.com/shreyaashtekar",
       instagram: "https://www.instagram.com/shreya_ashtekar10"
-    }
-  },
-  {
-    id: "shivam-kurlekar",
-    name: "Shivam Kurlekar",
-    role: "ACES Representative",
-    category: "representatives",
-    rollNo: "TCOD55",
-    branch: "Computer Engineering",
-    year: "TE",
-    image: "https://ui-avatars.com/api/?name=Shivam+Kurlekar&background=b22b2f&color=fff&size=400&bold=true",
-    bio: "Connecting people, creating memories, handling the chaos, and pretending I had everything under control the entire time.",
-    responsibilities: [
-      "Student Relations",
-      "Logistics Coordination",
-      "Engagement"
-    ],
-    skills: [
-      "People Management",
-      "Problem Solving",
-      "Team Building"
-    ],
-    social: {
-      linkedin: "https://www.linkedin.com/in/shivam-kurlekar",
-      github: "https://github.com/bemo-codes"
     }
   },
   {
@@ -875,6 +875,32 @@ export const members = [
 
   // ─── CONTENT CREATORS ───
   {
+    id: "jeet-choudhari",
+    name: "Jeet Choudhari",
+    role: "Content Creator",
+    category: "content-creators",
+    rollNo: "TCOD19",
+    branch: "Computer Engineering",
+    year: "TE",
+    image: "https://ui-avatars.com/api/?name=Jeet+Choudhari&background=b22b2f&color=fff&size=400&bold=true",
+    bio: "Creates engaging video reels and stories to make ACES event updates, technical workshops, and club achievements available to students across the college campus and beyond.",
+    responsibilities: [
+      "Reels Production",
+      "Story Campaigns",
+      "Digital Promotion"
+    ],
+    skills: [
+      "Video Editing",
+      "Content Creation",
+      "Reels Creation"
+    ],
+    social: {
+      linkedin: "https://www.linkedin.com/in/jeet-choudhary-b6b346311",
+      github: "https://github.com/jeet8499",
+      instagram: "https://instagram.com/jeet_18c"
+    }
+  },
+  {
     id: "shreya-patil",
     name: "Shreya Patil",
     role: "Content Creator",
@@ -924,32 +950,6 @@ export const members = [
       linkedin: "https://www.linkedin.com/in/rohan-band-41545b373",
       github: "https://github.com/bandrohan85-crypto",
       instagram: "https://www.instagram.com/band_rohan__007/"
-    }
-  },
-  {
-    id: "jeet-choudhari",
-    name: "Jeet Choudhari",
-    role: "Content Creator",
-    category: "content-creators",
-    rollNo: "TCOD19",
-    branch: "Computer Engineering",
-    year: "TE",
-    image: "https://ui-avatars.com/api/?name=Jeet+Choudhari&background=b22b2f&color=fff&size=400&bold=true",
-    bio: "Creates engaging video reels and stories to make ACES event updates, technical workshops, and club achievements available to students across the college campus and beyond.",
-    responsibilities: [
-      "Reels Production",
-      "Story Campaigns",
-      "Digital Promotion"
-    ],
-    skills: [
-      "Video Editing",
-      "Content Creation",
-      "Reels Creation"
-    ],
-    social: {
-      linkedin: "https://www.linkedin.com/in/jeet-choudhary-b6b346311",
-      github: "https://github.com/jeet8499",
-      instagram: "https://instagram.com/jeet_18c"
     }
   },
   {
@@ -1164,12 +1164,73 @@ export const members = [
   }
 ];
 
+// Seniority ranking helpers
+const getYearScore = (m) => {
+  if (!m) return 99;
+  if (m.category === 'faculty-coordinator' || m.role === 'Faculty Coordinator') return 0;
+  const y = (m.year || '').toLowerCase().trim();
+  const roll = (m.rollNo || '').toLowerCase().trim();
+  if (y === 'dit pune' || y.includes('faculty')) return 0;
+  if (y.includes('be') || roll.startsWith('bco')) return 1;
+  if (y.includes('te') || roll.startsWith('tco')) return 2;
+  if (y.includes('se') || roll.startsWith('sco')) return 3;
+  if (y.includes('fe') || roll.startsWith('fco')) return 4;
+  return 5;
+};
+
+const getRoleRank = (role, category) => {
+  const r = (role || '').toLowerCase().trim();
+  // For Core Team, maintain leadership hierarchy
+  if (category === 'core-team') {
+    if (r === 'president') return 1;
+    if (r === 'vice president') return 2;
+    if (r === 'treasurer') return 3;
+    if (r === 'secretary') return 4;
+    if (r.includes('advisor')) return 5;
+  }
+  // Senior / Head before Junior
+  if (r.includes('senior') || r.includes('sr.')) return 1;
+  if (r.includes('head') && !r.includes('jr')) return 2;
+  if (r.includes('lead') && !r.includes('jr')) return 3;
+  if (r.includes('jr')) return 10;
+  return 5;
+};
+
+export const sortMembersBySeniority = (membersList, categoryId) => {
+  return [...membersList].sort((a, b) => {
+    // For core-team: President > Vice President > Treasurer > Secretary > Club Advisor
+    if (categoryId === 'core-team' || (a.category === 'core-team' && b.category === 'core-team')) {
+      const roleA = getRoleRank(a.role, 'core-team');
+      const roleB = getRoleRank(b.role, 'core-team');
+      if (roleA !== roleB) return roleA - roleB;
+      const yearA = getYearScore(a);
+      const yearB = getYearScore(b);
+      if (yearA !== yearB) return yearA - yearB;
+      return 0;
+    }
+
+    // 1. Primary sort: Academic Year Seniority (Faculty > BE > TE > SE > FE)
+    const yearA = getYearScore(a);
+    const yearB = getYearScore(b);
+    if (yearA !== yearB) return yearA - yearB;
+
+    // 2. Secondary sort: Role Hierarchy (Senior / Head before Junior)
+    const roleA = getRoleRank(a.role, categoryId || a.category);
+    const roleB = getRoleRank(b.role, categoryId || b.category);
+    if (roleA !== roleB) return roleA - roleB;
+
+    return 0;
+  });
+};
+
 export const getMembersByCategory = (categoryId) => {
-  return members.filter(member => member.category === categoryId);
+  const filtered = members.filter(member => member.category === categoryId);
+  return sortMembersBySeniority(filtered, categoryId);
 };
 
 export const getMembersByRole = (role) => {
-  return members.filter(member => member.role === role);
+  const filtered = members.filter(member => member.role === role);
+  return sortMembersBySeniority(filtered);
 };
 
 export const getMemberById = (id) => {
