@@ -80,7 +80,7 @@ export default function ContactUs() {
         <form
           onSubmit={handleSubmit}
           noValidate
-          className="max-w-xl space-y-5 reveal"
+          className="max-w-xl mx-auto space-y-5 reveal"
         >
           {/* Name */}
           <div>

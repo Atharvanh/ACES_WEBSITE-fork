@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { categories, getMembersByCategory } from './membersData';
 import MemberCard from '../../components/members/MemberCard';
-import { Users, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export default function Members({ embedded = false }) {
   const navigate = useNavigate();
@@ -61,10 +61,7 @@ export default function Members({ embedded = false }) {
       {/* Header Banner */}
       <div className="w-full pb-12 md:pb-16 px-6 md:px-12 xl:px-16">
         <div className="max-w-[1550px] mx-auto reveal-heading">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="w-10 h-10 rounded-[8px] bg-primary/10 border border-primary/30 flex items-center justify-center text-primary shadow-brand-glow">
-              <Users className="w-5 h-5" />
-            </div>
+          <div className="mb-3">
             <h1 className="font-display text-3xl md:text-5xl font-black uppercase text-gradient-brand tracking-tight">
               ACES Members
             </h1>
