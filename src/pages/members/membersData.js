@@ -354,7 +354,7 @@ export const members = [
     category: "technical-team",
     rollNo: "SCOD05",
     branch: "Computer Engineering",
-    year: "FE",
+    year: "SE",
     image: "https://ui-avatars.com/api/?name=Raj+Singh&background=d1a550&color=111&size=400&bold=true",
     bio: "CSE'29 student, Junior Tech Head @ ACES and GSSoC'26 Contributor. Currently learning DSA, Web Development, and contributing to open-source software.",
     responsibilities: [
@@ -379,7 +379,7 @@ export const members = [
     name: "Arnav Tagade",
     role: "Jr. Technical Head",
     category: "technical-team",
-    rollNo: "SCO...",
+    rollNo: "SCOD22",
     branch: "Computer Engineering",
     year: "SE",
     image: "https://ui-avatars.com/api/?name=Arnav+Tagade&background=111&color=fff&size=400&bold=true",

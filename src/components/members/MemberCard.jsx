@@ -24,7 +24,7 @@ const MemberCardFront = ({ member }) => {
         
         <div className="text-xs sm:text-sm text-[#6B6D71]">
           <p>{member.branch}</p>
-          <p>{member.year} {member.rollNo ? `• ${member.rollNo}` : ''}</p>
+          <p>{member.year} {member.rollNo && !member.rollNo.includes('...') && member.rollNo !== 'Faculty' ? `• ${member.rollNo}` : ''}</p>
         </div>
       </div>
 
