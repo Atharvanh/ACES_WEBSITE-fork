@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Award, ChevronLeft, ChevronRight } from 'lucide-react';
 import { goldenMoments } from './momentsData';
 
-export default function GoldenMoments({ embedded = false, autoScroll = true, autoScrollInterval = 3500 }) {
+export default function GoldenMoments({ embedded = false, autoScroll = true, autoScrollInterval = 1500 }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
