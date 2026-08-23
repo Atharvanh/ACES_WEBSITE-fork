@@ -6,6 +6,7 @@ import Gallery from '../gallery/Gallery';
 import Feed from '../feed/Feed';
 import Social from '../social/Social';
 import Members from '../members/Members';
+import ContactUs from '../../components/ContactUs';
 
 export default function Home() {
   const scrollToSection = (id) => {
@@ -37,6 +38,9 @@ export default function Home() {
 
       {/* ─── Members Directory Preview Section ─── */}
       <Members embedded={true} />
+
+      {/* ─── Contact Us Section ─── */}
+      <ContactUs />
     </div>
   );
 }
