@@ -318,11 +318,6 @@ export default function Social({ embedded = false }) {
                           <h3 className="font-display text-sm sm:text-base font-bold text-white leading-snug drop-shadow-md">
                             {item.title}
                           </h3>
-                          {item.subtitle && (
-                            <p className="text-[11px] sm:text-xs text-white/80 font-sans line-clamp-1 mt-0.5 font-medium">
-                              {item.subtitle}
-                            </p>
-                          )}
                         </div>
                       </div>
                     ) : (
