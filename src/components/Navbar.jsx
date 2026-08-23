@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X, Zap, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { InstagramIcon, LinkedinIcon, GithubIcon } from './SocialIcons';
+import WebGLBackground from './WebGLBackground';
 
 const MENU_ITEMS = [
   { id: 'home', label: 'Home', path: '/' },
@@ -192,10 +193,16 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 28, stiffness: 260 }}
-              className="fixed top-0 right-0 bottom-0 h-[100dvh] z-50 w-80 max-w-[85vw] bg-white border-l border-muted/50 shadow-2xl flex flex-col justify-between overscroll-none"
+              className="fixed top-0 right-0 bottom-0 h-[100dvh] z-50 w-80 max-w-[85vw] bg-white border-l border-muted/50 shadow-2xl flex flex-col justify-between overscroll-none overflow-hidden"
             >
-              {/* Drawer Header */}
-              <div className="p-5 border-b border-muted/30 bg-light-tint/60">
+              <WebGLBackground 
+                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }} 
+              />
+              
+              {/* Content wrappers need relative z-index to stay above the absolute background */}
+              <div className="relative z-10 flex flex-col h-full justify-between pointer-events-none">
+                {/* Drawer Header */}
+                <div className="p-5 border-b border-muted/30 bg-light-tint/60 pointer-events-auto">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">
                     <div className="w-12 h-12 flex items-center justify-center">
@@ -223,7 +230,7 @@ export default function Navbar() {
               </div>
 
               {/* Drawer Navigation Links */}
-              <div className="flex-1 overflow-y-auto overscroll-none px-6 py-6">
+              <div className="flex-1 overflow-y-auto overscroll-none px-6 py-6 pointer-events-auto">
                 <nav className="flex flex-col space-y-4" role="menu">
                   {MENU_ITEMS.map((item) => {
                     const active = isItemActive(item);
@@ -249,7 +256,7 @@ export default function Navbar() {
               </div>
 
               {/* Drawer Footer with Social Icons */}
-              <div className="p-5 border-t border-muted/30 bg-[#FFF4F2] flex flex-col items-center justify-center space-y-3">
+              <div className="p-5 border-t border-muted/30 bg-transparent flex flex-col items-center justify-center space-y-3 pointer-events-auto">
                 <div className="flex items-center justify-center space-x-5">
                   <a
                     href="https://instagram.com"
@@ -282,6 +289,7 @@ export default function Navbar() {
                 <p className="text-[10px] text-muted font-medium tracking-wider text-center">
                   ACES • DIT PUNE
                 </p>
+              </div>
               </div>
             </motion.aside>
           </>
