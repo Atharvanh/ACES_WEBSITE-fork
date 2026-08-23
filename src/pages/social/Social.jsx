@@ -133,7 +133,7 @@ export default function Social({ embedded = false }) {
   return (
     <div
       id="social"
-      className={`w-full ${
+      className={`w-full bg-[#FFF4F2] ${
         embedded ? 'pt-16 sm:pt-24 pb-16' : 'min-h-screen pt-28 sm:pt-36 pb-24'
       } px-0 flex flex-col justify-center items-center overflow-visible relative select-none`}
     >

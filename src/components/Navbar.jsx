@@ -117,7 +117,7 @@ export default function Navbar() {
     <>
       {/* ─── Desktop Floating Pill Navigation Bar (Windows / Large Screens Only) ─── */}
       <nav
-        className={`fixed top-5 left-1/2 -translate-x-1/2 z-40 hidden md:flex items-center gap-1.5 px-3 py-1.5 bg-white/92 backdrop-blur-md border border-[#e8e6e1] rounded-full transition-all duration-300 ${scrolled
+        className={`fixed top-5 left-1/2 -translate-x-1/2 z-40 hidden md:flex items-center gap-1.5 px-3 py-1.5 bg-white/95 backdrop-blur-md border border-[#e8e6e1] rounded-full transition-all duration-300 ${scrolled
           ? 'shadow-[0_8px_32px_rgba(0,0,0,0.12)] border-primary/25'
           : 'shadow-[0_4px_16px_rgba(0,0,0,0.06)]'
           }`}

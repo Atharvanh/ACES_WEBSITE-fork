@@ -20,6 +20,7 @@
 
 /* Custom Scrollbar Styles */
 html {
+  scroll-behavior: smooth;
   scrollbar-color: #6b6d71 var(--scrollbar-track, #ffffff);
 }
 
