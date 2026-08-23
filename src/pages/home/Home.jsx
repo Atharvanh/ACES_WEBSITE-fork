@@ -27,7 +27,7 @@ export default function Home() {
       {/* ─── Who Are We Section ─── */}
       <WhoAreWe embedded={true} />
 
-      {/* ─── Golden Moments Section (Manual navigation) ─── */}
+      {/* ─── Golden Moments Section (Auto & Manual navigation) ─── */}
       <GoldenMoments embedded={true} />
 
       {/* ─── Gallery Showcase Section (Hero with Explore CTA) ─── */}

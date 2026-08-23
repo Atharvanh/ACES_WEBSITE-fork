@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Award, ChevronLeft, ChevronRight } from 'lucide-react';
 import { goldenMoments } from './momentsData';
 
-export default function GoldenMoments({ embedded = false }) {
+export default function GoldenMoments({ embedded = false, autoScroll = true, autoScrollInterval = 3500 }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
   const total = goldenMoments.length;
 
@@ -14,15 +15,31 @@ export default function GoldenMoments({ embedded = false }) {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     setActiveIndex((prev) => (prev + 1) % total);
-  };
+  }, [total]);
 
-  const handlePrev = () => {
+  const handlePrev = useCallback(() => {
     setActiveIndex((prev) => (prev - 1 + total) % total);
+  }, [total]);
+
+  // Auto right-scroll interval (advances to next card periodically, paused on hover/touch)
+  useEffect(() => {
+    if (!autoScroll || isPaused) return;
+
+    const timer = setInterval(() => {
+      handleNext();
+    }, autoScrollInterval);
+
+    return () => clearInterval(timer);
+  }, [autoScroll, isPaused, autoScrollInterval, handleNext, activeIndex]);
+
+  const handleDragStart = () => {
+    setIsPaused(true);
   };
 
   const handleDragEnd = (_, info) => {
+    setIsPaused(false);
     const swipeThreshold = 40;
     if (info.offset.x < -swipeThreshold) {
       handleNext();
@@ -40,7 +57,7 @@ export default function GoldenMoments({ embedded = false }) {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  }, [handleNext, handlePrev]);
 
   // Tighter card spacing relative to card width so cards tuck cohesively without dead gaps
   const getCardSpacing = () => {
@@ -73,7 +90,13 @@ export default function GoldenMoments({ embedded = false }) {
         </div>
 
         {/* Carousel Viewport Container (Spans full viewport with middle desktop arrow buttons) */}
-        <div className="relative w-full flex flex-col items-center justify-center overflow-visible py-4">
+        <div
+          className="relative w-full flex flex-col items-center justify-center overflow-visible py-4"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onTouchStart={() => setIsPaused(true)}
+          onTouchEnd={() => setIsPaused(false)}
+        >
           
           {/* Left Arrow Button (Only on PCs / Laptops, vertically centered at far left edge) */}
           <button
@@ -100,6 +123,7 @@ export default function GoldenMoments({ embedded = false }) {
               drag="x"
               dragConstraints={{ left: 0, right: 0 }}
               dragElastic={0.15}
+              onDragStart={handleDragStart}
               onDragEnd={handleDragEnd}
               className="relative w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing"
               style={{ touchAction: 'pan-y' }}
