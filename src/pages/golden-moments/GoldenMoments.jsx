@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Award, ChevronLeft, ChevronRight } from 'lucide-react';
 import { goldenMoments } from './momentsData';
 
-export default function GoldenMoments({ embedded = false, autoScroll = true, autoScrollInterval = 1500 }) {
+export default function GoldenMoments({ embedded = false, autoScroll = true, autoScrollInterval = 2000 }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
@@ -122,10 +122,10 @@ export default function GoldenMoments({ embedded = false, autoScroll = true, aut
             <motion.div
               drag="x"
               dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={0.15}
+              dragElastic={0.12}
               onDragStart={handleDragStart}
               onDragEnd={handleDragEnd}
-              className="relative w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing"
+              className="relative w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing transform-gpu"
               style={{ touchAction: 'pan-y' }}
             >
               {goldenMoments.map((moment, idx) => {
@@ -135,29 +135,33 @@ export default function GoldenMoments({ embedded = false, autoScroll = true, aut
                 if (offset < -total / 2) offset += total;
 
                 const isCenter = offset === 0;
-                const isVisible = Math.abs(offset) <= 2.5;
+                const isFarHidden = Math.abs(offset) > 2.5;
 
                 return (
                   <motion.div
                     key={moment.id}
-                    onClick={() => setActiveIndex(idx)}
+                    onClick={() => !isFarHidden && setActiveIndex(idx)}
                     initial={false}
                     animate={{
                       scale: isCenter ? 1 : Math.abs(offset) <= 1.2 ? 0.88 : 0.77,
-                      opacity: isCenter ? 1 : Math.abs(offset) <= 1.2 ? 0.82 : isVisible ? 0.52 : 0,
+                      opacity: isFarHidden ? 0 : isCenter ? 1 : Math.abs(offset) <= 1.2 ? 0.82 : 0.45,
                       x: offset * cardSpacing,
-                      rotateY: offset * -8,
-                      zIndex: isCenter ? 30 : 20 - Math.abs(Math.round(offset)) * 5,
+                      rotateY: offset * -7,
+                      zIndex: isFarHidden ? 0 : isCenter ? 30 : 20 - Math.abs(Math.round(offset)) * 5,
+                      pointerEvents: isFarHidden ? 'none' : 'auto',
                     }}
                     transition={{
                       type: 'spring',
-                      stiffness: 280,
-                      damping: 30,
-                      mass: 0.8,
+                      stiffness: 340,
+                      damping: 32,
+                      mass: 0.6,
                     }}
-                    className={`absolute w-[88vw] max-w-[360px] sm:w-[420px] md:w-[450px] lg:w-[480px] h-[600px] sm:h-[660px] lg:h-[720px] flex-shrink-0 cursor-pointer rounded-[32px] overflow-hidden border bg-white p-7 sm:p-8 flex flex-col justify-between transition-all duration-300 ${
+                    style={{
+                      willChange: 'transform, opacity',
+                    }}
+                    className={`absolute w-[88vw] max-w-[360px] sm:w-[420px] md:w-[450px] lg:w-[480px] h-[600px] sm:h-[660px] lg:h-[720px] flex-shrink-0 cursor-pointer rounded-[32px] overflow-hidden border bg-white p-7 sm:p-8 flex flex-col justify-between transform-gpu ${
                       isCenter 
-                        ? 'shadow-[0_20px_50px_rgba(178,43,47,0.18),0_6px_20px_rgba(0,0,0,0.06)] border-primary/50' 
+                        ? 'shadow-[0_20px_50px_rgba(178,43,47,0.18),0_6px_20px_rgba(0,0,0,0.06)] border-primary/50 ring-2 ring-primary/20' 
                         : 'shadow-[0_12px_36px_rgba(0,0,0,0.08)] border-[#e8e6e1]'
                     }`}
                   >
@@ -206,7 +210,7 @@ export default function GoldenMoments({ embedded = false, autoScroll = true, aut
             <button
               key={idx}
               onClick={() => setActiveIndex(idx)}
-              className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+              className={`h-2.5 rounded-full transition-all duration-250 cursor-pointer ${
                 idx === activeIndex 
                   ? 'w-9 bg-primary shadow-brand-glow' 
                   : 'w-2.5 bg-muted/40 hover:bg-muted'
