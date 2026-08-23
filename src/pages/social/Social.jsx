@@ -313,12 +313,6 @@ export default function Social({ embedded = false }) {
                           </button>
                         )}
 
-                        {/* Bottom Gradient with Reel Title */}
-                        <div className="absolute inset-x-0 bottom-0 z-10 p-4 sm:p-5 bg-gradient-to-t from-black/90 via-black/50 to-transparent pointer-events-none text-left">
-                          <h3 className="font-display text-sm sm:text-base font-bold text-white leading-snug drop-shadow-md">
-                            {item.title}
-                          </h3>
-                        </div>
                       </div>
                     ) : (
                       /* ─── POST CARD BODY ─── */
