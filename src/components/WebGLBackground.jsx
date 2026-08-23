@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
 import * as THREE from 'three';
 
-export default function WebGLBackground() {
+export default function WebGLBackground({ className, style }) {
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -12,14 +12,19 @@ export default function WebGLBackground() {
     let cancelled = false;
 
     const isMobile = window.innerWidth < 768;
+    const getWidth = () => container.clientWidth || window.innerWidth;
+    const getHeight = () => container.clientHeight || window.innerHeight;
+
+    let width = getWidth();
+    let height = getHeight();
 
     // --- Scene Setup ---
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
     camera.position.z = 32;
 
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setClearColor(0x000000, 0);
     container.appendChild(renderer.domElement);
@@ -202,9 +207,11 @@ export default function WebGLBackground() {
 
     // --- Resize Handler ---
     const handleResize = () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
+      width = getWidth();
+      height = getHeight();
+      camera.aspect = width / height;
       camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setSize(width, height);
     };
     window.addEventListener('resize', handleResize);
 
@@ -234,6 +241,7 @@ export default function WebGLBackground() {
     <div
       ref={containerRef}
       id="webgl-container"
+      className={className}
       style={{
         position: 'fixed',
         top: 0,
@@ -242,6 +250,7 @@ export default function WebGLBackground() {
         height: '100vh',
         zIndex: -2,
         pointerEvents: 'none',
+        ...style
       }}
     />
   );
