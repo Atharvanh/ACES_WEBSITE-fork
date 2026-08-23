@@ -133,8 +133,8 @@ export default function Social({ embedded = false }) {
   return (
     <div
       id="social"
-      className={`w-full bg-[#FFF4F2] ${
-        embedded ? 'pt-16 sm:pt-24 pb-16' : 'min-h-screen pt-28 sm:pt-36 pb-24'
+      className={`w-full ${
+        embedded ? 'bg-gradient-to-b from-[#FFF4F2] via-[#FFF4F2] to-white pt-16 sm:pt-24 pb-16' : 'bg-[#FFF4F2] min-h-screen pt-28 sm:pt-36 pb-24'
       } px-0 flex flex-col justify-center items-center overflow-visible relative select-none`}
     >
 
@@ -253,8 +253,8 @@ export default function Social({ embedded = false }) {
                     }}
                     className={`absolute w-[88vw] max-w-[340px] sm:w-[380px] md:w-[410px] lg:w-[440px] h-[550px] sm:h-[600px] lg:h-[650px] flex-shrink-0 cursor-pointer rounded-[32px] overflow-hidden border bg-white flex flex-col justify-between p-4 sm:p-5 transform-gpu ${
                       isCenter 
-                        ? 'shadow-[0_24px_60px_rgba(178,43,47,0.20),0_6px_20px_rgba(0,0,0,0.06)] border-primary/50 ring-2 ring-primary/20' 
-                        : 'shadow-[0_8px_24px_rgba(0,0,0,0.06)] border-[#e8e6e1]'
+                        ? 'shadow-[0_20px_48px_-10px_rgba(28,25,23,0.14),0_6px_18px_-4px_rgba(178,43,47,0.08)] border-primary/40' 
+                        : 'shadow-[0_6px_20px_rgba(0,0,0,0.05)] border-[#e8e6e1]'
                     }`}
                   >
                     {/* Card Top Header Strip */}

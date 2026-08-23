@@ -161,8 +161,8 @@ export default function GoldenMoments({ embedded = false, autoScroll = true, aut
                     }}
                     className={`absolute w-[88vw] max-w-[360px] sm:w-[420px] md:w-[450px] lg:w-[480px] h-[600px] sm:h-[660px] lg:h-[720px] flex-shrink-0 cursor-pointer rounded-[32px] overflow-hidden border bg-white p-7 sm:p-8 flex flex-col justify-between transform-gpu ${
                       isCenter 
-                        ? 'shadow-[0_20px_50px_rgba(178,43,47,0.18),0_6px_20px_rgba(0,0,0,0.06)] border-primary/50 ring-2 ring-primary/20' 
-                        : 'shadow-[0_12px_36px_rgba(0,0,0,0.08)] border-[#e8e6e1]'
+                        ? 'shadow-[0_20px_48px_-10px_rgba(28,25,23,0.14),0_6px_18px_-4px_rgba(178,43,47,0.08)] border-primary/40' 
+                        : 'shadow-[0_6px_20px_rgba(0,0,0,0.05)] border-[#e8e6e1]'
                     }`}
                   >
                     {/* Brand / Event Tagline & Year (Clean Flex Row - Zero Overlap) */}
