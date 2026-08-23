@@ -33,7 +33,7 @@ export default function Footer() {
           <ul className="footer-socials-list flex flex-row md:flex-col justify-center md:justify-start items-center md:items-start gap-3 md:gap-2.5">
             <li>
               <a
-                href="https://www.instagram.com/aces_dit/"
+                href="https://www.instagram.com/aces.dit/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer-social-link flex items-center gap-2"
