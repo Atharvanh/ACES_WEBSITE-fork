@@ -11,6 +11,8 @@ import Members from './pages/members/Members';
 import MembersList from './pages/members/MembersList';
 import MemberProfile from './pages/member-profile/MemberProfile';
 import Social from './pages/social/Social';
+import WebGLBackground from './components/WebGLBackground';
+import FooterReveal from './components/FooterReveal';
 import { useScrollReveal } from './hooks/useScrollReveal';
 import { useDynamicScrollbar } from './hooks/useDynamicScrollbar';
 
@@ -41,27 +43,46 @@ function AppContent() {
   useDynamicScrollbar();
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-mesh text-muted font-sans selection:bg-primary selection:text-white">
-      <ScrollToTop />
-      <Navbar />
-      
-      {/* Main Content Area */}
-      <main className="flex-grow">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/who-are-we" element={<WhoAreWe />} />
-          <Route path="/golden-moments" element={<GoldenMoments />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/feed" element={<Feed />} />
-          <Route path="/social" element={<Social />} />
-          <Route path="/members" element={<Members />} />
-          <Route path="/members/:categoryId" element={<MembersList />} />
-          <Route path="/members/:categoryId/:memberId" element={<MemberProfile />} />
-        </Routes>
-      </main>
-      
-      <Footer />
-    </div>
+    <>
+      {/* Shared persistent background layers — OUTSIDE the flex container so negative z-index works */}
+      <WebGLBackground />
+      <div
+        className="fixed inset-0 w-screen h-screen pointer-events-none"
+        style={{
+          zIndex: -1,
+          backgroundImage: `
+            linear-gradient(to right, rgba(90, 85, 80, 0.12) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(90, 85, 80, 0.12) 1px, transparent 1px)
+          `,
+          backgroundSize: '40px 40px',
+        }}
+        aria-hidden="true"
+      />
+
+      <div className="flex flex-col min-h-screen text-muted font-sans selection:bg-primary selection:text-white">
+        <ScrollToTop />
+        <Navbar />
+        
+        {/* Main Content Area */}
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/who-are-we" element={<WhoAreWe />} />
+            <Route path="/golden-moments" element={<GoldenMoments />} />
+            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/feed" element={<Feed />} />
+            <Route path="/social" element={<Social />} />
+            <Route path="/members" element={<Members />} />
+            <Route path="/members/:categoryId" element={<MembersList />} />
+            <Route path="/members/:categoryId/:memberId" element={<MemberProfile />} />
+          </Routes>
+        </main>
+        
+        <FooterReveal>
+          <Footer />
+        </FooterReveal>
+      </div>
+    </>
   );
 }
 

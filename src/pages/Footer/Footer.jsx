@@ -105,6 +105,11 @@ export default function Footer() {
       <div className="footer-copyright">
         © {new Date().getFullYear()} Association of Computer Engineering Students, DIT. All rights reserved.
       </div>
+
+      {/* Large ACES Wordmark */}
+      <div className="footer-wordmark" aria-hidden="true">
+        <span className="footer-wordmark-text">ACES</span>
+      </div>
     </footer>
   );
 }

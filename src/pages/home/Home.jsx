@@ -6,6 +6,7 @@ import Gallery from '../gallery/Gallery';
 import Feed from '../feed/Feed';
 import Social from '../social/Social';
 import Members from '../members/Members';
+import ContactUs from '../../components/ContactUs';
 
 export default function Home() {
   const scrollToSection = (id) => {
@@ -18,7 +19,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#FFF4F2]">
+    <div className="min-h-screen overflow-x-hidden bg-transparent">
       {/* ─── 1. Home / Hero Section: Cyber Mesh & Technical Architecture (Screenshot 2 Design) ─── */}
       <section id="home" className="relative min-h-screen w-full overflow-hidden scroll-mt-20">
         <CyberHeroAnimation onExploreClick={() => scrollToSection('who-are-we')} />
@@ -37,6 +38,9 @@ export default function Home() {
 
       {/* ─── Members Directory Preview Section ─── */}
       <Members embedded={true} />
+
+      {/* ─── Contact Us Section ─── */}
+      <ContactUs />
     </div>
   );
 }
